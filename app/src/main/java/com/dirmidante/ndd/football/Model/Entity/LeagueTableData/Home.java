@@ -1,9 +1,9 @@
-package com.dirmidante.ndd.football.Model.LeagueTableData;
+package com.dirmidante.ndd.football.Model.Entity.LeagueTableData;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Away {
+public class Home {
 
     @SerializedName("goals")
     @Expose

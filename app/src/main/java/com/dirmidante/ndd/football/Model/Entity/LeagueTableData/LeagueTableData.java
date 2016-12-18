@@ -1,4 +1,4 @@
-package com.dirmidante.ndd.football.Model.LeagueTableData;
+package com.dirmidante.ndd.football.Model.Entity.LeagueTableData;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

@@ -1,4 +1,4 @@
-package com.dirmidante.ndd.football.View;
+package com.dirmidante.ndd.football.View.Impl;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
  */
 
 public class SplashActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

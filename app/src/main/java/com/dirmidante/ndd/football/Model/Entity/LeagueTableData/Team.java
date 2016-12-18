@@ -1,17 +1,9 @@
-package com.dirmidante.ndd.football.Model.CompetitonsData;
-
+package com.dirmidante.ndd.football.Model.Entity.LeagueTableData;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Fixtures {
-
-    @Override
-    public String toString() {
-        return "Fixtures{" +
-                "href='" + href + '\'' +
-                '}';
-    }
+public class Team {
 
     @SerializedName("href")
     @Expose

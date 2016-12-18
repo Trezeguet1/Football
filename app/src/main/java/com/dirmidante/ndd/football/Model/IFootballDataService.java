@@ -1,7 +1,8 @@
 package com.dirmidante.ndd.football.Model;
 
-import com.dirmidante.ndd.football.Model.CompetitonsData.CompetitionsData;
-import com.dirmidante.ndd.football.Model.LeagueTableData.LeagueTableData;
+
+import com.dirmidante.ndd.football.Model.Entity.CompetitonsData.CompetitonsData;
+import com.dirmidante.ndd.football.Model.Entity.LeagueTableData.LeagueTableData;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ import rx.Observable;
  * Created by Dima on 2016-12-17.
  */
 
-public interface FootballDataService {
+public interface IFootballDataService {
 
     @Headers("X-Auth-Token: 776e07b83bfd4b57bd53c126558f9937")
     @GET("competitions/{league_id}/leagueTable")
@@ -22,6 +23,6 @@ public interface FootballDataService {
 
     @Headers("X-Auth-Token: 776e07b83bfd4b57bd53c126558f9937")
     @GET("competitions/")
-    Observable<List<CompetitionsData>> getCompetitions();
+    Observable<List<CompetitonsData>> getCompetitions();
 
 }
