@@ -8,10 +8,8 @@ public class Standing {
     @Override
     public String toString() {
         return "\nStanding{" +
-                "links=" + links +
                 ", position=" + position +
                 ", teamName='" + teamName + '\'' +
-                ", crestURI='" + crestURI + '\'' +
                 ", playedGames=" + playedGames +
                 ", points=" + points +
                 ", goals=" + goals +
@@ -20,23 +18,15 @@ public class Standing {
                 ", wins=" + wins +
                 ", draws=" + draws +
                 ", losses=" + losses +
-                ", home=" + home +
-                ", away=" + away +
                 '}';
     }
 
-    @SerializedName("_links")
-    @Expose
-    private Links_ links;
     @SerializedName("position")
     @Expose
     private Integer position;
     @SerializedName("teamName")
     @Expose
     private String teamName;
-    @SerializedName("crestURI")
-    @Expose
-    private String crestURI;
     @SerializedName("playedGames")
     @Expose
     private Integer playedGames;
@@ -61,30 +51,6 @@ public class Standing {
     @SerializedName("losses")
     @Expose
     private Integer losses;
-    @SerializedName("home")
-    @Expose
-    private Home home;
-    @SerializedName("away")
-    @Expose
-    private Away away;
-
-    /**
-     * 
-     * @return
-     *     The links
-     */
-    public Links_ getLinks() {
-        return links;
-    }
-
-    /**
-     * 
-     * @param links
-     *     The _links
-     */
-    public void setLinks(Links_ links) {
-        this.links = links;
-    }
 
     /**
      * 
@@ -121,26 +87,7 @@ public class Standing {
     public void setTeamName(String teamName) {
         this.teamName = teamName;
     }
-
-    /**
-     * 
-     * @return
-     *     The crestURI
-     */
-    public String getCrestURI() {
-        return crestURI;
-    }
-
-    /**
-     * 
-     * @param crestURI
-     *     The crestURI
-     */
-    public void setCrestURI(String crestURI) {
-        this.crestURI = crestURI;
-    }
-
-    /**
+        /**
      * 
      * @return
      *     The playedGames
@@ -283,41 +230,4 @@ public class Standing {
     public void setLosses(Integer losses) {
         this.losses = losses;
     }
-
-    /**
-     * 
-     * @return
-     *     The home
-     */
-    public Home getHome() {
-        return home;
     }
-
-    /**
-     * 
-     * @param home
-     *     The home
-     */
-    public void setHome(Home home) {
-        this.home = home;
-    }
-
-    /**
-     * 
-     * @return
-     *     The away
-     */
-    public Away getAway() {
-        return away;
-    }
-
-    /**
-     * 
-     * @param away
-     *     The away
-     */
-    public void setAway(Away away) {
-        this.away = away;
-    }
-
-}

@@ -1,6 +1,7 @@
 package com.dirmidante.ndd.football.Model;
 
 import com.dirmidante.ndd.football.Model.Entity.CompetitonsData.CompetitonsData;
+import com.dirmidante.ndd.football.Model.Entity.CupTableData.CupTableData;
 import com.dirmidante.ndd.football.Model.Entity.LeagueTableData.LeagueTableData;
 
 import java.util.List;
@@ -17,5 +18,6 @@ public interface IFootballDataAPI {
 
     Observable<List<CompetitonsData>> getCompetitons();
     Observable<LeagueTableData> getLeagueTable(String leagueId);
+    Observable<CupTableData> getCupTable(String leagueId);
 }
 

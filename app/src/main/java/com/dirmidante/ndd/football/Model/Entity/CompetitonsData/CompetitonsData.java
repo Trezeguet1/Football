@@ -5,18 +5,12 @@ import com.google.gson.annotations.SerializedName;
 
 public class CompetitonsData {
 
-    @SerializedName("_links")
-    @Expose
-    private Links links;
     @SerializedName("id")
     @Expose
     private Integer id;
     @SerializedName("caption")
     @Expose
     private String caption;
-    @SerializedName("league")
-    @Expose
-    private String league;
     @SerializedName("year")
     @Expose
     private String year;
@@ -29,20 +23,11 @@ public class CompetitonsData {
     @SerializedName("numberOfTeams")
     @Expose
     private Integer numberOfTeams;
-    @SerializedName("numberOfGames")
-    @Expose
-    private Integer numberOfGames;
     @SerializedName("lastUpdated")
     @Expose
     private String lastUpdated;
 
-    public Links getLinks() {
-        return links;
-    }
 
-    public void setLinks(Links links) {
-        this.links = links;
-    }
 
     public Integer getId() {
         return id;
@@ -58,14 +43,6 @@ public class CompetitonsData {
 
     public void setCaption(String caption) {
         this.caption = caption;
-    }
-
-    public String getLeague() {
-        return league;
-    }
-
-    public void setLeague(String league) {
-        this.league = league;
     }
 
     public String getYear() {
@@ -98,14 +75,6 @@ public class CompetitonsData {
 
     public void setNumberOfTeams(Integer numberOfTeams) {
         this.numberOfTeams = numberOfTeams;
-    }
-
-    public Integer getNumberOfGames() {
-        return numberOfGames;
-    }
-
-    public void setNumberOfGames(Integer numberOfGames) {
-        this.numberOfGames = numberOfGames;
     }
 
     public String getLastUpdated() {

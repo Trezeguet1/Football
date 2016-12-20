@@ -20,6 +20,11 @@ public class CompetitionsAdapter extends RecyclerView.Adapter<CompetitionsAdapte
 
 
     private List<CompetitonsData> competitions;
+    private RecyclerListener onCompetitionClickListener;
+
+    public void setListener(RecyclerListener listener){
+        this.onCompetitionClickListener = listener;
+    }
 
     public CompetitionsAdapter(List<CompetitonsData> competitions) {
         this.competitions = competitions;
@@ -43,37 +48,32 @@ public class CompetitionsAdapter extends RecyclerView.Adapter<CompetitionsAdapte
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
 
         CardView competitionItem = holder.competitionCard;
 
-        TextView id = (TextView) competitionItem.findViewById(R.id.id);
         TextView caption = (TextView) competitionItem.findViewById(R.id.caption);
-        TextView league = (TextView) competitionItem.findViewById(R.id.league);
-        TextView year = (TextView) competitionItem.findViewById(R.id.year);
         TextView currentMatchDay = (TextView) competitionItem.findViewById(R.id.current_matchday);
-        TextView numberOfMatchdays = (TextView) competitionItem.findViewById(R.id.number_of_matchdays);
         TextView numberOfTeams = (TextView) competitionItem.findViewById(R.id.number_of_teams);
-        TextView numberOfGames = (TextView) competitionItem.findViewById(R.id.number_of_games);
         TextView lastUpdate = (TextView) competitionItem.findViewById(R.id.last_update);
 
 
-        id.setText(competitions.get(position).getId().toString());
         caption.setText(competitions.get(position).getCaption());
-        league.setText(competitions.get(position).getLeague());
-        year.setText(competitions.get(position).getYear());
-        currentMatchDay.setText(competitions.get(position).getCurrentMatchday().toString());
-        numberOfMatchdays.setText(competitions.get(position).getNumberOfMatchdays().toString());
-        numberOfTeams.setText(competitions.get(position).getNumberOfTeams().toString());
-        numberOfGames.setText(competitions.get(position).getNumberOfGames().toString());
-        lastUpdate.setText(competitions.get(position).getLastUpdated());
+        currentMatchDay.setText("Current Matchday "
+                +competitions.get(position).getCurrentMatchday().toString()+"/"
+        +competitions.get(position).getNumberOfMatchdays().toString());
+        numberOfTeams.setText("Number Of Teams "+competitions.get(position).getNumberOfTeams().toString());
+        lastUpdate.setText("Last Updated "+competitions.get(position).getLastUpdated());
 
         competitionItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if (onCompetitionClickListener!= null){
+                    onCompetitionClickListener.onClick(position);
+                }
             }
         });
+
     }
 
     @Override
@@ -82,4 +82,4 @@ public class CompetitionsAdapter extends RecyclerView.Adapter<CompetitionsAdapte
     }
 
 
-}
+   }

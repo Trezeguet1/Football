@@ -1,6 +1,7 @@
 package com.dirmidante.ndd.football.Model.Impl;
 
 import com.dirmidante.ndd.football.Model.Entity.CompetitonsData.CompetitonsData;
+import com.dirmidante.ndd.football.Model.Entity.CupTableData.CupTableData;
 import com.dirmidante.ndd.football.Model.Entity.LeagueTableData.LeagueTableData;
 import com.dirmidante.ndd.football.Model.IFootballDataAPI;
 import com.dirmidante.ndd.football.Model.IFootballDataService;
@@ -50,6 +51,17 @@ public class FootballDataAPI implements IFootballDataAPI {
 
         IFootballDataService footballDataService = getLeagueTableRetrofit.create(IFootballDataService.class);
         return footballDataService.getLeagueTable(leagueId);
+    }
 
+    @Override
+    public Observable<CupTableData> getCupTable(String leagueId) {
+        Retrofit getCupTableRetrofit = new Retrofit.Builder()
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(BASE_URL)
+                .build();
+
+        IFootballDataService footballDataService = getCupTableRetrofit.create(IFootballDataService.class);
+        return  footballDataService.getCupTable(leagueId);
     }
 }
