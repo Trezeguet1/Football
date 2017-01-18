@@ -12,4 +12,5 @@ public interface MainView {
     void setCompetitionsListData(List<CompetitonsData> competitions);
     void startDetailActivity(int id);
     void showNoConnectionMessage();
+    void setRefreshing();
 }

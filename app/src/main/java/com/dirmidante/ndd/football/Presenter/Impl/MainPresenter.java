@@ -49,5 +49,7 @@ public class MainPresenter implements IMainPresenter {
                         view.setCompetitionsListData(competitonsList);
                     });
         } else view.showNoConnectionMessage();
+
+        view.setRefreshing();
     }
 }

@@ -12,4 +12,5 @@ public interface DetailView {
     void setTableData(LeagueTableData tableData);
     void setTableData(CupTableData tableData);
     void showNoConnectionMessage();
+    void setRefreshing();
 }

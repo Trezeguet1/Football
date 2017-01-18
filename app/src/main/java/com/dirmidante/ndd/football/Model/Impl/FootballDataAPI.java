@@ -19,16 +19,6 @@ import rx.Observable;
 
 public class FootballDataAPI implements IFootballDataAPI {
 
-    private List<CompetitonsData> competitonsList;
-
-    public List<CompetitonsData> getCompetitonsList() {
-        return competitonsList;
-    }
-
-    public void setCompetitonsList(List<CompetitonsData> competitonsList) {
-        this.competitonsList = competitonsList;
-    }
-
     @Override
     public Observable<List<CompetitonsData>> getCompetitons() {
         Retrofit getCompetitionsRetrofit = new Retrofit.Builder()

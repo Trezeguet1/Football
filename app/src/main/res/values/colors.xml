@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#c1c9d4</color>
     <color name="colorPrimaryDark">#393a3d</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="ListBigItem">#969df1</color>
+    <color name="tableItem">#7c85f1</color>
+    <color name="header">#545cc2</color>
 </resources>

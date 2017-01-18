@@ -1,9 +1,9 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/header</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
@@ -11,6 +11,30 @@
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground" >@drawable/background</item>
     </style>
+
+    <style name="table_item_element">
+        <item name="android:textSize">15dp</item>
+        <item name="android:layout_height">50dp</item>
+    </style>
+
+    <style name="table_item_attr" parent="table_item_element">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="table_header_attr" parent="table_item_attr">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="table_item_title" parent="table_item_element">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">130dp</item>
+        <item name="android:layout_weight">20</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 
 
 </resources>

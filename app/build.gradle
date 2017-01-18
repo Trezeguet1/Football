@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 24
@@ -47,12 +48,3 @@ dependencies {
 }
 
 
-
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'me.tatarka:gradle-retrolambda:3.2.3'
-    }
-}

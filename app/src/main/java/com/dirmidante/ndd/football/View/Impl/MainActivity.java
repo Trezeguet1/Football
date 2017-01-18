@@ -1,9 +1,8 @@
 package com.dirmidante.ndd.football.View.Impl;
 
-import android.content.Context;
+
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,16 +23,17 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MainView {
 
-    private IMainPresenter presenter;
+    private IMainPresenter mPresenter;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-        presenter = new MainPresenter(this, new FootballDataAPI(), this);
-        presenter.getCompetitions();
         setContentView(R.layout.activity_main);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
+        mPresenter = new MainPresenter(this, new FootballDataAPI(), this);
+        mPresenter.getCompetitions();
+        mSwipeRefreshLayout.setOnRefreshListener(()->mPresenter.getCompetitions());
     }
 
 
@@ -48,11 +48,9 @@ public class MainActivity extends AppCompatActivity implements MainView {
         competitionsList.setLayoutManager(layoutManager);
         competitionsList.setAdapter(competitionsAdapter);
 
-        competitionsAdapter.setListener(new RecyclerListener() {
-            @Override
-            public void onClick(int position) {
-                startDetailActivity(competitions.get(position).getId());
-            }
+
+        competitionsAdapter.setListener((position) ->{
+            startDetailActivity(competitions.get(position).getId());
         });
     }
 
@@ -66,5 +64,10 @@ public class MainActivity extends AppCompatActivity implements MainView {
     @Override
     public void showNoConnectionMessage() {
         Toast.makeText(this,"No Internet Connection",Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void setRefreshing() {
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 }

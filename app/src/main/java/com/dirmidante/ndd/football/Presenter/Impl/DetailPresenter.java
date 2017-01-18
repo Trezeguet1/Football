@@ -20,6 +20,8 @@ import rx.schedulers.Schedulers;
 
 public class DetailPresenter implements IDetailPresenter {
 
+    private static final String EUROPEAN_CHAMPIONSHIP_ID = "424";
+    private static final String  CHAMPIONS_LEAGUE_ID = "440";
     private DetailView view;
     private FootballDataAPI footballDataAPI;
     private Context context;
@@ -39,7 +41,7 @@ public class DetailPresenter implements IDetailPresenter {
         if (networkInfo != null && networkInfo.isConnected()) {
 
 
-            if (leagueId.equals("424") || leagueId.equals("440")) {
+            if (leagueId.equals(EUROPEAN_CHAMPIONSHIP_ID) || leagueId.equals(CHAMPIONS_LEAGUE_ID)) {
                 Observable<CupTableData> cupTableDataObservable = footballDataAPI.getCupTable(leagueId);
                 cupTableDataObservable.subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
@@ -56,5 +58,7 @@ public class DetailPresenter implements IDetailPresenter {
             }
 
         } else view.showNoConnectionMessage();
+
+        view.setRefreshing();
     }
 }
