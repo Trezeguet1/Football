@@ -3,14 +3,12 @@ package com.dirmidante.ndd.football.Adapter;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.dirmidante.ndd.football.Model.Entity.CupTableData.A;
+import com.dirmidante.ndd.football.Model.Entity.CupTableData.Group;
 import com.dirmidante.ndd.football.R;
-
-import java.util.List;
+import io.realm.RealmList;
 
 /**
  * Created by Dima on 2016-12-20.
@@ -18,9 +16,9 @@ import java.util.List;
 
 public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder>{
 
-    List<A> teams;
+    private RealmList<Group> teams = null;
 
-    public GroupAdapter(List<A> teams) {
+    public GroupAdapter(RealmList<Group> teams) {
         this.teams = teams;
     }
 

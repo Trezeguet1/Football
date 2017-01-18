@@ -13,4 +13,6 @@ public interface DetailView {
     void setTableData(CupTableData tableData);
     void showNoConnectionMessage();
     void setRefreshing();
+    void showErrorMessage();
+    void setHeader();
 }

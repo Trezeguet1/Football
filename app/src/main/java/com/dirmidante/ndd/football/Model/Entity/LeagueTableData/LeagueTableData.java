@@ -4,25 +4,26 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class LeagueTableData {
+import io.realm.RealmList;
+import io.realm.RealmObject;
 
-    @Override
-    public String toString() {
-        return "\nLeagueTableData{" +
-                "\n\tstanding=" + standing +
-                '}';
-    }
+public class LeagueTableData extends RealmObject{
+
+
+    @SerializedName("leagueCaption")
+    @Expose
+    private String leagueCaption = null;
 
     @SerializedName("standing")
     @Expose
-    private List<Standing> standing = null;
+    private RealmList<Standing> standing = null;
 
        /**
      * 
      * @return
      *     The standing
      */
-    public List<Standing> getStanding() {
+    public RealmList<Standing> getStanding() {
         return standing;
     }
 
@@ -31,8 +32,15 @@ public class LeagueTableData {
      * @param standing
      *     The standing
      */
-    public void setStanding(List<Standing> standing) {
+    public void setStanding(RealmList<Standing> standing) {
         this.standing = standing;
     }
 
+    public String getLeagueCaption() {
+        return leagueCaption;
+    }
+
+    public void setLeagueCaption(String leagueCaption) {
+        this.leagueCaption = leagueCaption;
+    }
 }

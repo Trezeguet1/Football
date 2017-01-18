@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swipeRefreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
     android:paddingLeft="5dp"
     android:paddingRight="5dp"
-    android:orientation="vertical"
-    android:background="@color/colorPrimary"
     tools:context="com.dirmidante.ndd.football.View.Impl.DetailActivity">
+
+
+    <LinearLayout
+        android:id="@+id/head"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/leagueTableList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/leagueTableList">
+            android:layout_height="match_parent">
         </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
 </android.support.v4.widget.SwipeRefreshLayout>

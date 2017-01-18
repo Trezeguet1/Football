@@ -6,12 +6,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.dirmidante.ndd.football.Model.Entity.CupTableData.CupTableData;
+import com.dirmidante.ndd.football.Model.Entity.CupTableData.Group;
 import com.dirmidante.ndd.football.R;
+
+import io.realm.RealmList;
 
 
 /**
@@ -43,46 +45,50 @@ public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHo
 
 
 
-        GroupAdapter groupAdapter = null;
+        RealmList<Group> group = new RealmList<>();
 
 
         switch (position){
-            case 0: groupTitle.setText("Group A");
-                groupAdapter = new GroupAdapter(cupTableData.getStandings().getA());
+            case 0: groupTitle.setText("Group Group");
+                group = cupTableData.getStandings().getA();
                 break;
             case 1: groupTitle.setText("Group B");
-                groupAdapter = new GroupAdapter(cupTableData.getStandings().getB());
+                group = cupTableData.getStandings().getB();
                 break;
             case 2: groupTitle.setText("Group C");
-                groupAdapter = new GroupAdapter(cupTableData.getStandings().getC());
+                group = cupTableData.getStandings().getC();
                 break;
             case 3: groupTitle.setText("Group D");
-                groupAdapter = new GroupAdapter(cupTableData.getStandings().getD());
+                group = cupTableData.getStandings().getD();
                 break;
             case 4: groupTitle.setText("Group E");
-                groupAdapter = new GroupAdapter(cupTableData.getStandings().getE());
+                group = cupTableData.getStandings().getE();
                 break;
             case 5: groupTitle.setText("Group F");
-                groupAdapter = new GroupAdapter(cupTableData.getStandings().getF());
+                group = cupTableData.getStandings().getF();
                 break;
             case 6: groupTitle.setText("Group G");
-                groupAdapter = new GroupAdapter(cupTableData.getStandings().getG());
+                group = cupTableData.getStandings().getG();
                 break;
             case 7: groupTitle.setText("Group H");
-                groupAdapter = new GroupAdapter(cupTableData.getStandings().getH());
+                group = cupTableData.getStandings().getH();
                 break;
         }
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.context);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         groupList.setLayoutManager(layoutManager);
-        groupList.setAdapter(groupAdapter);
+        groupList.setAdapter(new GroupAdapter(group));
 
 
     }
 
     @Override
     public int getItemCount() {
+        return getCount(cupTableData);
+    }
+
+    public int getCount(CupTableData cupTableData) {
         int count = 0;
         if (cupTableData.getStandings()!=null)
         if (cupTableData.getStandings().getA()!=null) count++;

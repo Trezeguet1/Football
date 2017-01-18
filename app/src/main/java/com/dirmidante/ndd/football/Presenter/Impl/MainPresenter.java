@@ -3,7 +3,6 @@ package com.dirmidante.ndd.football.Presenter.Impl;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.Log;
 
 import com.dirmidante.ndd.football.Model.Entity.CompetitonsData.CompetitonsData;
 import com.dirmidante.ndd.football.Model.Impl.FootballDataAPI;
@@ -23,33 +22,33 @@ import rx.schedulers.Schedulers;
 
 public class MainPresenter implements IMainPresenter {
 
-    private MainView view;
-    private FootballDataAPI footballDataAPI;
-    private Context context;
+    private MainView mView;
+    private FootballDataAPI mFootballDataAPI;
+    private Context mContext;
 
     public MainPresenter(MainView view, FootballDataAPI footballDataAPI, Context context) {
-        this.view = view;
-        this.footballDataAPI = footballDataAPI;
-        this.context = context;
+        this.mView = view;
+        this.mFootballDataAPI = footballDataAPI;
+        this.mContext = context;
     }
 
     @Override
     public void getCompetitions() {
         ConnectivityManager connMgr = (ConnectivityManager)
-                context.getSystemService(Context.CONNECTIVITY_SERVICE);
+                mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
         if (networkInfo != null && networkInfo.isConnected()) {
-            Observable<List<CompetitonsData>> competitionsDataObservable = footballDataAPI.getCompetitons();
+            Observable<List<CompetitonsData>> competitionsDataObservable = mFootballDataAPI.getCompetitons();
             competitionsDataObservable.subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(competitonsData -> {
                         List<CompetitonsData> competitonsList = new ArrayList<>();
                         competitonsList.addAll(competitonsData);
-                        view.setCompetitionsListData(competitonsList);
+                        mView.setCompetitionsListData(competitonsList);
                     });
-        } else view.showNoConnectionMessage();
+        } else mView.showNoConnectionMessage();
 
-        view.setRefreshing();
+        mView.setRefreshing();
     }
 }

@@ -7,7 +7,6 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
@@ -25,48 +24,53 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
 
     public static final String EXTRA_ID = "id";
 
-    private IDetailPresenter presenter;
+    private IDetailPresenter mPresenter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
-    private RecyclerView leagueTableList;
-    private String leagueId;
+    private RecyclerView mRecyclerView;
+    private String mLeagueId;
+    private boolean mHasHeader = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        leagueId = Integer.toString(getIntent().getIntExtra(EXTRA_ID, 0));
+        mLeagueId = Integer.toString(getIntent().getIntExtra(EXTRA_ID, 0));
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
-        mSwipeRefreshLayout.setOnRefreshListener(() -> presenter.getTable(leagueId));
+        mSwipeRefreshLayout.setOnRefreshListener(() -> mPresenter.getTable(mLeagueId));
 
 
-        leagueTableList = (RecyclerView) findViewById(R.id.leagueTableList);
-        presenter = new DetailPresenter(this, new FootballDataAPI(), this);
-        presenter.getTable(leagueId);
+        mRecyclerView = (RecyclerView) findViewById(R.id.leagueTableList);
+        mPresenter = new DetailPresenter(this, new FootballDataAPI(), this);
+        mPresenter.getTable(mLeagueId);
     }
 
     @Override
     public void setTableData(LeagueTableData tableData) {
-
-        CardView header = (CardView) getLayoutInflater().inflate(R.layout.table_header, null);
-        ViewGroup head = (ViewGroup) findViewById(R.id.swipeRefreshLayout);
-        head.addView(header, 0);
         LeagueTableAdapter leagueTableAdapter = new LeagueTableAdapter(tableData);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        leagueTableList.setLayoutManager(layoutManager);
-        leagueTableList.setAdapter(leagueTableAdapter);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setAdapter(leagueTableAdapter);
     }
-
     @Override
     public void setTableData(CupTableData tableData) {
         CupTableAdapter cupTableadapter = new CupTableAdapter(tableData, this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        leagueTableList.setLayoutManager(layoutManager);
-        leagueTableList.setAdapter(cupTableadapter);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setAdapter(cupTableadapter);
+    }
 
+    @Override
+    public void setHeader() {
+        if (!mHasHeader) {
+            CardView header = (CardView) getLayoutInflater().inflate(R.layout.table_header, null);
+            ViewGroup head = (ViewGroup) findViewById(R.id.head);
+            head.addView(header, 0);
+            mHasHeader = true;
+        }
     }
 
     @Override
@@ -75,7 +79,14 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
     }
 
     @Override
+    public void showErrorMessage() {
+        Toast.makeText(this, "There is not info for this competition", Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
     public void setRefreshing() {
+        mSwipeRefreshLayout.setRefreshing(false);
         mSwipeRefreshLayout.setRefreshing(false);
     }
 }
