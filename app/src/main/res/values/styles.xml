@@ -3,7 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorActionBar</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
@@ -43,6 +43,7 @@
 
     <style name="table_header_attr" parent="table_item_attr">
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/White</item>
     </style>
 
     <style name="table_item_title" parent="table_item_element">

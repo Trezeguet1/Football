@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/item"
-    app:cardBackgroundColor="@color/header"
+    app:cardBackgroundColor="@color/colorPrimaryDark"
     app:cardCornerRadius="1dp">
 
     <LinearLayout
@@ -13,7 +13,8 @@
 
         <TextView
             style="@style/table_item_title"
-            android:text="@string/title"/>
+            android:text="@string/title"
+            android:textColor="@color/White"/>
 
         <TextView
             style="@style/table_header_attr"
