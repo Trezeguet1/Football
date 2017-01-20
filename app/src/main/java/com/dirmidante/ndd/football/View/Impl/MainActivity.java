@@ -7,11 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.dirmidante.ndd.football.Adapter.CompetitionsAdapter;
-import com.dirmidante.ndd.football.Adapter.RecyclerListener;
 import com.dirmidante.ndd.football.Model.Entity.CompetitonsData.CompetitonsData;
 import com.dirmidante.ndd.football.Model.Impl.FootballDataAPI;
 import com.dirmidante.ndd.football.Presenter.IMainPresenter;
@@ -30,10 +28,14 @@ public class MainActivity extends AppCompatActivity implements MainView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         mPresenter = new MainPresenter(this, new FootballDataAPI(), this);
-        mPresenter.getCompetitions();
-        mSwipeRefreshLayout.setOnRefreshListener(()->mPresenter.getCompetitions());
+
+
+        mPresenter.getCompetitionsFromRealm();
+        mSwipeRefreshLayout.setOnRefreshListener(()->mPresenter.getCompetitionsFromNetwork());
     }
 
 

@@ -5,13 +5,13 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 public class CupTableData extends RealmObject{
 
 
-    @SerializedName("leagueCaption")
-    @Expose
-    private String leagueCaption = null;
+    @PrimaryKey
+    private String id;
 
     @SerializedName("standings")
     @Expose
@@ -26,11 +26,11 @@ public class CupTableData extends RealmObject{
         this.standings = standings;
     }
 
-    public String getLeagueCaption() {
-        return leagueCaption;
+    public String getId() {
+        return id;
     }
 
-    public void setLeagueCaption(String leagueCaption) {
-        this.leagueCaption = leagueCaption;
+    public void setId(String id) {
+        this.id = id;
     }
 }

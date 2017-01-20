@@ -1,6 +1,7 @@
 package com.dirmidante.ndd.football.Adapter;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -48,29 +49,30 @@ public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHo
         RealmList<Group> group = new RealmList<>();
 
 
+        groupTitle.setText(getGroup(position));
         switch (position){
-            case 0: groupTitle.setText("Group Group");
+            case 0:
                 group = cupTableData.getStandings().getA();
                 break;
-            case 1: groupTitle.setText("Group B");
+            case 1:
                 group = cupTableData.getStandings().getB();
                 break;
-            case 2: groupTitle.setText("Group C");
+            case 2:
                 group = cupTableData.getStandings().getC();
                 break;
-            case 3: groupTitle.setText("Group D");
+            case 3:
                 group = cupTableData.getStandings().getD();
                 break;
-            case 4: groupTitle.setText("Group E");
+            case 4:
                 group = cupTableData.getStandings().getE();
                 break;
-            case 5: groupTitle.setText("Group F");
+            case 5:
                 group = cupTableData.getStandings().getF();
                 break;
-            case 6: groupTitle.setText("Group G");
+            case 6:
                 group = cupTableData.getStandings().getG();
                 break;
-            case 7: groupTitle.setText("Group H");
+            case 7:
                 group = cupTableData.getStandings().getH();
                 break;
         }
@@ -109,5 +111,11 @@ public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHo
             super(groupItem);
             this.groupItem = groupItem;
         }
+    }
+
+    private String getGroup (int i){
+
+        String [] groups = context.getResources().getStringArray(R.array.groups);
+        return groups[i];
     }
 }

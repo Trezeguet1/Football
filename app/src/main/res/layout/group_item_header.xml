@@ -1,41 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    style="@style/item"
     app:cardCornerRadius="1dp"
     app:cardBackgroundColor="@color/header">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/item"
         android:orientation="horizontal">
 
         <TextView
             style="@style/table_item_title"
-            android:text="TITLE"
+            android:text="@string/title"
             />
 
         <TextView
             style="@style/table_header_attr"
-            android:text="G" />
+            android:text="@string/games" />
 
         <TextView
             style="@style/table_header_attr"
-            android:text="S" />
+            android:text="@string/scored" />
 
         <TextView
             style="@style/table_header_attr"
-            android:text="C" />
+            android:text="@string/conseded" />
 
         <TextView
             style="@style/table_header_attr"
-            android:text="+/-" />
+            android:text="@string/difference" />
 
         <TextView
             style="@style/table_header_attr"
-            android:text="P" />
+            android:text="@string/points" />
     </LinearLayout>
 
 </android.support.v7.widget.CardView>

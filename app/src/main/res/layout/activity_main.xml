@@ -3,19 +3,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swipeRefreshLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    style="@style/match"
+    android:background="@color/colorPrimaryDark"
     android:paddingLeft="5dp"
     android:paddingRight="5dp"
+    android:paddingTop="5dp"
     tools:context="com.dirmidante.ndd.football.View.Impl.MainActivity">
-
-
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/competitionsList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            style="@style/match">
         </android.support.v7.widget.RecyclerView>
 
 </android.support.v4.widget.SwipeRefreshLayout>

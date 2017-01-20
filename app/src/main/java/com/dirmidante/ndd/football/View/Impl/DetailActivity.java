@@ -34,16 +34,17 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mLeagueId = Integer.toString(getIntent().getIntExtra(EXTRA_ID, 0));
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
-        mSwipeRefreshLayout.setOnRefreshListener(() -> mPresenter.getTable(mLeagueId));
+        mSwipeRefreshLayout.setOnRefreshListener(() -> mPresenter.getTableFromNetwork(mLeagueId));
 
 
         mRecyclerView = (RecyclerView) findViewById(R.id.leagueTableList);
         mPresenter = new DetailPresenter(this, new FootballDataAPI(), this);
-        mPresenter.getTable(mLeagueId);
+        mPresenter.getTableFromRealm(mLeagueId);
     }
 
     @Override

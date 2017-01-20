@@ -14,7 +14,10 @@ import rx.Observable;
 
 public interface IFootballDataAPI {
 
-    String BASE_URL = "http://api.football-data.org/v1/";
+    static final String BASE_URL = "http://api.football-data.org/v1/";
+
+    static final String EUROPEAN_CHAMPIONSHIP_ID = "424";
+    static final String CHAMPIONS_LEAGUE_ID = "440";
 
     Observable<List<CompetitonsData>> getCompetitons();
     Observable<LeagueTableData> getLeagueTable(String leagueId);

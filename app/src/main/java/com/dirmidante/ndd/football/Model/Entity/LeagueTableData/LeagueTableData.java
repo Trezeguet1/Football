@@ -6,13 +6,13 @@ import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 public class LeagueTableData extends RealmObject{
 
 
-    @SerializedName("leagueCaption")
-    @Expose
-    private String leagueCaption = null;
+    @PrimaryKey
+    private String id;
 
     @SerializedName("standing")
     @Expose
@@ -36,11 +36,11 @@ public class LeagueTableData extends RealmObject{
         this.standing = standing;
     }
 
-    public String getLeagueCaption() {
-        return leagueCaption;
+    public String getId() {
+        return id;
     }
 
-    public void setLeagueCaption(String leagueCaption) {
-        this.leagueCaption = leagueCaption;
+    public void setId(String id) {
+        this.id = id;
     }
 }

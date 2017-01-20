@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Football</string>
+    <string name="title">TITLE</string>
+    <string name="games">G</string>
+    <string name="wins">W</string>
+    <string name="draws">D</string>
+    <string name="loses">L</string>
+    <string name="scored">S</string>
+    <string name="conseded">C</string>
+    <string name="difference">+/-</string>
+    <string name="points">P</string>
+    <string-array name="groups">
+        <item>Group A</item>
+        <item>Group B</item>
+        <item>Group C</item>
+        <item>Group D</item>
+        <item>Group E</item>
+        <item>Group F</item>
+        <item>Group G</item>
+        <item>Group H</item>
+    </string-array>
 </resources>

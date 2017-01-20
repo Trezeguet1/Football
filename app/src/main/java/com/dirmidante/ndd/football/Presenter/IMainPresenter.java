@@ -5,5 +5,6 @@ package com.dirmidante.ndd.football.Presenter;
  */
 
 public interface IMainPresenter {
-    void getCompetitions();
+    void getCompetitionsFromNetwork();
+    void getCompetitionsFromRealm();
 }

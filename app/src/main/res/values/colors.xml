@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#c1c9d4</color>
-    <color name="colorPrimaryDark">#393a3d</color>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#3c3f41</color>
+    <color name="colorActionBar">#9c4d2d</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="ListBigItem">#969df1</color>
-    <color name="tableItem">#7c85f1</color>
-    <color name="header">#545cc2</color>
+    <color name="ListBigItem">#c69b55</color>
+    <color name="ItemBackground">#c4a97d</color>
+    <color name="tableItem">#bc8732</color>
+    <color name="header">#9c4d2d</color>
 </resources>
