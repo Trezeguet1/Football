@@ -14,13 +14,16 @@ import rx.Observable;
 
 public interface IFootballDataAPI {
 
-    static final String BASE_URL = "http://api.football-data.org/v1/";
+    String BASE_URL = "http://api.football-data.org/v1/";
+    String EUROPEAN_CHAMPIONSHIP_ID = "424";
+    String CHAMPIONS_LEAGUE_ID = "440";
+    String API_TOKEN = "X-Auth-Token: 776e07b83bfd4b57bd53c126558f9937";
 
-    static final String EUROPEAN_CHAMPIONSHIP_ID = "424";
-    static final String CHAMPIONS_LEAGUE_ID = "440";
 
     Observable<List<CompetitonsData>> getCompetitons();
+
     Observable<LeagueTableData> getLeagueTable(String leagueId);
+
     Observable<CupTableData> getCupTable(String leagueId);
 }
 

@@ -29,15 +29,12 @@ public class MainActivity extends AppCompatActivity implements MainView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         mPresenter = new MainPresenter(this, new FootballDataAPI(), this);
 
-
         mPresenter.getCompetitionsFromRealm();
-        mSwipeRefreshLayout.setOnRefreshListener(()->mPresenter.getCompetitionsFromNetwork());
+        mSwipeRefreshLayout.setOnRefreshListener(() -> mPresenter.getCompetitionsFromNetwork());
     }
-
 
     @Override
     public void setCompetitionsListData(List<CompetitonsData> competitions) {
@@ -51,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         competitionsList.setAdapter(competitionsAdapter);
 
 
-        competitionsAdapter.setListener((position) ->{
+        competitionsAdapter.setListener((position) -> {
             startDetailActivity(competitions.get(position).getId());
         });
     }
@@ -65,11 +62,16 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void showNoConnectionMessage() {
-        Toast.makeText(this,"No Internet Connection",Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void setRefreshing() {
         mSwipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void showRefreshMessage() {
+        Toast.makeText(this, "Info Refreshed From Network", Toast.LENGTH_SHORT).show();
     }
 }

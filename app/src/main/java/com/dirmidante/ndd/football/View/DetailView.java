@@ -15,4 +15,5 @@ public interface DetailView {
     void setRefreshing();
     void showErrorMessage();
     void setHeader();
+    void showRefreshMessage();
 }

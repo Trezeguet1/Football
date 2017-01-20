@@ -13,4 +13,5 @@ public interface MainView {
     void startDetailActivity(int id);
     void showNoConnectionMessage();
     void setRefreshing();
+    void showRefreshMessage();
 }

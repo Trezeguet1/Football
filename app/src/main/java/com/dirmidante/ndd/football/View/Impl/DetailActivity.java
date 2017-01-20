@@ -55,6 +55,7 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(leagueTableAdapter);
     }
+
     @Override
     public void setTableData(CupTableData tableData) {
         CupTableAdapter cupTableadapter = new CupTableAdapter(tableData, this);
@@ -76,18 +77,23 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
 
     @Override
     public void showNoConnectionMessage() {
-        Toast.makeText(this, "No Internet Connection", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showErrorMessage() {
-        Toast.makeText(this, "There is not info for this competition", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "There is not info for this competition", Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
     public void setRefreshing() {
         mSwipeRefreshLayout.setRefreshing(false);
-        mSwipeRefreshLayout.setRefreshing(false);
+    }
+
+
+    @Override
+    public void showRefreshMessage() {
+        Toast.makeText(this, "Info Refreshed From Network", Toast.LENGTH_SHORT).show();
     }
 }

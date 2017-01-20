@@ -31,23 +31,28 @@ public class RealmHelper implements IRealmHelper {
             realm.executeTransaction(transaction -> realm.copyToRealmOrUpdate(competiton));
         }
     }
+
     @Override
     public void addCupTable(CupTableData cupTableData, String cupId) {
         cupTableData.setId(cupId);
         Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(transaction -> realm.copyToRealmOrUpdate(cupTableData));
     }
-    @Override    public void addLeagueTable(LeagueTableData leagueTableData, String leagueId) {
+
+    @Override
+    public void addLeagueTable(LeagueTableData leagueTableData, String leagueId) {
         leagueTableData.setId(leagueId);
         Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(transaction -> realm.copyToRealmOrUpdate(leagueTableData));
     }
+
     @Override
     public List<CompetitonsData> getCompetitions() {
         Realm realm = Realm.getDefaultInstance();
         RealmResults<CompetitonsData> result = realm.where(CompetitonsData.class).findAll();
         return result;
     }
+
     @Override
     public LeagueTableData getLeagueTable(String leagueId) {
         Realm realm = Realm.getDefaultInstance();
@@ -56,6 +61,7 @@ public class RealmHelper implements IRealmHelper {
                 .findFirst();
         return result;
     }
+
     @Override
     public CupTableData getCupTable(String cupId) {
         Realm realm = Realm.getDefaultInstance();
@@ -70,18 +76,18 @@ public class RealmHelper implements IRealmHelper {
     public boolean hasCompetitions() {
         Realm realm = Realm.getDefaultInstance();
         return realm.where(CompetitonsData.class)
-                .count()>0;
+                .count() > 0;
     }
 
     @Override
     public boolean hasLeague(String leagueId) {
         Realm realm = Realm.getDefaultInstance();
-        return realm.where(LeagueTableData.class).equalTo("id",leagueId).count()>0;
+        return realm.where(LeagueTableData.class).equalTo("id", leagueId).count() > 0;
     }
 
     @Override
     public boolean hasCup(String cupId) {
         Realm realm = Realm.getDefaultInstance();
-        return realm.where(CupTableData.class).equalTo("id",cupId).count()>0;
+        return realm.where(CupTableData.class).equalTo("id", cupId).count() > 0;
     }
 }

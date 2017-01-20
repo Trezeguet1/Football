@@ -23,7 +23,6 @@ import rx.schedulers.Schedulers;
 public class DetailPresenter implements IDetailPresenter {
 
 
-
     private DetailView mView;
     private FootballDataAPI mFootballDataAPI;
     private IRealmHelper mRealmHelper;
@@ -73,6 +72,7 @@ public class DetailPresenter implements IDetailPresenter {
                 .subscribe(table -> {
                     mView.setTableData(table);
                     mView.setHeader();
+                    mView.showRefreshMessage();
                 }, error -> mView.showErrorMessage());
     }
 
@@ -83,7 +83,10 @@ public class DetailPresenter implements IDetailPresenter {
                 .observeOn(Schedulers.computation())
                 .doOnNext(table -> mRealmHelper.addCupTable(table, leagueId))
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(table -> mView.setTableData(table), error -> mView.showErrorMessage());
+                .subscribe(table -> {
+                    mView.setTableData(table);
+                    mView.showRefreshMessage();
+                }, error -> mView.showErrorMessage());
     }
 
     private void getLeagueTableFromRealm(String leagueId) {
@@ -98,9 +101,10 @@ public class DetailPresenter implements IDetailPresenter {
             mView.setTableData(mRealmHelper.getCupTable(leagueId));
         else getTableFromNetwork(leagueId);
     }
-    
+
     private boolean isCup(String id) {
-        if (id.equals(FootballDataAPI.EUROPEAN_CHAMPIONSHIP_ID) || id.equals(FootballDataAPI.CHAMPIONS_LEAGUE_ID)) return true;
+        if (id.equals(FootballDataAPI.EUROPEAN_CHAMPIONSHIP_ID) || id.equals(FootballDataAPI.CHAMPIONS_LEAGUE_ID))
+            return true;
         else return false;
     }
 }

@@ -44,21 +44,21 @@ public class MainPresenter implements IMainPresenter {
         ConnectivityManager connMgr = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
-        Log.v("mytag","getCompetitionsFromNetwork");
+        Log.v("mytag", "getCompetitionsFromNetwork");
         if (networkInfo != null && networkInfo.isConnected()) {
             Observable<List<CompetitonsData>> competitionsDataObservable = mFootballDataAPI.getCompetitons();
             competitionsDataObservable
                     .subscribeOn(Schedulers.io())
                     .observeOn(Schedulers.computation())
-                    .map(competitonsData -> {
+                    .doOnNext(competitonsData -> {
                         mRealmHelper.addCompetitions(competitonsData);
-                        return competitonsData;
                     })
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(competitonsData -> {
-                        if (mRealmHelper.hasCompetitions())
-                            getCompetitionsFromRealm();
-
+                        if (mRealmHelper.hasCompetitions()) {
+                            mView.setCompetitionsListData(competitonsData);
+                            mView.showRefreshMessage();
+                        }
                     });
 
 
@@ -70,7 +70,7 @@ public class MainPresenter implements IMainPresenter {
 
     @Override
     public void getCompetitionsFromRealm() {
-        Log.v("mytag","getCompetitionsFromRealm");
+        Log.v("mytag", "getCompetitionsFromRealm");
 
         if (mRealmHelper.hasCompetitions())
             mView.setCompetitionsListData(mRealmHelper.getCompetitions());
