@@ -31,7 +31,7 @@ public class MainPresenter implements IMainPresenter {
     private FootballDataAPI mFootballDataAPI;
     private IRealmHelper mRealmHelper;
     private Context mContext;
-
+//TODO Naming should be more descriptive when MainSomething...
     public MainPresenter(MainView view, FootballDataAPI footballDataAPI, Context context) {
         this.mView = view;
         this.mFootballDataAPI = footballDataAPI;
@@ -49,7 +49,9 @@ public class MainPresenter implements IMainPresenter {
             Observable<List<CompetitonsData>> competitionsDataObservable = mFootballDataAPI.getCompetitons();
             competitionsDataObservable
                     .subscribeOn(Schedulers.io())
-                    .observeOn(Schedulers.computation())
+                    .observeOn(Schedulers.computation())//TODO do not use computation thread for IO operations, use  Schedulers.io instead
+                    //as RX javaDoc sad. "Do not perform IO-bound work on this scheduler. Use io() instead."
+                    //computation need only for long time compute operation for best CPU performance.
                     .doOnNext(competitonsData -> {
                         mRealmHelper.addCompetitions(competitonsData);
                     })

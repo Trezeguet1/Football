@@ -18,7 +18,7 @@ import java.util.List;
 
 public class CompetitionsAdapter extends RecyclerView.Adapter<CompetitionsAdapter.ViewHolder> {
 
-
+//TODO naming of variable member = m for member, s for static, etc...
     private List<CompetitonsData> competitions;
     private RecyclerListener onCompetitionClickListener;
 
@@ -26,6 +26,7 @@ public class CompetitionsAdapter extends RecyclerView.Adapter<CompetitionsAdapte
         this.onCompetitionClickListener = listener;
     }
 
+    //TODO Do not init collection as dependency in constructor args. Set data using specific method setCompetitions(Collection<CompetitionData>)
     public CompetitionsAdapter(List<CompetitonsData> competitions) {
         this.competitions = competitions;
     }
@@ -59,12 +60,15 @@ public class CompetitionsAdapter extends RecyclerView.Adapter<CompetitionsAdapte
 
 
         caption.setText(competitions.get(position).getCaption());
+        //TODO do not format string like this. Remember GIGO rule, potential bug with NPE and format bug "Current Matchday null/null" may occur.
+        //Use Optional to avoid NPE and use String.format instead of + " " + concat.
         currentMatchDay.setText("Current Matchday "
                 +competitions.get(position).getCurrentMatchday().toString()+"/"
         +competitions.get(position).getNumberOfMatchdays().toString());
         numberOfTeams.setText("Number Of Teams "+competitions.get(position).getNumberOfTeams().toString());
         lastUpdate.setText("Last Updated "+competitions.get(position).getLastUpdated());
-
+        //TODO create static internal class instead, what help you avoid a memory leak. Alternatively you can use lambda function.
+        //(v) -> { };
         competitionItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +82,7 @@ public class CompetitionsAdapter extends RecyclerView.Adapter<CompetitionsAdapte
 
     @Override
     public int getItemCount() {
+        //TODO potential bug NullpoinerException, because of constructor initialization.
         return competitions.size();
     }
 

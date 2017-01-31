@@ -22,10 +22,12 @@ import io.realm.RealmList;
  */
 
 public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHolder> {
-
+//TODO accessing area use PRIVATE for all private members instead of <PACKAGE> default access.
     CupTableData cupTableData;
     Context context;
 
+    //TODO Do not pass data for Adapter as args of constructor, remove context from constructor args move it to  onBindViewHolder method holder.getContext();
+    //Remove empty constructor after this.
     public CupTableAdapter(CupTableData cupTableData, Context context) {
         this.cupTableData = cupTableData;
         this.context = context;
@@ -51,6 +53,7 @@ public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHo
 
         groupTitle.setText(getGroup(position));
         switch (position){
+            //TODO Named constance more descriptive when magic numbers. Use it instead of 0 , 1 , etc..
             case 0:
                 group = cupTableData.getStandings().getA();
                 break;
@@ -92,6 +95,7 @@ public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHo
 
     public int getCount(CupTableData cupTableData) {
         int count = 0;
+        //TODO encapsulate business logic in separated private method
         if (cupTableData.getStandings()!=null)
         if (cupTableData.getStandings().getA()!=null) count++;
         if (cupTableData.getStandings().getB()!=null) count++;

@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         startActivity(startDetail);
     }
 
-    @Override
+    @Override//TODO Do not forgot about Strings localization avoid one language hardcode.
     public void showNoConnectionMessage() {
         Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show();
     }

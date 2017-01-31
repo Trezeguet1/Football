@@ -9,7 +9,7 @@ import io.realm.annotations.PrimaryKey;
 
 public class CupTableData extends RealmObject{
 
-
+//TODO Use named constants instead of hardcoded strings.
     @PrimaryKey
     private String id;
 
@@ -33,4 +33,6 @@ public class CupTableData extends RealmObject{
     public void setId(String id) {
         this.id = id;
     }
+
+    //TODO Do not forgot override equals and hashcode methods in your entities classes
 }

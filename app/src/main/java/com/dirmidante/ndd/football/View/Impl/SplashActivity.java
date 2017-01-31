@@ -21,6 +21,6 @@ public class SplashActivity extends AppCompatActivity {
             Intent mainIntent = new Intent(SplashActivity.this, MainActivity.class);
             SplashActivity.this.startActivity(mainIntent);
             SplashActivity.this.finish();
-        }), 1000);
+        }), 1000);//TODO Named constants instead of magic numbers.
     }
 }
