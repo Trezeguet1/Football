@@ -18,16 +18,18 @@ import rx.Observable;
 
 public interface IFootballDataService {
 
-    @Headers("X-Auth-Token: 776e07b83bfd4b57bd53c126558f9937")
+    String AUTH_TOKEN = "X-Auth-Token: 776e07b83bfd4b57bd53c126558f9937";
+
+    @Headers(AUTH_TOKEN)
     @GET("competitions/{league_id}/leagueTable")
     Observable<LeagueTableData> getLeagueTable(@Path("league_id") String league_id);
 
 
-    @Headers("X-Auth-Token: 776e07b83bfd4b57bd53c126558f9937")
+    @Headers(AUTH_TOKEN)
     @GET("competitions/{league_id}/leagueTable")
     Observable<CupTableData> getCupTable(@Path("league_id") String league_id);
 
-    @Headers("X-Auth-Token: 776e07b83bfd4b57bd53c126558f9937")
+    @Headers(AUTH_TOKEN)
     @GET("competitions/")
     Observable<List<CompetitonsData>> getCompetitions();
 

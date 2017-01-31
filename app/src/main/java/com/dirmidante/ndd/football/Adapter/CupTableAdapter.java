@@ -47,7 +47,7 @@ public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHo
 
 
         switch (position){
-            case 0: groupTitle.setText("Group A");
+            case 0: groupTitle.setText(Group.GROUP_A.getName());
                 groupAdapter = new GroupAdapter(cupTableData.getStandings().getA());
                 break;
             case 1: groupTitle.setText("Group B");
@@ -81,8 +81,34 @@ public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHo
 
     }
 
+    private static enum Group{
+        GROUP_A("Group A"),
+        GROUP_B("Group B"),
+        GROUP_C("Group C"),
+        GROUP_D("Group D"),
+        GROUP_E("Group E"),
+        GROUP_F("Group F"),
+        GROUP_G("Group G"),
+        GROUP_H("Group H"),
+        ;
+        private final String mName;
+
+        private Group(String name){
+            mName = name;
+        }
+
+        public String getName() {
+            return mName;
+        }
+    }
+
     @Override
     public int getItemCount() {
+        int count = getCount();
+        return count;
+    }
+
+    private int getCount() {
         int count = 0;
         if (cupTableData.getStandings()!=null)
         if (cupTableData.getStandings().getA()!=null) count++;

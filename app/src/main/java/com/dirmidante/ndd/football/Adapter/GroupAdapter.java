@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.dirmidante.ndd.football.Model.Entity.CupTableData.A;
 import com.dirmidante.ndd.football.R;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 /**
@@ -57,6 +58,7 @@ class ViewHolder extends RecyclerView.ViewHolder{
         conseded.setText(teams.get(position).getGoalsAgainst().toString());
         points.setText(teams.get(position).getPoints().toString());
         difference.setText(teams.get(position).getGoalDifference().toString());
+
     }
 
     @Override

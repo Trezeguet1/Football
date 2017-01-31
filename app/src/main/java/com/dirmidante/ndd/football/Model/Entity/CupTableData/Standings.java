@@ -96,4 +96,34 @@ public class Standings {
         this.h = h;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Standings standings = (Standings) o;
+
+        if (a != null ? !a.equals(standings.a) : standings.a != null) return false;
+        if (b != null ? !b.equals(standings.b) : standings.b != null) return false;
+        if (c != null ? !c.equals(standings.c) : standings.c != null) return false;
+        if (d != null ? !d.equals(standings.d) : standings.d != null) return false;
+        if (e != null ? !e.equals(standings.e) : standings.e != null) return false;
+        if (f != null ? !f.equals(standings.f) : standings.f != null) return false;
+        if (g != null ? !g.equals(standings.g) : standings.g != null) return false;
+        return h != null ? h.equals(standings.h) : standings.h == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = a != null ? a.hashCode() : 0;
+        result = 31 * result + (b != null ? b.hashCode() : 0);
+        result = 31 * result + (c != null ? c.hashCode() : 0);
+        result = 31 * result + (d != null ? d.hashCode() : 0);
+        result = 31 * result + (e != null ? e.hashCode() : 0);
+        result = 31 * result + (f != null ? f.hashCode() : 0);
+        result = 31 * result + (g != null ? g.hashCode() : 0);
+        result = 31 * result + (h != null ? h.hashCode() : 0);
+        return result;
+    }
 }
