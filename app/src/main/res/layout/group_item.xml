@@ -1,22 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    style="@style/item"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/ListBigItem"
+    app:cardCornerRadius="5dp"
+    >
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        style="@style/item"
+        android:orientation="vertical"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="8dp">
 
-        <include
+        <TextView
             android:id="@+id/groupTitle"
-            layout="@android:layout/simple_list_item_1"></include>
+            style="@style/main_item"
+            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+            >
+        </TextView>
 
-        <include layout="@layout/group_table_item"></include>
+        <include layout="@layout/group_item_header"></include>
 
         <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/groupList"></android.support.v7.widget.RecyclerView>
+            style="@style/item"
+            android:id="@+id/groupList">
+        </android.support.v7.widget.RecyclerView>
     </LinearLayout>
 </android.support.v7.widget.CardView>

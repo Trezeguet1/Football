@@ -5,15 +5,10 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dirmidante.ndd.football.Model.Entity.LeagueTableData.LeagueTableData;
 import com.dirmidante.ndd.football.R;
-import com.dirmidante.ndd.football.View.Impl.DetailActivity;
-import com.squareup.picasso.Picasso;
-
-import java.util.List;
 
 /**
  * Created by Dima on 2016-12-19.

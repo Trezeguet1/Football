@@ -1,129 +1,115 @@
 
 package com.dirmidante.ndd.football.Model.Entity.CupTableData;
 
-import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Standings {
+import io.realm.RealmList;
+import io.realm.RealmObject;
+
+public class Standings extends RealmObject{
+
+    @Override
+    public String toString() {
+        return "Standings{" +
+                "a=" + a +
+                ", b=" + b +
+                ", c=" + c +
+                ", d=" + d +
+                ", e=" + e +
+                ", f=" + f +
+                ", g=" + g +
+                ", h=" + h +
+                '}';
+    }
 
     @SerializedName("A")
     @Expose
-    private List<A> a = null;
+    private RealmList<Group> a = null;
     @SerializedName("B")
     @Expose
-    private List<A> b = null;
+    private RealmList<Group> b = null;
     @SerializedName("C")
     @Expose
-    private List<A> c = null;
+    private RealmList<Group> c = null;
     @SerializedName("D")
     @Expose
-    private List<A> d = null;
+    private RealmList<Group> d = null;
     @SerializedName("E")
     @Expose
-    private List<A> e = null;
+    private RealmList<Group> e = null;
     @SerializedName("F")
     @Expose
-    private List<A> f = null;
+    private RealmList<Group> f = null;
     @SerializedName("G")
     @Expose
-    private List<A> g = null;
+    private RealmList<Group> g = null;
     @SerializedName("H")
     @Expose
-    private List<A> h = null;
+    private RealmList<Group> h = null;
 
-    public List<A> getA() {
+    public RealmList<Group> getA() {
         return a;
     }
 
-    public void setA(List<A> a) {
+    public void setA(RealmList<Group> a) {
         this.a = a;
     }
 
-    public List<A> getB() {
+    public RealmList<Group> getB() {
         return b;
     }
 
-    public void setB(List<A> b) {
+    public void setB(RealmList<Group> b) {
         this.b = b;
     }
 
-    public List<A> getC() {
+    public RealmList<Group> getC() {
         return c;
     }
 
-    public void setC(List<A> c) {
+    public void setC(RealmList<Group> c) {
         this.c = c;
     }
 
-    public List<A> getD() {
+    public RealmList<Group> getD() {
         return d;
     }
 
-    public void setD(List<A> d) {
+    public void setD(RealmList<Group> d) {
         this.d = d;
     }
 
-    public List<A> getE() {
+    public RealmList<Group> getE() {
         return e;
     }
 
-    public void setE(List<A> e) {
+    public void setE(RealmList<Group> e) {
         this.e = e;
     }
 
-    public List<A> getF() {
+    public RealmList<Group> getF() {
         return f;
     }
 
-    public void setF(List<A> f) {
+    public void setF(RealmList<Group> f) {
         this.f = f;
     }
 
-    public List<A> getG() {
+    public RealmList<Group> getG() {
         return g;
     }
 
-    public void setG(List<A> g) {
+    public void setG(RealmList<Group> g) {
         this.g = g;
     }
 
-    public List<A> getH() {
+    public RealmList<Group> getH() {
         return h;
     }
 
-    public void setH(List<A> h) {
+    public void setH(RealmList<Group> h) {
         this.h = h;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Standings standings = (Standings) o;
-
-        if (a != null ? !a.equals(standings.a) : standings.a != null) return false;
-        if (b != null ? !b.equals(standings.b) : standings.b != null) return false;
-        if (c != null ? !c.equals(standings.c) : standings.c != null) return false;
-        if (d != null ? !d.equals(standings.d) : standings.d != null) return false;
-        if (e != null ? !e.equals(standings.e) : standings.e != null) return false;
-        if (f != null ? !f.equals(standings.f) : standings.f != null) return false;
-        if (g != null ? !g.equals(standings.g) : standings.g != null) return false;
-        return h != null ? h.equals(standings.h) : standings.h == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = a != null ? a.hashCode() : 0;
-        result = 31 * result + (b != null ? b.hashCode() : 0);
-        result = 31 * result + (c != null ? c.hashCode() : 0);
-        result = 31 * result + (d != null ? d.hashCode() : 0);
-        result = 31 * result + (e != null ? e.hashCode() : 0);
-        result = 31 * result + (f != null ? f.hashCode() : 0);
-        result = 31 * result + (g != null ? g.hashCode() : 0);
-        result = 31 * result + (h != null ? h.hashCode() : 0);
-        return result;
     }
 }

@@ -3,10 +3,14 @@ package com.dirmidante.ndd.football.Model.Entity.CompetitonsData;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class CompetitonsData {
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class CompetitonsData extends RealmObject {
 
     @SerializedName("id")
     @Expose
+    @PrimaryKey
     private Integer id;
     @SerializedName("caption")
     @Expose

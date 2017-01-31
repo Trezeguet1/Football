@@ -4,6 +4,7 @@ package com.dirmidante.ndd.football.Model;
 import com.dirmidante.ndd.football.Model.Entity.CompetitonsData.CompetitonsData;
 import com.dirmidante.ndd.football.Model.Entity.CupTableData.CupTableData;
 import com.dirmidante.ndd.football.Model.Entity.LeagueTableData.LeagueTableData;
+import com.dirmidante.ndd.football.Model.Impl.FootballDataAPI;
 
 import java.util.List;
 
@@ -18,18 +19,17 @@ import rx.Observable;
 
 public interface IFootballDataService {
 
-    String AUTH_TOKEN = "X-Auth-Token: 776e07b83bfd4b57bd53c126558f9937";
 
-    @Headers(AUTH_TOKEN)
+    @Headers(FootballDataAPI.API_TOKEN)
     @GET("competitions/{league_id}/leagueTable")
     Observable<LeagueTableData> getLeagueTable(@Path("league_id") String league_id);
 
 
-    @Headers(AUTH_TOKEN)
+    @Headers(FootballDataAPI.API_TOKEN)
     @GET("competitions/{league_id}/leagueTable")
     Observable<CupTableData> getCupTable(@Path("league_id") String league_id);
 
-    @Headers(AUTH_TOKEN)
+    @Headers(FootballDataAPI.API_TOKEN)
     @GET("competitions/")
     Observable<List<CompetitonsData>> getCompetitions();
 

@@ -1,15 +1,57 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="item">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="main_item" parent="item">
+        <item name="android:paddingStart">?android:attr/listPreferredItemPaddingStart</item>
+        <item name="android:paddingEnd">?android:attr/listPreferredItemPaddingEnd</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:minHeight">?android:attr/listPreferredItemHeightSmall</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="match">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground" >@drawable/background</item>
+        <item name="android:windowBackground">@drawable/background</item>
+    </style>
+
+    <style name="table_item_element">
+        <item name="android:textSize">15dp</item>
+        <item name="android:layout_height">50dp</item>
+    </style>
+
+    <style name="table_item_attr" parent="table_item_element">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="table_header_attr" parent="table_item_attr">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/White</item>
+    </style>
+
+    <style name="table_item_title" parent="table_item_element">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">130dp</item>
+        <item name="android:layout_weight">20</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 

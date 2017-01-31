@@ -4,7 +4,24 @@ package com.dirmidante.ndd.football.Model.Entity.CupTableData;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class A{
+import io.realm.RealmObject;
+
+public class Group extends RealmObject{
+
+    @Override
+    public String toString() {
+        return "Group{" +
+                "group='" + group + '\'' +
+                ", rank=" + rank +
+                ", team='" + team + '\'' +
+                ", teamId=" + teamId +
+                ", playedGames=" + playedGames +
+                ", points=" + points +
+                ", goals=" + goals +
+                ", goalsAgainst=" + goalsAgainst +
+                ", goalDifference=" + goalDifference +
+                '}';
+    }
 
     @SerializedName("group")
     @Expose
