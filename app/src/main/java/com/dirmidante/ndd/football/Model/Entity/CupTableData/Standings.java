@@ -10,6 +10,15 @@ import io.realm.RealmObject;
 
 public class Standings extends RealmObject{
 
+    public static final String GROUP_A = "A";
+    public static final String GROUP_B = "B";
+    public static final String GROUP_C = "C";
+    public static final String GROUP_D = "D";
+    public static final String GROUP_E = "E";
+    public static final String GROUP_F = "F";
+    public static final String GROUP_G = "G";
+    public static final String GROUP_H = "H";
+
     @Override
     public String toString() {
         return "Standings{" +
@@ -24,28 +33,28 @@ public class Standings extends RealmObject{
                 '}';
     }
 
-    @SerializedName("A")
+    @SerializedName(GROUP_A)
     @Expose
     private RealmList<Group> a = null;
-    @SerializedName("B")
+    @SerializedName(GROUP_B)
     @Expose
     private RealmList<Group> b = null;
-    @SerializedName("C")
+    @SerializedName(GROUP_C)
     @Expose
     private RealmList<Group> c = null;
-    @SerializedName("D")
+    @SerializedName(GROUP_D)
     @Expose
     private RealmList<Group> d = null;
-    @SerializedName("E")
+    @SerializedName(GROUP_E)
     @Expose
     private RealmList<Group> e = null;
-    @SerializedName("F")
+    @SerializedName(GROUP_F)
     @Expose
     private RealmList<Group> f = null;
-    @SerializedName("G")
+    @SerializedName(GROUP_G)
     @Expose
     private RealmList<Group> g = null;
-    @SerializedName("H")
+    @SerializedName(GROUP_H)
     @Expose
     private RealmList<Group> h = null;
 
@@ -111,5 +120,36 @@ public class Standings extends RealmObject{
 
     public void setH(RealmList<Group> h) {
         this.h = h;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Standings)) return false;
+
+        Standings standings = (Standings) o;
+
+        if (a != null ? !a.equals(standings.a) : standings.a != null) return false;
+        if (b != null ? !b.equals(standings.b) : standings.b != null) return false;
+        if (c != null ? !c.equals(standings.c) : standings.c != null) return false;
+        if (d != null ? !d.equals(standings.d) : standings.d != null) return false;
+        if (e != null ? !e.equals(standings.e) : standings.e != null) return false;
+        if (f != null ? !f.equals(standings.f) : standings.f != null) return false;
+        if (g != null ? !g.equals(standings.g) : standings.g != null) return false;
+        return h != null ? h.equals(standings.h) : standings.h == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = a != null ? a.hashCode() : 0;
+        result = 31 * result + (b != null ? b.hashCode() : 0);
+        result = 31 * result + (c != null ? c.hashCode() : 0);
+        result = 31 * result + (d != null ? d.hashCode() : 0);
+        result = 31 * result + (e != null ? e.hashCode() : 0);
+        result = 31 * result + (f != null ? f.hashCode() : 0);
+        result = 31 * result + (g != null ? g.hashCode() : 0);
+        result = 31 * result + (h != null ? h.hashCode() : 0);
+        return result;
     }
 }

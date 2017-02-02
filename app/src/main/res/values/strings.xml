@@ -9,6 +9,12 @@
     <string name="conseded">C</string>
     <string name="difference">+/-</string>
     <string name="points">P</string>
+    <string name="noInternetConnection">No Internet Connection</string>
+    <string name="infoRefreshed">Info Refreshed From Network</string>
+    <string name="noInfo">There is not info for this competition</string>
+    <string name="currentMatchDay">"Current Matchday "</string>
+    <string name="numberOfTeams">"Number Of Teams "</string>
+    <string name="LastUpdate">"Last Updated "</string>
     <string-array name="groups">
         <item>Group A</item>
         <item>Group B</item>

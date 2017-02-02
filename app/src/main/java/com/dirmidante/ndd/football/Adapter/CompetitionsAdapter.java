@@ -1,9 +1,10 @@
 package com.dirmidante.ndd.football.Adapter;
 
+import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -18,26 +19,29 @@ import java.util.List;
 
 public class CompetitionsAdapter extends RecyclerView.Adapter<CompetitionsAdapter.ViewHolder> {
 
-//TODO naming of variable member = m for member, s for static, etc...
-    private List<CompetitonsData> competitions;
-    private RecyclerListener onCompetitionClickListener;
+    //DONE naming of variable member = m for member, s for static, etc...
+    private List<CompetitonsData> mCompetitions;
+    private RecyclerListener mRecyclerListener;
+    private Context mContext;
 
-    public void setListener(RecyclerListener listener){
-        this.onCompetitionClickListener = listener;
+    public void setListener(RecyclerListener listener) {
+        this.mRecyclerListener = listener;
     }
 
-    //TODO Do not init collection as dependency in constructor args. Set data using specific method setCompetitions(Collection<CompetitionData>)
-    public CompetitionsAdapter(List<CompetitonsData> competitions) {
-        this.competitions = competitions;
+    //DONE Do not init collection as dependency in constructor args. Set data using specific method setCompetitions(Collection<CompetitionData>)
+
+
+    public void setCompetitions(List<CompetitonsData> competitions) {
+        mCompetitions = competitions;
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private CardView competitionCard;
+        private CardView mView;
 
         public ViewHolder(CardView competitionCard) {
             super(competitionCard);
-            this.competitionCard = competitionCard;
+            this.mView = competitionCard;
         }
     }
 
@@ -45,13 +49,14 @@ public class CompetitionsAdapter extends RecyclerView.Adapter<CompetitionsAdapte
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         CardView competitionItem = (CardView) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.competition_item, parent, false);
+        mContext = parent.getContext();
         return new ViewHolder(competitionItem);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
 
-        CardView competitionItem = holder.competitionCard;
+        CardView competitionItem = holder.mView;
 
         TextView caption = (TextView) competitionItem.findViewById(R.id.caption);
         TextView currentMatchDay = (TextView) competitionItem.findViewById(R.id.current_matchday);
@@ -59,22 +64,37 @@ public class CompetitionsAdapter extends RecyclerView.Adapter<CompetitionsAdapte
         TextView lastUpdate = (TextView) competitionItem.findViewById(R.id.last_update);
 
 
-        caption.setText(competitions.get(position).getCaption());
-        //TODO do not format string like this. Remember GIGO rule, potential bug with NPE and format bug "Current Matchday null/null" may occur.
+        caption.setText(mCompetitions.get(position).getCaption());
+        //DONE do not format string like this. Remember GIGO rule, potential bug with NPE and format bug "Current Matchday null/null" may occur.
         //Use Optional to avoid NPE and use String.format instead of + " " + concat.
-        currentMatchDay.setText("Current Matchday "
-                +competitions.get(position).getCurrentMatchday().toString()+"/"
-        +competitions.get(position).getNumberOfMatchdays().toString());
-        numberOfTeams.setText("Number Of Teams "+competitions.get(position).getNumberOfTeams().toString());
-        lastUpdate.setText("Last Updated "+competitions.get(position).getLastUpdated());
-        //TODO create static internal class instead, what help you avoid a memory leak. Alternatively you can use lambda function.
+
+        String matchday = mContext.getString(R.string.currentMatchDay);
+        String teamsNumber = mContext.getString(R.string.numberOfTeams);
+        String updated = mContext.getString(R.string.LastUpdate);
+
+
+
+        if (mCompetitions.get(position).getCurrentMatchday() != null) {
+            matchday = matchday.concat(mCompetitions.get(position).getCurrentMatchday().toString()).concat("/");
+            if (mCompetitions.get(position).getNumberOfMatchdays() != null) {
+                matchday = matchday.concat(mCompetitions.get(position).getNumberOfMatchdays().toString());
+            }
+        }
+        if (mCompetitions.get(position).getNumberOfTeams().toString() != null) {
+            teamsNumber = teamsNumber.concat(mCompetitions.get(position).getNumberOfTeams().toString());
+        }
+
+        if (mCompetitions.get(position).getLastUpdated()!=null)
+                updated = updated.concat(mCompetitions.get(position).getLastUpdated());
+
+        lastUpdate.setText(updated);
+        numberOfTeams.setText(teamsNumber);
+        currentMatchDay.setText(matchday);
+        //DONE create static internal class instead, what help you avoid a memory leak. Alternatively you can use lambda function.
         //(v) -> { };
-        competitionItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (onCompetitionClickListener!= null){
-                    onCompetitionClickListener.onClick(position);
-                }
+        competitionItem.setOnClickListener(v -> {
+            if (mRecyclerListener != null) {
+                mRecyclerListener.onClick(position);
             }
         });
 
@@ -82,9 +102,9 @@ public class CompetitionsAdapter extends RecyclerView.Adapter<CompetitionsAdapte
 
     @Override
     public int getItemCount() {
-        //TODO potential bug NullpoinerException, because of constructor initialization.
-        return competitions.size();
+        //DONE potential bug NullpoinerException, because of constructor initialization.
+        return mCompetitions.size();
     }
 
 
-   }
+}

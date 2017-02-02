@@ -8,26 +8,34 @@ import io.realm.annotations.PrimaryKey;
 
 public class CompetitonsData extends RealmObject {
 
-    @SerializedName("id")
+    public static final String ID = "id";
+    public static final String CAPTION = "caption";
+    public static final String YEAR = "year";
+    public static final String CURRENT_MATCHDAY = "currentMatchday";
+    public static final String NUMBER_OF_MATCHDAYS = "numberOfMatchdays";
+    public static final String NUMBER_OF_TEAMS = "numberOfTeams";
+    public static final String LAST_UPDATED = "lastUpdated";
+
+    @SerializedName(ID)
     @Expose
     @PrimaryKey
     private Integer id;
-    @SerializedName("caption")
+    @SerializedName(CAPTION)
     @Expose
     private String caption;
-    @SerializedName("year")
+    @SerializedName(YEAR)
     @Expose
     private String year;
-    @SerializedName("currentMatchday")
+    @SerializedName(CURRENT_MATCHDAY)
     @Expose
     private Integer currentMatchday;
-    @SerializedName("numberOfMatchdays")
+    @SerializedName(NUMBER_OF_MATCHDAYS)
     @Expose
     private Integer numberOfMatchdays;
-    @SerializedName("numberOfTeams")
+    @SerializedName(NUMBER_OF_TEAMS)
     @Expose
     private Integer numberOfTeams;
-    @SerializedName("lastUpdated")
+    @SerializedName(LAST_UPDATED)
     @Expose
     private String lastUpdated;
 
@@ -89,4 +97,36 @@ public class CompetitonsData extends RealmObject {
         this.lastUpdated = lastUpdated;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CompetitonsData)) return false;
+
+        CompetitonsData that = (CompetitonsData) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (caption != null ? !caption.equals(that.caption) : that.caption != null) return false;
+        if (year != null ? !year.equals(that.year) : that.year != null) return false;
+        if (currentMatchday != null ? !currentMatchday.equals(that.currentMatchday) : that.currentMatchday != null)
+            return false;
+        if (numberOfMatchdays != null ? !numberOfMatchdays.equals(that.numberOfMatchdays) : that.numberOfMatchdays != null)
+            return false;
+        if (numberOfTeams != null ? !numberOfTeams.equals(that.numberOfTeams) : that.numberOfTeams != null)
+            return false;
+        return lastUpdated != null ? lastUpdated.equals(that.lastUpdated) : that.lastUpdated == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (caption != null ? caption.hashCode() : 0);
+        result = 31 * result + (year != null ? year.hashCode() : 0);
+        result = 31 * result + (currentMatchday != null ? currentMatchday.hashCode() : 0);
+        result = 31 * result + (numberOfMatchdays != null ? numberOfMatchdays.hashCode() : 0);
+        result = 31 * result + (numberOfTeams != null ? numberOfTeams.hashCode() : 0);
+        result = 31 * result + (lastUpdated != null ? lastUpdated.hashCode() : 0);
+        return result;
+    }
 }

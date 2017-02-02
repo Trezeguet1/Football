@@ -49,20 +49,28 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
 
     @Override
     public void setTableData(LeagueTableData tableData) {
-        LeagueTableAdapter leagueTableAdapter = new LeagueTableAdapter(tableData);
+        setHeader();
+        showRefreshMessage();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setAdapter(leagueTableAdapter);
+        if (tableData != null) {
+            LeagueTableAdapter leagueTableAdapter = new LeagueTableAdapter();
+            leagueTableAdapter.setLeagueTableData(tableData);
+            mRecyclerView.setAdapter(leagueTableAdapter);
+        }
     }
 
     @Override
     public void setTableData(CupTableData tableData) {
-        CupTableAdapter cupTableadapter = new CupTableAdapter(tableData, this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setAdapter(cupTableadapter);
+        if (tableData != null) {
+            CupTableAdapter cupTableadapter = new CupTableAdapter();
+            cupTableadapter.setCupTableData(tableData);
+            mRecyclerView.setAdapter(cupTableadapter);
+        }
     }
 
     @Override
@@ -77,12 +85,12 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
 
     @Override
     public void showNoConnectionMessage() {
-        Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.noInternetConnection, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showErrorMessage() {
-        Toast.makeText(this, "There is not info for this competition", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.noInfo, Toast.LENGTH_SHORT).show();
 
     }
 
@@ -94,6 +102,6 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
 
     @Override
     public void showRefreshMessage() {
-        Toast.makeText(this, "Info Refreshed From Network", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.infoRefreshed, Toast.LENGTH_SHORT).show();
     }
 }

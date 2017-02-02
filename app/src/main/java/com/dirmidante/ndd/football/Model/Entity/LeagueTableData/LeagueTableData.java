@@ -11,10 +11,11 @@ import io.realm.annotations.PrimaryKey;
 public class LeagueTableData extends RealmObject{
 
 
+    public static final String STANDING = "standing";
     @PrimaryKey
     private String id;
 
-    @SerializedName("standing")
+    @SerializedName(STANDING)
     @Expose
     private RealmList<Standing> standing = null;
 
@@ -42,5 +43,24 @@ public class LeagueTableData extends RealmObject{
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof LeagueTableData)) return false;
+
+        LeagueTableData that = (LeagueTableData) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        return standing != null ? standing.equals(that.standing) : that.standing == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (standing != null ? standing.hashCode() : 0);
+        return result;
     }
 }

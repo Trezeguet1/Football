@@ -16,18 +16,18 @@ import io.realm.RealmList;
 
 public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder>{
 
-    private RealmList<Group> teams = null;
+    private RealmList<Group> mTeams;
 
-    public GroupAdapter(RealmList<Group> teams) {
-        this.teams = teams;
+    public void setTeams(RealmList<Group> teams) {
+        this.mTeams = teams;
     }
 
-class ViewHolder extends RecyclerView.ViewHolder{
-    CardView tableItem;
+    class ViewHolder extends RecyclerView.ViewHolder{
+    CardView mTableItem;
 
     public ViewHolder(CardView tableItem) {
         super(tableItem);
-        this.tableItem = tableItem;
+        this.mTableItem = tableItem;
     }
 }
 
@@ -40,8 +40,9 @@ class ViewHolder extends RecyclerView.ViewHolder{
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        CardView tableItem = holder.tableItem;
+        CardView tableItem = holder.mTableItem;
 
+        TextView rank = (TextView) tableItem.findViewById(R.id.position);
         TextView title = (TextView) tableItem.findViewById(R.id.title);
         TextView games = (TextView) tableItem.findViewById(R.id.gamesplayed);
         TextView scored = (TextView) tableItem.findViewById(R.id.scored);
@@ -49,16 +50,17 @@ class ViewHolder extends RecyclerView.ViewHolder{
         TextView points = (TextView) tableItem.findViewById(R.id.points);
         TextView difference = (TextView) tableItem.findViewById(R.id.difference);
 
-        title.setText(teams.get(position).getTeam());
-        games.setText(teams.get(position).getPlayedGames().toString());
-        scored.setText(teams.get(position).getGoals().toString());
-        conseded.setText(teams.get(position).getGoalsAgainst().toString());
-        points.setText(teams.get(position).getPoints().toString());
-        difference.setText(teams.get(position).getGoalDifference().toString());
+        rank.setText(Integer.toString(mTeams.get(position).getRank()));
+        title.setText(mTeams.get(position).getTeam());
+        games.setText(mTeams.get(position).getPlayedGames().toString());
+        scored.setText(mTeams.get(position).getGoals().toString());
+        conseded.setText(mTeams.get(position).getGoalsAgainst().toString());
+        points.setText(mTeams.get(position).getPoints().toString());
+        difference.setText(mTeams.get(position).getGoalDifference().toString());
     }
 
     @Override
     public int getItemCount() {
-        return teams.size();
+        return mTeams.size();
     }
 }

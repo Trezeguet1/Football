@@ -8,50 +8,46 @@ import io.realm.RealmObject;
 
 public class Standing extends RealmObject{
 
-    @Override
-    public String toString() {
-        return "\nStanding{" +
-                ", position=" + position +
-                ", teamName='" + teamName + '\'' +
-                ", playedGames=" + playedGames +
-                ", points=" + points +
-                ", goals=" + goals +
-                ", goalsAgainst=" + goalsAgainst +
-                ", goalDifference=" + goalDifference +
-                ", wins=" + wins +
-                ", draws=" + draws +
-                ", losses=" + losses +
-                '}';
-    }
+    public static final String POSITION = "position";
+    public static final String TEAM_NAME = "teamName";
+    public static final String PLAYED_GAMES = "playedGames";
+    public static final String POINTS = "points";
+    public static final String GOALS = "goals";
+    public static final String GOALS_AGAINST = "goalsAgainst";
+    public static final String GOAL_DIFFERENCE = "goalDifference";
+    public static final String WINS = "wins";
+    public static final String DRAWS = "draws";
+    public static final String LOSSES = "losses";
 
-    @SerializedName("position")
+
+    @SerializedName(POSITION)
     @Expose
     private Integer position;
-    @SerializedName("teamName")
+    @SerializedName(TEAM_NAME)
     @Expose
     private String teamName;
-    @SerializedName("playedGames")
+    @SerializedName(PLAYED_GAMES)
     @Expose
     private Integer playedGames;
-    @SerializedName("points")
+    @SerializedName(POINTS)
     @Expose
     private Integer points;
-    @SerializedName("goals")
+    @SerializedName(GOALS)
     @Expose
     private Integer goals;
-    @SerializedName("goalsAgainst")
+    @SerializedName(GOALS_AGAINST)
     @Expose
     private Integer goalsAgainst;
-    @SerializedName("goalDifference")
+    @SerializedName(GOAL_DIFFERENCE)
     @Expose
     private Integer goalDifference;
-    @SerializedName("wins")
+    @SerializedName(WINS)
     @Expose
     private Integer wins;
-    @SerializedName("draws")
+    @SerializedName(DRAWS)
     @Expose
     private Integer draws;
-    @SerializedName("losses")
+    @SerializedName(LOSSES)
     @Expose
     private Integer losses;
 
@@ -233,4 +229,45 @@ public class Standing extends RealmObject{
     public void setLosses(Integer losses) {
         this.losses = losses;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Standing)) return false;
+
+        Standing standing = (Standing) o;
+
+        if (position != null ? !position.equals(standing.position) : standing.position != null)
+            return false;
+        if (teamName != null ? !teamName.equals(standing.teamName) : standing.teamName != null)
+            return false;
+        if (playedGames != null ? !playedGames.equals(standing.playedGames) : standing.playedGames != null)
+            return false;
+        if (points != null ? !points.equals(standing.points) : standing.points != null)
+            return false;
+        if (goals != null ? !goals.equals(standing.goals) : standing.goals != null) return false;
+        if (goalsAgainst != null ? !goalsAgainst.equals(standing.goalsAgainst) : standing.goalsAgainst != null)
+            return false;
+        if (goalDifference != null ? !goalDifference.equals(standing.goalDifference) : standing.goalDifference != null)
+            return false;
+        if (wins != null ? !wins.equals(standing.wins) : standing.wins != null) return false;
+        if (draws != null ? !draws.equals(standing.draws) : standing.draws != null) return false;
+        return losses != null ? losses.equals(standing.losses) : standing.losses == null;
+
     }
+
+    @Override
+    public int hashCode() {
+        int result = position != null ? position.hashCode() : 0;
+        result = 31 * result + (teamName != null ? teamName.hashCode() : 0);
+        result = 31 * result + (playedGames != null ? playedGames.hashCode() : 0);
+        result = 31 * result + (points != null ? points.hashCode() : 0);
+        result = 31 * result + (goals != null ? goals.hashCode() : 0);
+        result = 31 * result + (goalsAgainst != null ? goalsAgainst.hashCode() : 0);
+        result = 31 * result + (goalDifference != null ? goalDifference.hashCode() : 0);
+        result = 31 * result + (wins != null ? wins.hashCode() : 0);
+        result = 31 * result + (draws != null ? draws.hashCode() : 0);
+        result = 31 * result + (losses != null ? losses.hashCode() : 0);
+        return result;
+    }
+}

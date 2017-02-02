@@ -9,11 +9,12 @@ import io.realm.annotations.PrimaryKey;
 
 public class CupTableData extends RealmObject{
 
-//TODO Use named constants instead of hardcoded strings.
+    public static final String STANDINGS =  "standings";
+    //DONE Use named constants instead of hardcoded strings.
     @PrimaryKey
     private String id;
 
-    @SerializedName("standings")
+    @SerializedName(STANDINGS)
     @Expose
     private Standings standings;
 
@@ -34,5 +35,24 @@ public class CupTableData extends RealmObject{
         this.id = id;
     }
 
-    //TODO Do not forgot override equals and hashcode methods in your entities classes
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CupTableData)) return false;
+
+        CupTableData that = (CupTableData) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        return standings != null ? standings.equals(that.standings) : that.standings == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (standings != null ? standings.hashCode() : 0);
+        return result;
+    }
+
+    //DONE Do not forgot override equals and hashcode methods in your entities classes
 }

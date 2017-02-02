@@ -40,17 +40,17 @@ public class MainActivity extends AppCompatActivity implements MainView {
     public void setCompetitionsListData(List<CompetitonsData> competitions) {
 
         RecyclerView competitionsList = (RecyclerView) findViewById(R.id.competitionsList);
-
-        CompetitionsAdapter competitionsAdapter = new CompetitionsAdapter(competitions);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         competitionsList.setLayoutManager(layoutManager);
-        competitionsList.setAdapter(competitionsAdapter);
-
-
-        competitionsAdapter.setListener((position) -> {
-            startDetailActivity(competitions.get(position).getId());
-        });
+        if (competitions != null) {
+            CompetitionsAdapter competitionsAdapter = new CompetitionsAdapter();
+            competitionsAdapter.setCompetitions(competitions);
+            competitionsAdapter.setListener((position) -> {
+                startDetailActivity(competitions.get(position).getId());
+            });
+            competitionsList.setAdapter(competitionsAdapter);
+        }
     }
 
     @Override
@@ -60,9 +60,9 @@ public class MainActivity extends AppCompatActivity implements MainView {
         startActivity(startDetail);
     }
 
-    @Override//TODO Do not forgot about Strings localization avoid one language hardcode.
+    @Override//DONE Do not forgot about Strings localization avoid one language hardcode.
     public void showNoConnectionMessage() {
-        Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.noInternetConnection, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -72,6 +72,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void showRefreshMessage() {
-        Toast.makeText(this, "Info Refreshed From Network", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.infoRefreshed, Toast.LENGTH_SHORT).show();
     }
 }

@@ -20,6 +20,8 @@ import rx.Observable;
 
 public class RealmHelper implements IRealmHelper {
 
+    public static final String ID = "id";
+
     public RealmHelper(Context context) {
         Realm.init(context);
     }
@@ -57,7 +59,7 @@ public class RealmHelper implements IRealmHelper {
     public LeagueTableData getLeagueTable(String leagueId) {
         Realm realm = Realm.getDefaultInstance();
         LeagueTableData result = realm.where(LeagueTableData.class)
-                .equalTo("id", leagueId)
+                .equalTo(ID, leagueId)
                 .findFirst();
         return result;
     }
@@ -66,7 +68,7 @@ public class RealmHelper implements IRealmHelper {
     public CupTableData getCupTable(String cupId) {
         Realm realm = Realm.getDefaultInstance();
         CupTableData result = realm.where(CupTableData.class)
-                .equalTo("id", cupId)
+                .equalTo(ID, cupId)
                 .findFirst();
         return result;
     }
@@ -82,12 +84,12 @@ public class RealmHelper implements IRealmHelper {
     @Override
     public boolean hasLeague(String leagueId) {
         Realm realm = Realm.getDefaultInstance();
-        return realm.where(LeagueTableData.class).equalTo("id", leagueId).count() > 0;
+        return realm.where(LeagueTableData.class).equalTo(ID, leagueId).count() > 0;
     }
 
     @Override
     public boolean hasCup(String cupId) {
         Realm realm = Realm.getDefaultInstance();
-        return realm.where(CupTableData.class).equalTo("id", cupId).count() > 0;
+        return realm.where(CupTableData.class).equalTo(ID, cupId).count() > 0;
     }
 }

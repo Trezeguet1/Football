@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/item"
+    android:layout_marginTop="5dp"
     app:cardBackgroundColor="@color/tableItem"
     app:cardCornerRadius="1dp">
 
@@ -10,7 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
+        <TextView
+            android:id="@+id/position"
+            style="@style/table_item_attr"
+            android:textStyle="bold"/>
         <TextView
             android:id="@+id/title"
             style="@style/table_item_title"/>
