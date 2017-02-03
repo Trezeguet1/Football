@@ -23,6 +23,6 @@ public class SplashActivity extends AppCompatActivity {
             Intent mainIntent = new Intent(SplashActivity.this, MainActivity.class);
             SplashActivity.this.startActivity(mainIntent);
             SplashActivity.this.finish();
-        }), DELAY_MILLIS);//DONE Named constants instead of magic numbers.
+        }), DELAY_MILLIS);
     }
 }

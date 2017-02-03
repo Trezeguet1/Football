@@ -20,6 +20,8 @@ import io.realm.RealmList;
  */
 
 public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHolder> {
+
+    //TODO use private modifier for local fields.
     public static final int GROUP_A = 0;
     public static final int GROUP_B = 1;
     public static final int GROUP_C = 2;
@@ -28,15 +30,12 @@ public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHo
     public static final int GROUP_F = 5;
     public static final int GROUP_G = 6;
     public static final int GROUP_H = 7;
-    //DONE accessing area use PRIVATE for all private members instead of <PACKAGE> default access.
+
     private CupTableData mCupTableData;
     private Context mContext;
 
-    //DONE Do not pass data for Adapter as args of constructor, remove mContext from constructor args move it to  onBindViewHolder method holder.getContext();
-    //Remove empty constructor after this.
-
-
     public void setCupTableData(CupTableData cupTableData) {
+        //TODO potential NPE never locally check for mCupTableData != null.
         mCupTableData = cupTableData;
     }
 
@@ -53,6 +52,7 @@ public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHo
         CardView groupItem = holder.mGroupItem;
         TextView groupTitle = (TextView) groupItem.findViewById(R.id.groupTitle);
         RecyclerView groupList = (RecyclerView) groupItem.findViewById(R.id.groupList);
+        //TODO why you create new RealmList ?
         RealmList<Group> group = new RealmList<>();
 
         group = getGroup(position);
@@ -73,7 +73,6 @@ public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHo
     private RealmList<Group> getGroup(int position) {
         RealmList<Group> group = new RealmList<Group>();
         switch (position) {
-            //DONE Named constance more descriptive when magic numbers. Use it instead of 0 , 1 , etc..
             case GROUP_A:
                 group = mCupTableData.getStandings().getA();
                 break;
@@ -108,7 +107,6 @@ public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHo
     }
 
     public int getCount(CupTableData cupTableData) {
-        //DONE encapsulate business logic in separated private method
         return getGroupCount(cupTableData);
     }
 
@@ -145,7 +143,7 @@ public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHo
     }
 
     private String getGroupTitle(int i) {
-
+//TODO potential bug with index out of bound.
         String[] groups = mContext.getResources().getStringArray(R.array.groups);
         return groups[i];
     }

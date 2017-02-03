@@ -71,8 +71,6 @@ public class DetailPresenter implements IDetailPresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(table -> {
                     mView.setTableData(table);
-                    //DONE use One method instead of three, the setHeader and showRefreshMessage do not received any args it's just functional dependency...
-                    //call setHeader and showRefreshMessage inside of View.
                     mView.showRefreshMessage();//this need for show to user that info loaded not from database but from network
                 }, error -> mView.showErrorMessage());
     }

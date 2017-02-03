@@ -31,7 +31,7 @@ public class MainPresenter implements IMainPresenter {
     private FootballDataAPI mFootballDataAPI;
     private IRealmHelper mRealmHelper;
     private Context mContext;
-//TODO Naming should be more descriptive when MainSomething...
+//TODO Naming should be more descriptive rather than  MainSomething...
     public MainPresenter(MainView view, FootballDataAPI footballDataAPI, Context context) {
         this.mView = view;
         this.mFootballDataAPI = footballDataAPI;

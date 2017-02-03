@@ -10,7 +10,7 @@ import io.realm.annotations.PrimaryKey;
 public class CupTableData extends RealmObject{
 
     public static final String STANDINGS =  "standings";
-    //DONE Use named constants instead of hardcoded strings.
+
     @PrimaryKey
     private String id;
 
@@ -54,5 +54,4 @@ public class CupTableData extends RealmObject{
         return result;
     }
 
-    //DONE Do not forgot override equals and hashcode methods in your entities classes
 }
