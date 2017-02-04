@@ -1,6 +1,7 @@
 package com.dirmidante.ndd.football.utils;
 
 import android.content.Context;
+import android.support.annotation.ArrayRes;
 import android.support.annotation.StringRes;
 
 import com.dirmidante.ndd.football.FootballApplication;
@@ -17,5 +18,9 @@ public final class StringUtils {
 
     public static String getString(@StringRes int resId, Object... formatArgs){
         return sContext.getString(resId, formatArgs);
+    }
+
+    public static String[] getStringArray(@ArrayRes int resId){
+        return sContext.getResources().getStringArray(resId);
     }
 }

@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Dima on 2016-12-18.
  */
 
-public interface MainView {
+public interface CompetitionsListView {
     void setCompetitionsListData(List<CompetitonsData> competitions);
     void startDetailActivity(int id);
     void showNoConnectionMessage();

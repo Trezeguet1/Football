@@ -1,5 +1,7 @@
 package com.dirmidante.ndd.football.Presenter.Impl;
 
+import static com.dirmidante.ndd.football.FootballApplication.getCurrentApplicationContext;
+
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -9,8 +11,8 @@ import com.dirmidante.ndd.football.Model.Entity.LeagueTableData.LeagueTableData;
 import com.dirmidante.ndd.football.Model.IRealmHelper;
 import com.dirmidante.ndd.football.Model.Impl.FootballDataAPI;
 import com.dirmidante.ndd.football.Model.Impl.RealmHelper;
-import com.dirmidante.ndd.football.Presenter.IDetailPresenter;
-import com.dirmidante.ndd.football.View.DetailView;
+import com.dirmidante.ndd.football.Presenter.ICompetitionDetailPresenter;
+import com.dirmidante.ndd.football.View.CompetitionDetailView;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -20,26 +22,24 @@ import rx.schedulers.Schedulers;
  * Created by Dima on 2016-12-18.
  */
 
-public class DetailPresenter implements IDetailPresenter {
+public class CompetitionDetailPresenter implements ICompetitionDetailPresenter {
 
 
-    private DetailView mView;
+    private CompetitionDetailView mView;
     private FootballDataAPI mFootballDataAPI;
     private IRealmHelper mRealmHelper;
-    private Context mContext;
 
-    public DetailPresenter(DetailView view, FootballDataAPI footballDataAPI, Context context) {
+    public CompetitionDetailPresenter(CompetitionDetailView view, FootballDataAPI footballDataAPI) {
         this.mView = view;
         this.mFootballDataAPI = footballDataAPI;
-        this.mContext = context;
-        mRealmHelper = new RealmHelper(context);
+        mRealmHelper = new RealmHelper(getCurrentApplicationContext());
     }
 
     @Override
     public void getTableFromNetwork(String leagueId) {
 
         ConnectivityManager connMgr = (ConnectivityManager)
-                mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+                getCurrentApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
             if (isCup(leagueId)) {

@@ -18,20 +18,6 @@ public class Group extends RealmObject{
     public static final String GOALS_AGAINST = "goalsAgainst";
     public static final String GOAL_DIFFERENCE = "goalDifference";
 
-    @Override
-    public String toString() {
-        return "Group{" +
-                "group='" + group + '\'' +
-                ", rank=" + rank +
-                ", team='" + team + '\'' +
-                ", teamId=" + teamId +
-                ", playedGames=" + playedGames +
-                ", points=" + points +
-                ", goals=" + goals +
-                ", goalsAgainst=" + goalsAgainst +
-                ", goalDifference=" + goalDifference +
-                '}';
-    }
 
     @SerializedName(GROUP)
     @Expose

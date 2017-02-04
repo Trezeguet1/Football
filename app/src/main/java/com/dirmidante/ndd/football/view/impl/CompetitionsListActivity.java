@@ -12,16 +12,16 @@ import android.widget.Toast;
 import com.dirmidante.ndd.football.Adapter.CompetitionsAdapter;
 import com.dirmidante.ndd.football.Model.Entity.CompetitonsData.CompetitonsData;
 import com.dirmidante.ndd.football.Model.Impl.FootballDataAPI;
-import com.dirmidante.ndd.football.Presenter.IMainPresenter;
-import com.dirmidante.ndd.football.Presenter.Impl.MainPresenter;
+import com.dirmidante.ndd.football.Presenter.ICompetitionsListPresenter;
+import com.dirmidante.ndd.football.Presenter.Impl.CompetitionsListPresenter;
 import com.dirmidante.ndd.football.R;
-import com.dirmidante.ndd.football.View.MainView;
+import com.dirmidante.ndd.football.View.CompetitionsListView;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements MainView {
+public class CompetitionsListActivity extends AppCompatActivity implements CompetitionsListView {
 
-    private IMainPresenter mPresenter;
+    private ICompetitionsListPresenter mPresenter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         setContentView(R.layout.activity_main);
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
-        mPresenter = new MainPresenter(this, new FootballDataAPI(), this);
+        mPresenter = new CompetitionsListPresenter(this, new FootballDataAPI());
 
         mPresenter.getCompetitionsFromRealm();
         mSwipeRefreshLayout.setOnRefreshListener(() -> mPresenter.getCompetitionsFromNetwork());
@@ -55,8 +55,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void startDetailActivity(int id) {
-        Intent startDetail = new Intent(this, DetailActivity.class);
-        startDetail.putExtra(DetailActivity.EXTRA_ID, id);
+        Intent startDetail = new Intent(this, CompetitionDetailActivity.class);
+        startDetail.putExtra(CompetitionDetailActivity.EXTRA_ID, id);
         startActivity(startDetail);
     }
 

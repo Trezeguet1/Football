@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
@@ -15,16 +14,16 @@ import com.dirmidante.ndd.football.Adapter.LeagueTableAdapter;
 import com.dirmidante.ndd.football.Model.Entity.CupTableData.CupTableData;
 import com.dirmidante.ndd.football.Model.Entity.LeagueTableData.LeagueTableData;
 import com.dirmidante.ndd.football.Model.Impl.FootballDataAPI;
-import com.dirmidante.ndd.football.Presenter.IDetailPresenter;
-import com.dirmidante.ndd.football.Presenter.Impl.DetailPresenter;
+import com.dirmidante.ndd.football.Presenter.ICompetitionDetailPresenter;
+import com.dirmidante.ndd.football.Presenter.Impl.CompetitionDetailPresenter;
 import com.dirmidante.ndd.football.R;
-import com.dirmidante.ndd.football.View.DetailView;
+import com.dirmidante.ndd.football.View.CompetitionDetailView;
 
-public class DetailActivity extends AppCompatActivity implements DetailView {
+public class CompetitionDetailActivity extends AppCompatActivity implements CompetitionDetailView {
 
     public static final String EXTRA_ID = "id";
 
-    private IDetailPresenter mPresenter;
+    private ICompetitionDetailPresenter mPresenter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
     private String mLeagueId;
@@ -43,14 +42,13 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
 
 
         mRecyclerView = (RecyclerView) findViewById(R.id.leagueTableList);
-        mPresenter = new DetailPresenter(this, new FootballDataAPI(), this);
+        mPresenter = new CompetitionDetailPresenter(this, new FootballDataAPI());
         mPresenter.getTableFromRealm(mLeagueId);
     }
 
     @Override
     public void setTableData(LeagueTableData tableData) {
         setHeader();
-        showRefreshMessage();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);

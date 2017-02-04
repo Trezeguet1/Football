@@ -1,5 +1,6 @@
 package com.dirmidante.ndd.football.Adapter;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,6 +9,9 @@ import android.widget.TextView;
 
 import com.dirmidante.ndd.football.Model.Entity.CupTableData.Group;
 import com.dirmidante.ndd.football.R;
+
+import java.util.List;
+
 import io.realm.RealmList;
 
 /**
@@ -16,9 +20,9 @@ import io.realm.RealmList;
 
 public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder>{
 
-    private RealmList<Group> mTeams;
+    private List<Group> mTeams = new RealmList<Group>();
 
-    public void setTeams(RealmList<Group> teams) {
+    public void setTeams(@NonNull List<Group> teams) {
         this.mTeams = teams;
     }
 
@@ -50,13 +54,13 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder>{
         TextView points = (TextView) tableItem.findViewById(R.id.points);
         TextView difference = (TextView) tableItem.findViewById(R.id.difference);
 
-        rank.setText(Integer.toString(mTeams.get(position).getRank()));
-        title.setText(mTeams.get(position).getTeam());
-        games.setText(mTeams.get(position).getPlayedGames().toString());
-        scored.setText(mTeams.get(position).getGoals().toString());
-        conseded.setText(mTeams.get(position).getGoalsAgainst().toString());
-        points.setText(mTeams.get(position).getPoints().toString());
-        difference.setText(mTeams.get(position).getGoalDifference().toString());
+        rank.setText(String.format("%d",mTeams.get(position).getRank()));
+        title.setText(String.format("%s",mTeams.get(position).getTeam()));
+        games.setText(String.format("%d",mTeams.get(position).getPlayedGames()));
+        scored.setText(String.format("%d",mTeams.get(position).getGoals()));
+        conseded.setText(String.format("%d",mTeams.get(position).getGoalsAgainst()));
+        points.setText(String.format("%d",mTeams.get(position).getPoints()));
+        difference.setText(String.format("%d",mTeams.get(position).getGoalDifference()));
     }
 
     @Override

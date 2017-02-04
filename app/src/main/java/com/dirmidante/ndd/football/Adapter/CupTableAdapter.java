@@ -1,6 +1,8 @@
 package com.dirmidante.ndd.football.Adapter;
 
-import android.content.Context;
+
+import static com.dirmidante.ndd.football.utils.StringUtils.getStringArray;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,11 +10,14 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.dirmidante.ndd.football.FootballApplication;
 import com.dirmidante.ndd.football.Model.Entity.CupTableData.CupTableData;
 import com.dirmidante.ndd.football.Model.Entity.CupTableData.Group;
 import com.dirmidante.ndd.football.R;
 
-import io.realm.RealmList;
+import java.util.ArrayList;
+import java.util.List;
+
 
 
 /**
@@ -21,21 +26,19 @@ import io.realm.RealmList;
 
 public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHolder> {
 
-    //TODO use private modifier for local fields.
-    public static final int GROUP_A = 0;
-    public static final int GROUP_B = 1;
-    public static final int GROUP_C = 2;
-    public static final int GROUP_D = 3;
-    public static final int GROUP_E = 4;
-    public static final int GROUP_F = 5;
-    public static final int GROUP_G = 6;
-    public static final int GROUP_H = 7;
+    private static final int GROUP_A = 0;
+    private static final int GROUP_B = 1;
+    private static final int GROUP_C = 2;
+    private static final int GROUP_D = 3;
+    private static final int GROUP_E = 4;
+    private static final int GROUP_F = 5;
+    private static final int GROUP_G = 6;
+    private static final int GROUP_H = 7;
 
-    private CupTableData mCupTableData;
-    private Context mContext;
+    private CupTableData mCupTableData = new CupTableData();
 
-    public void setCupTableData(CupTableData cupTableData) {
-        //TODO potential NPE never locally check for mCupTableData != null.
+    public void setCupTableData(@NonNull CupTableData cupTableData) {
+        if (cupTableData!=null)
         mCupTableData = cupTableData;
     }
 
@@ -43,7 +46,6 @@ public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHo
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         CardView groupItem = (CardView) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.group_item, parent, false);
-        mContext = parent.getContext();
         return new ViewHolder(groupItem);
     }
 
@@ -52,13 +54,12 @@ public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHo
         CardView groupItem = holder.mGroupItem;
         TextView groupTitle = (TextView) groupItem.findViewById(R.id.groupTitle);
         RecyclerView groupList = (RecyclerView) groupItem.findViewById(R.id.groupList);
-        //TODO why you create new RealmList ?
-        RealmList<Group> group = new RealmList<>();
+        List<Group> group;
 
         group = getGroup(position);
         groupTitle.setText(getGroupTitle(position));
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this.mContext);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(FootballApplication.getCurrentApplicationContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         groupList.setLayoutManager(layoutManager);
         if (group!=null){
@@ -70,8 +71,8 @@ public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHo
 
     }
 
-    private RealmList<Group> getGroup(int position) {
-        RealmList<Group> group = new RealmList<Group>();
+    private List<Group> getGroup(int position) {
+        List<Group> group = new ArrayList<>();
         switch (position) {
             case GROUP_A:
                 group = mCupTableData.getStandings().getA();
@@ -143,8 +144,8 @@ public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHo
     }
 
     private String getGroupTitle(int i) {
-//TODO potential bug with index out of bound.
-        String[] groups = mContext.getResources().getStringArray(R.array.groups);
-        return groups[i];
+        String[] groups = getStringArray(R.array.groups);
+        String group = (i<groups.length)?groups[i]:"";
+        return group;
     }
 }

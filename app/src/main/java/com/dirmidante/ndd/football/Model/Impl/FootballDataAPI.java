@@ -1,9 +1,5 @@
 package com.dirmidante.ndd.football.Model.Impl;
 
-import android.content.Context;
-import android.support.v4.content.ContextCompat;
-import android.util.Log;
-
 import com.dirmidante.ndd.football.Model.Entity.CompetitonsData.CompetitonsData;
 import com.dirmidante.ndd.football.Model.Entity.CupTableData.CupTableData;
 import com.dirmidante.ndd.football.Model.Entity.LeagueTableData.LeagueTableData;
@@ -12,7 +8,6 @@ import com.dirmidante.ndd.football.Model.IFootballDataService;
 
 import java.util.List;
 
-import io.realm.Realm;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;

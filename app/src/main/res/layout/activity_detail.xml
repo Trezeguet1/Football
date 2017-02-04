@@ -9,7 +9,7 @@
     android:paddingLeft="5dp"
     android:paddingRight="5dp"
     android:paddingTop="5dp"
-    tools:context="com.dirmidante.ndd.football.View.Impl.DetailActivity">
+    tools:context="com.dirmidante.ndd.football.View.Impl.CompetitionDetailActivity">
 
     <LinearLayout
         android:id="@+id/head"

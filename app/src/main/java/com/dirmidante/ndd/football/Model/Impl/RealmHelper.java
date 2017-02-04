@@ -1,7 +1,6 @@
 package com.dirmidante.ndd.football.Model.Impl;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.dirmidante.ndd.football.Model.Entity.CompetitonsData.CompetitonsData;
 import com.dirmidante.ndd.football.Model.Entity.CupTableData.CupTableData;
@@ -12,7 +11,6 @@ import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
-import rx.Observable;
 
 /**
  * Created by Dima on 18.01.2017.

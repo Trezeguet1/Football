@@ -1,5 +1,6 @@
 package com.dirmidante.ndd.football.Adapter;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,9 +16,9 @@ import com.dirmidante.ndd.football.R;
 
 public class LeagueTableAdapter extends RecyclerView.Adapter<LeagueTableAdapter.ViewHolder> {
 
-    private LeagueTableData mLeagueTableData;
+    private LeagueTableData mLeagueTableData = new LeagueTableData();
 
-    public void setLeagueTableData(LeagueTableData leagueTableData) {
+    public void setLeagueTableData(@NonNull LeagueTableData leagueTableData) {
         this.mLeagueTableData = leagueTableData;
     }
 
@@ -52,17 +53,16 @@ public class LeagueTableAdapter extends RecyclerView.Adapter<LeagueTableAdapter.
         TextView points = (TextView) leagueTableItem.findViewById(R.id.points);
         TextView difference = (TextView) leagueTableItem.findViewById(R.id.difference);
 
-        rank.setText(Integer.toString(mLeagueTableData.getStanding().get(position).getPosition()));
-        title.setText(mLeagueTableData.getStanding().get(position).getTeamName());
-        games.setText(mLeagueTableData.getStanding().get(position).getPlayedGames().toString());
-        scored.setText(mLeagueTableData.getStanding().get(position).getGoals().toString());
-        conseded.setText(mLeagueTableData.getStanding().get(position).getGoalsAgainst().toString());
-        win.setText(mLeagueTableData.getStanding().get(position).getWins().toString());
-        draw.setText(mLeagueTableData.getStanding().get(position).getDraws().toString());
-        lose.setText(mLeagueTableData.getStanding().get(position).getLosses().toString());
-        points.setText(mLeagueTableData.getStanding().get(position).getPoints().toString());
-        difference.setText(mLeagueTableData.getStanding().get(position).getGoalDifference().toString());
-
+        rank.setText(String.format("%d",mLeagueTableData.getStanding().get(position).getPosition()));
+        title.setText(String.format("%s",mLeagueTableData.getStanding().get(position).getTeamName()));
+        games.setText(String.format("%d",mLeagueTableData.getStanding().get(position).getPlayedGames()));
+        scored.setText(String.format("%d",mLeagueTableData.getStanding().get(position).getGoals()));
+        conseded.setText(String.format("%d",mLeagueTableData.getStanding().get(position).getGoalsAgainst()));
+        win.setText(String.format("%d",mLeagueTableData.getStanding().get(position).getWins()));
+        draw.setText(String.format("%d",mLeagueTableData.getStanding().get(position).getDraws()));
+        lose.setText(String.format("%d",mLeagueTableData.getStanding().get(position).getLosses()));
+        points.setText(String.format("%d",mLeagueTableData.getStanding().get(position).getPoints()));
+        difference.setText(String.format("%d",mLeagueTableData.getStanding().get(position).getGoalDifference()));
     }
 
     @Override

@@ -19,19 +19,6 @@ public class Standings extends RealmObject{
     public static final String GROUP_G = "G";
     public static final String GROUP_H = "H";
 
-    @Override
-    public String toString() {
-        return "Standings{" +
-                "a=" + a +
-                ", b=" + b +
-                ", c=" + c +
-                ", d=" + d +
-                ", e=" + e +
-                ", f=" + f +
-                ", g=" + g +
-                ", h=" + h +
-                '}';
-    }
 
     @SerializedName(GROUP_A)
     @Expose

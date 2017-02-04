@@ -21,9 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".View.Impl.MainActivity" />
-        <activity android:name=".View.Impl.DetailActivity"
-            android:parentActivityName=".View.Impl.MainActivity"></activity>
+        <activity android:name=".View.Impl.CompetitionsListActivity" />
+        <activity android:name=".View.Impl.CompetitionDetailActivity"
+            android:parentActivityName=".View.Impl.CompetitionsListActivity"></activity>
     </application>
 
 </manifest>

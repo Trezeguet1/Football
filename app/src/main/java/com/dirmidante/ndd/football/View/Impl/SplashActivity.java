@@ -20,7 +20,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         new Handler().postDelayed((() -> {
-            Intent mainIntent = new Intent(SplashActivity.this, MainActivity.class);
+            Intent mainIntent = new Intent(SplashActivity.this, CompetitionsListActivity.class);
             SplashActivity.this.startActivity(mainIntent);
             SplashActivity.this.finish();
         }), DELAY_MILLIS);
