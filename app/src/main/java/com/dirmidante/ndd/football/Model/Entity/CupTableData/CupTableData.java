@@ -9,7 +9,7 @@ import io.realm.annotations.PrimaryKey;
 
 public class CupTableData extends RealmObject{
 
-    public static final String STANDINGS =  "standings";
+    private static final String STANDINGS =  "standings";
 
     @PrimaryKey
     private String id;

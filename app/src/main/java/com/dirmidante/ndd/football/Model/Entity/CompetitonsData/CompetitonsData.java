@@ -8,13 +8,13 @@ import io.realm.annotations.PrimaryKey;
 
 public class CompetitonsData extends RealmObject {
 
-    public static final String ID = "id";
-    public static final String CAPTION = "caption";
-    public static final String YEAR = "year";
-    public static final String CURRENT_MATCHDAY = "currentMatchday";
-    public static final String NUMBER_OF_MATCHDAYS = "numberOfMatchdays";
-    public static final String NUMBER_OF_TEAMS = "numberOfTeams";
-    public static final String LAST_UPDATED = "lastUpdated";
+    private static final String ID = "id";
+    private static final String CAPTION = "caption";
+    private static final String YEAR = "year";
+    private static final String CURRENT_MATCHDAY = "currentMatchday";
+    private static final String NUMBER_OF_MATCHDAYS = "numberOfMatchdays";
+    private static final String NUMBER_OF_TEAMS = "numberOfTeams";
+    private static final String LAST_UPDATED = "lastUpdated";
 
     @SerializedName(ID)
     @Expose

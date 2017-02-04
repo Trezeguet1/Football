@@ -8,15 +8,15 @@ import io.realm.RealmObject;
 
 public class Group extends RealmObject{
 
-    public static final String GROUP = "group";
-    public static final String RANK = "rank";
-    public static final String TEAM = "team";
-    public static final String TEAM_ID = "teamId";
-    public static final String PLAYED_GAMES = "playedGames";
-    public static final String POINTS = "points";
-    public static final String GOALS = "goals";
-    public static final String GOALS_AGAINST = "goalsAgainst";
-    public static final String GOAL_DIFFERENCE = "goalDifference";
+    private static final String GROUP = "group";
+    private static final String RANK = "rank";
+    private static final String TEAM = "team";
+    private static final String TEAM_ID = "teamId";
+    private static final String PLAYED_GAMES = "playedGames";
+    private static final String POINTS = "points";
+    private static final String GOALS = "goals";
+    private static final String GOALS_AGAINST = "goalsAgainst";
+    private static final String GOAL_DIFFERENCE = "goalDifference";
 
 
     @SerializedName(GROUP)

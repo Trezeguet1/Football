@@ -7,16 +7,16 @@ import io.realm.RealmObject;
 
 public class Standing extends RealmObject{
 
-    public static final String POSITION = "position";
-    public static final String TEAM_NAME = "teamName";
-    public static final String PLAYED_GAMES = "playedGames";
-    public static final String POINTS = "points";
-    public static final String GOALS = "goals";
-    public static final String GOALS_AGAINST = "goalsAgainst";
-    public static final String GOAL_DIFFERENCE = "goalDifference";
-    public static final String WINS = "wins";
-    public static final String DRAWS = "draws";
-    public static final String LOSSES = "losses";
+    private static final String POSITION = "position";
+    private static final String TEAM_NAME = "teamName";
+    private static final String PLAYED_GAMES = "playedGames";
+    private static final String POINTS = "points";
+    private static final String GOALS = "goals";
+    private static final String GOALS_AGAINST = "goalsAgainst";
+    private static final String GOAL_DIFFERENCE = "goalDifference";
+    private static final String WINS = "wins";
+    private static final String DRAWS = "draws";
+    private static final String LOSSES = "losses";
 
 
     @SerializedName(POSITION)

@@ -2,6 +2,7 @@ package com.dirmidante.ndd.football.View.Impl;
 
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -33,11 +34,12 @@ public class CompetitionsListActivity extends AppCompatActivity implements Compe
         mPresenter = new CompetitionsListPresenter(this, new FootballDataAPI());
 
         mPresenter.getCompetitionsFromRealm();
+
         mSwipeRefreshLayout.setOnRefreshListener(() -> mPresenter.getCompetitionsFromNetwork());
     }
 
     @Override
-    public void setCompetitionsListData(List<CompetitonsData> competitions) {
+    public void setCompetitionsListData(@NonNull List<CompetitonsData> competitions) {
 
         RecyclerView competitionsList = (RecyclerView) findViewById(R.id.competitionsList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -73,5 +75,10 @@ public class CompetitionsListActivity extends AppCompatActivity implements Compe
     @Override
     public void showRefreshMessage() {
         Toast.makeText(this, R.string.infoRefreshed, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showErrorMessage() {
+        Toast.makeText(this, R.string.noData, Toast.LENGTH_SHORT).show();
     }
 }

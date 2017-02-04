@@ -10,14 +10,14 @@ import io.realm.RealmObject;
 
 public class Standings extends RealmObject{
 
-    public static final String GROUP_A = "A";
-    public static final String GROUP_B = "B";
-    public static final String GROUP_C = "C";
-    public static final String GROUP_D = "D";
-    public static final String GROUP_E = "E";
-    public static final String GROUP_F = "F";
-    public static final String GROUP_G = "G";
-    public static final String GROUP_H = "H";
+    private static final String GROUP_A = "A";
+    private static final String GROUP_B = "B";
+    private static final String GROUP_C = "C";
+    private static final String GROUP_D = "D";
+    private static final String GROUP_E = "E";
+    private static final String GROUP_F = "F";
+    private static final String GROUP_G = "G";
+    private static final String GROUP_H = "H";
 
 
     @SerializedName(GROUP_A)

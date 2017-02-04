@@ -14,4 +14,5 @@ public interface CompetitionsListView {
     void showNoConnectionMessage();
     void setRefreshing();
     void showRefreshMessage();
+    void showErrorMessage();
 }

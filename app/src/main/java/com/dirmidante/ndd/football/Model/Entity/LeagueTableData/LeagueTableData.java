@@ -10,7 +10,7 @@ import io.realm.annotations.PrimaryKey;
 public class LeagueTableData extends RealmObject{
 
 
-    public static final String STANDING = "standing";
+    private static final String STANDING = "standing";
     @PrimaryKey
     private String id;
 

@@ -15,6 +15,7 @@
     <string name="currentMatchDay">"Current Matchday "</string>
     <string name="numberOfTeams">"Number Of Teams "</string>
     <string name="LastUpdate">"Last Updated "</string>
+    <string name="noData">There\'s no any data from server</string>
     <string-array name="groups">
         <item>Group A</item>
         <item>Group B</item>

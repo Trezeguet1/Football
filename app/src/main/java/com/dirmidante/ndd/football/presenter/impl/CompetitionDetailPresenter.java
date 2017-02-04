@@ -24,7 +24,6 @@ import rx.schedulers.Schedulers;
 
 public class CompetitionDetailPresenter implements ICompetitionDetailPresenter {
 
-
     private CompetitionDetailView mView;
     private FootballDataAPI mFootballDataAPI;
     private IRealmHelper mRealmHelper;
@@ -66,12 +65,12 @@ public class CompetitionDetailPresenter implements ICompetitionDetailPresenter {
         Observable<LeagueTableData> leagueTableObservable = mFootballDataAPI.getLeagueTable(leagueId);
         leagueTableObservable
                 .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.computation())
+                .observeOn(Schedulers.io())
                 .doOnNext(table -> mRealmHelper.addLeagueTable(table, leagueId))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(table -> {
                     mView.setTableData(table);
-                    mView.showRefreshMessage();//this need for show to user that info loaded not from database but from network
+                    mView.showRefreshMessage();
                 }, error -> mView.showErrorMessage());
     }
 
@@ -79,7 +78,7 @@ public class CompetitionDetailPresenter implements ICompetitionDetailPresenter {
         Observable<CupTableData> cupTableDataObservable = mFootballDataAPI.getCupTable(leagueId);
         cupTableDataObservable
                 .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.computation())
+                .observeOn(Schedulers.io())
                 .doOnNext(table -> mRealmHelper.addCupTable(table, leagueId))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(table -> {

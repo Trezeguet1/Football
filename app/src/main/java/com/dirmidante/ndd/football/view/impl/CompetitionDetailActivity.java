@@ -1,5 +1,6 @@
 package com.dirmidante.ndd.football.View.Impl;
 
+import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,7 +48,7 @@ public class CompetitionDetailActivity extends AppCompatActivity implements Comp
     }
 
     @Override
-    public void setTableData(LeagueTableData tableData) {
+    public void setTableData(@NonNull LeagueTableData tableData) {
         setHeader();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -60,7 +61,7 @@ public class CompetitionDetailActivity extends AppCompatActivity implements Comp
     }
 
     @Override
-    public void setTableData(CupTableData tableData) {
+    public void setTableData(@NonNull CupTableData tableData) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
