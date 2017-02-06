@@ -67,6 +67,7 @@ public class LeagueTableAdapter extends RecyclerView.Adapter<LeagueTableAdapter.
 
     @Override
     public int getItemCount() {
-        return mLeagueTableData.getStanding().size();
+        int count=(mLeagueTableData!=null)?mLeagueTableData.getStanding().size():0;
+        return count;
     }
 }

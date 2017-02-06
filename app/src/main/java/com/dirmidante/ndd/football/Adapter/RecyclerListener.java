@@ -5,5 +5,5 @@ package com.dirmidante.ndd.football.Adapter;
  */
 
 public interface RecyclerListener {
-    public void onClick(int position);
+    void onClick(int position);
 }

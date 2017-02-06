@@ -95,8 +95,8 @@ public class CompetitionsAdapter extends RecyclerView.Adapter<CompetitionsAdapte
 
     @Override
     public int getItemCount() {
-        //now mCompetitions = new ArrayList<CompetitonsData>() by default, and it's @NonNull parameter in constructor
-        return  mCompetitions.size();
+        int count=(mCompetitions!=null)?mCompetitions.size():0;
+        return count;
     }
 
 

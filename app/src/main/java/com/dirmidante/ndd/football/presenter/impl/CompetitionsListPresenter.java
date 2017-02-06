@@ -53,7 +53,7 @@ public class CompetitionsListPresenter implements ICompetitionsListPresenter {
                     .subscribe(competitonsData -> {
                             mView.setCompetitionsListData(competitonsData);
                             mView.showRefreshMessage();
-                    },error -> mView.showNoConnectionMessage());
+                    },error -> mView.showErrorMessage());
         } else {
             mView.showNoConnectionMessage();
         }
@@ -67,5 +67,5 @@ public class CompetitionsListPresenter implements ICompetitionsListPresenter {
         else
             getCompetitionsFromNetwork();
     }
-    
+
 }

@@ -64,7 +64,9 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder>{
     }
 
     @Override
-    public int getItemCount() {
-        return mTeams.size();
+    public int getItemCount()
+    {
+        int count=(mTeams!=null)?mTeams.size():0;
+        return count;
     }
 }

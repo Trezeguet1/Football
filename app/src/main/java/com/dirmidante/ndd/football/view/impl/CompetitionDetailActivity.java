@@ -1,12 +1,13 @@
 package com.dirmidante.ndd.football.View.Impl;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
@@ -47,17 +48,17 @@ public class CompetitionDetailActivity extends AppCompatActivity implements Comp
         mPresenter.getTableFromRealm(mLeagueId);
     }
 
+
     @Override
     public void setTableData(@NonNull LeagueTableData tableData) {
+        Log.v("mytag", "a");
         setHeader();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
-        if (tableData != null) {
-            LeagueTableAdapter leagueTableAdapter = new LeagueTableAdapter();
-            leagueTableAdapter.setLeagueTableData(tableData);
-            mRecyclerView.setAdapter(leagueTableAdapter);
-        }
+        LeagueTableAdapter leagueTableAdapter = new LeagueTableAdapter();
+        leagueTableAdapter.setLeagueTableData(tableData);
+        mRecyclerView.setAdapter(leagueTableAdapter);
     }
 
     @Override
@@ -65,11 +66,10 @@ public class CompetitionDetailActivity extends AppCompatActivity implements Comp
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
-        if (tableData != null) {
-            CupTableAdapter cupTableadapter = new CupTableAdapter();
-            cupTableadapter.setCupTableData(tableData);
-            mRecyclerView.setAdapter(cupTableadapter);
-        }
+        CupTableAdapter cupTableadapter = new CupTableAdapter();
+        cupTableadapter.setCupTableData(tableData);
+        mRecyclerView.setAdapter(cupTableadapter);
+
     }
 
     @Override
