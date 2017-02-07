@@ -20,28 +20,28 @@ import com.dirmidante.ndd.football.Presenter.Impl.CompetitionsListPresenter;
 import com.dirmidante.ndd.football.R;
 import com.dirmidante.ndd.football.View.CompetitionsListView;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
 import java.util.List;
 
+@EActivity((R.layout.activity_main))
 public class CompetitionsListActivity extends AppCompatActivity implements CompetitionsListView {
 
     private ICompetitionsListPresenter mPresenter;
-    private SwipeRefreshLayout mSwipeRefreshLayout;
-    private  Toolbar mToolbar;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    @ViewById(R.id.swipeRefreshLayout)
+    protected SwipeRefreshLayout mSwipeRefreshLayout;
 
+    @ViewById(R.id.toolbar)
+    protected Toolbar mToolbar;
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+    @AfterViews
+    void after(){
         setSupportActionBar(mToolbar);
-
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         mPresenter = new CompetitionsListPresenter(this, new FootballDataAPI());
-
         mPresenter.getCompetitionsFromRealm();
-
         mSwipeRefreshLayout.setOnRefreshListener(() -> mPresenter.getCompetitionsFromNetwork());
     }
 
@@ -56,7 +56,7 @@ public class CompetitionsListActivity extends AppCompatActivity implements Compe
             CompetitionsAdapter competitionsAdapter = new CompetitionsAdapter();
             competitionsAdapter.setCompetitions(competitions);
             competitionsAdapter.setListener((position) -> {
-                startDetailActivity(competitions.get(position).getId(),competitions.get(position).getCaption());
+                startDetailActivity(competitions.get(position).getId(), competitions.get(position).getCaption());
             });
             competitionsList.setAdapter(competitionsAdapter);
         }
@@ -64,14 +64,10 @@ public class CompetitionsListActivity extends AppCompatActivity implements Compe
 
     @Override
     public void startDetailActivity(int id, String title) {
-        Log.v("mytag",title);
-        Intent startDetail = new Intent(this, CompetitionDetailActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString(CompetitionDetailActivity.EXTRA_TITLE, title);
         bundle.putInt(CompetitionDetailActivity.EXTRA_ID, id);
-        startDetail.putExtras(bundle);
-        startActivity(startDetail);
-    }
+        CompetitionDetailActivity_.intent(this).extra(CompetitionDetailActivity_.EXTRA_BUNDLE,bundle).start();    }
 
     @Override
     public void showNoConnectionMessage() {

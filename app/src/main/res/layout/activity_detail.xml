@@ -43,6 +43,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_gravity="bottom"
+            app:tabIndicatorColor="@color/colorPrimaryDark"
+            app:tabIndicatorHeight="3dp"
         />
     </android.support.design.widget.AppBarLayout>
 
@@ -50,6 +52,5 @@
         android:id="@+id/viewPager"
         style="@style/match"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
     </android.support.v4.view.ViewPager>
 </android.support.design.widget.CoordinatorLayout>
