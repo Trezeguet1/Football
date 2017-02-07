@@ -1,5 +1,6 @@
 package com.dirmidante.ndd.football.View.Impl;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
@@ -14,34 +15,45 @@ import android.view.View;
 
 import com.dirmidante.ndd.football.R;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Extra;
+import org.androidannotations.annotations.ViewById;
+
+@EActivity(R.layout.activity_detail)
 public class CompetitionDetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_ID = "id";
     public static final String EXTRA_TITLE = "title";
+    public static final String EXTRA_BUNDLE = "bundle";
 
-    private String mLeagueId;
-    private ViewPager mViewPager;
-    private Toolbar mToolbar;
-    private  TabLayout mTabLayout;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
+    @ViewById(R.id.viewPager)
+    protected ViewPager mViewPager;
 
-        Bundle bundle = getIntent().getExtras();
-        mLeagueId = Integer.toString(bundle.getInt(EXTRA_ID));
+    @ViewById(R.id.toolbar)
+    protected Toolbar mToolbar;
 
-        mViewPager = (ViewPager) findViewById(R.id.viewPager);
+    @ViewById(R.id.tabs)
+    protected TabLayout mTabLayout;
 
-        mTabLayout = (TabLayout) findViewById(R.id.tabs);
+    @Extra(EXTRA_ID)
+    int mId;
+
+    @Extra(EXTRA_TITLE)
+    String mTitle;
+
+
+    @AfterViews
+    void after() {
+        Integer.toString(mId);
+
         mTabLayout.setupWithViewPager(mViewPager);
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle(bundle.getString(EXTRA_TITLE));
+        getSupportActionBar().setTitle(mTitle);
 
 
         mViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
@@ -49,7 +61,7 @@ public class CompetitionDetailActivity extends AppCompatActivity {
             public Fragment getItem(int position) {
                 switch (position) {
                     case 0:
-                        return new TableFragment();
+                        return new TableFragment_();
                     default:
                         return new FixturesFragment();
                 }
@@ -75,7 +87,7 @@ public class CompetitionDetailActivity extends AppCompatActivity {
 
 
     public String getLeagueId() {
-        return mLeagueId;
+        return Integer.toString(mId);
     }
 
     public class DepthPageTransformer implements ViewPager.PageTransformer {

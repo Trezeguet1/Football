@@ -24,16 +24,30 @@ import com.dirmidante.ndd.football.Presenter.Impl.TablePresenter;
 import com.dirmidante.ndd.football.R;
 import com.dirmidante.ndd.football.View.TableView;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
+
 /**
  * A simple {@link Fragment} subclass.
  */
+
+@EFragment(R.layout.fragment_table)
 public class TableFragment extends Fragment implements TableView {
 
     private ITablePresenter mPresenter;
-    private SwipeRefreshLayout mSwipeRefreshLayout;
-    private RecyclerView mRecyclerView;
+
+    @ViewById(R.id.swipeRefreshLayout)
+    protected SwipeRefreshLayout mSwipeRefreshLayout;
+    @ViewById(R.id.leagueTableList)
+    protected RecyclerView mRecyclerView;
+
+
     private boolean mHasHeader = false;
-    private View mLayout;
+
+    @ViewById(R.id.head)
+    protected View mLayout;
+
     private String mLeagueId;
 
     public TableFragment() {
@@ -41,21 +55,14 @@ public class TableFragment extends Fragment implements TableView {
     }
 
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        mLayout = inflater.inflate(R.layout.fragment_table, container, false);
-        mLeagueId = ((CompetitionDetailActivity) getActivity()).getLeagueId();
+    @AfterViews
+    void after() {
 
-        mSwipeRefreshLayout = (SwipeRefreshLayout) mLayout.findViewById(R.id.swipeRefreshLayout);
-        mSwipeRefreshLayout.setOnRefreshListener(() -> mPresenter.getTableFromNetwork(mLeagueId));
-
-
-        mRecyclerView = (RecyclerView) mLayout.findViewById(R.id.leagueTableList);
         mPresenter = new TablePresenter(this, new FootballDataAPI());
+
+        mLeagueId = ((CompetitionDetailActivity_) getActivity()).getLeagueId();
+        mSwipeRefreshLayout.setOnRefreshListener(() -> mPresenter.getTableFromNetwork(mLeagueId));
         mPresenter.getTableFromRealm(mLeagueId);
-        return mLayout;
     }
 
     @Override
@@ -84,10 +91,9 @@ public class TableFragment extends Fragment implements TableView {
     @Override
     public void setHeader() {
         if (!mHasHeader) {
-            CardView header = (CardView) LayoutInflater.from(getActivity()).inflate(R.layout.table_header, null);
-            ViewGroup head = (ViewGroup) mLayout.findViewById(R.id.head);
-            head.addView(header, 0);
-            mHasHeader = true;
+           /* CardView header = (CardView) LayoutInflater.from(getActivity()).inflate(R.layout.table_header, null);
+            mLayout.addView(header, 0);
+            mHasHeader = true;*/
         }
     }
 
