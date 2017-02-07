@@ -1,106 +1,117 @@
 package com.dirmidante.ndd.football.View.Impl;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.ViewGroup;
-import android.widget.Toast;
+import android.view.View;
 
-import com.dirmidante.ndd.football.Adapter.CupTableAdapter;
-import com.dirmidante.ndd.football.Adapter.LeagueTableAdapter;
-import com.dirmidante.ndd.football.Model.Entity.CupTableData.CupTableData;
-import com.dirmidante.ndd.football.Model.Entity.LeagueTableData.LeagueTableData;
-import com.dirmidante.ndd.football.Model.Impl.FootballDataAPI;
-import com.dirmidante.ndd.football.Presenter.ICompetitionDetailPresenter;
-import com.dirmidante.ndd.football.Presenter.Impl.CompetitionDetailPresenter;
 import com.dirmidante.ndd.football.R;
-import com.dirmidante.ndd.football.View.CompetitionDetailView;
 
-public class CompetitionDetailActivity extends AppCompatActivity implements CompetitionDetailView {
+public class CompetitionDetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_ID = "id";
+    public static final String EXTRA_TITLE = "title";
 
-    private ICompetitionDetailPresenter mPresenter;
-    private SwipeRefreshLayout mSwipeRefreshLayout;
-    private RecyclerView mRecyclerView;
     private String mLeagueId;
-    private boolean mHasHeader = false;
+    private ViewPager mViewPager;
+    private Toolbar mToolbar;
+    private  TabLayout mTabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        Bundle bundle = getIntent().getExtras();
+        mLeagueId = Integer.toString(bundle.getInt(EXTRA_ID));
+
+        mViewPager = (ViewPager) findViewById(R.id.viewPager);
+
+        mTabLayout = (TabLayout) findViewById(R.id.tabs);
+        mTabLayout.setupWithViewPager(mViewPager);
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        mLeagueId = Integer.toString(getIntent().getIntExtra(EXTRA_ID, 0));
-
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
-        mSwipeRefreshLayout.setOnRefreshListener(() -> mPresenter.getTableFromNetwork(mLeagueId));
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle(bundle.getString(EXTRA_TITLE));
 
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.leagueTableList);
-        mPresenter = new CompetitionDetailPresenter(this, new FootballDataAPI());
-        mPresenter.getTableFromRealm(mLeagueId);
+        mViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+            @Override
+            public Fragment getItem(int position) {
+                switch (position) {
+                    case 0:
+                        return new TableFragment();
+                    default:
+                        return new FixturesFragment();
+                }
+            }
+
+            @Override
+            public int getCount() {
+                return 2;
+            }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                switch (position) {
+                    case 0:
+                        return "Table";
+                    default:
+                        return "Fixtures";
+                }
+            }
+        });
+        mViewPager.setPageTransformer(true, new DepthPageTransformer());
     }
 
 
-    @Override
-    public void setTableData(@NonNull LeagueTableData tableData) {
-        Log.v("mytag", "a");
-        setHeader();
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(layoutManager);
-        LeagueTableAdapter leagueTableAdapter = new LeagueTableAdapter();
-        leagueTableAdapter.setLeagueTableData(tableData);
-        mRecyclerView.setAdapter(leagueTableAdapter);
+    public String getLeagueId() {
+        return mLeagueId;
     }
 
-    @Override
-    public void setTableData(@NonNull CupTableData tableData) {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(layoutManager);
-        CupTableAdapter cupTableadapter = new CupTableAdapter();
-        cupTableadapter.setCupTableData(tableData);
-        mRecyclerView.setAdapter(cupTableadapter);
+    public class DepthPageTransformer implements ViewPager.PageTransformer {
+        private static final float MIN_SCALE = 0.75f;
 
-    }
+        public void transformPage(View view, float position) {
+            int pageWidth = view.getWidth();
 
-    @Override
-    public void setHeader() {
-        if (!mHasHeader) {
-            CardView header = (CardView) getLayoutInflater().inflate(R.layout.table_header, null);
-            ViewGroup head = (ViewGroup) findViewById(R.id.head);
-            head.addView(header, 0);
-            mHasHeader = true;
+            if (position < -1) { // [-Infinity,-1)
+                // This page is way off-screen to the left.
+                view.setAlpha(0);
+
+            } else if (position <= 0) { // [-1,0]
+                // Use the default slide transition when moving to the left page
+                view.setAlpha(1);
+                view.setTranslationX(0);
+                view.setScaleX(1);
+                view.setScaleY(1);
+
+            } else if (position <= 1) { // (0,1]
+                // Fade the page out.
+                view.setAlpha(1 - position);
+
+                // Counteract the default slide transition
+                view.setTranslationX(pageWidth * -position);
+
+                // Scale the page down (between MIN_SCALE and 1)
+                float scaleFactor = MIN_SCALE
+                        + (1 - MIN_SCALE) * (1 - Math.abs(position));
+                view.setScaleX(scaleFactor);
+                view.setScaleY(scaleFactor);
+
+            } else { // (1,+Infinity]
+                // This page is way off-screen to the right.
+                view.setAlpha(0);
+            }
         }
-    }
-
-    @Override
-    public void showNoConnectionMessage() {
-        Toast.makeText(this, R.string.noInternetConnection, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void showErrorMessage() {
-        Toast.makeText(this, R.string.noInfo, Toast.LENGTH_SHORT).show();
-
-    }
-
-    @Override
-    public void setRefreshing() {
-        mSwipeRefreshLayout.setRefreshing(false);
-    }
-
-
-    @Override
-    public void showRefreshMessage() {
-        Toast.makeText(this, R.string.infoRefreshed, Toast.LENGTH_SHORT).show();
     }
 }

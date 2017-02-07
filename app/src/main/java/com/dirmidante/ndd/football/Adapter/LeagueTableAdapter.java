@@ -31,6 +31,7 @@ public class LeagueTableAdapter extends RecyclerView.Adapter<LeagueTableAdapter.
         }
     }
 
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         CardView leagueTableItem = (CardView) LayoutInflater.from(parent.getContext())

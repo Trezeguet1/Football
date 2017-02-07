@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.dirmidante.ndd.football.Adapter.CompetitionsAdapter;
@@ -24,11 +26,16 @@ public class CompetitionsListActivity extends AppCompatActivity implements Compe
 
     private ICompetitionsListPresenter mPresenter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    private  Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         mPresenter = new CompetitionsListPresenter(this, new FootballDataAPI());
@@ -49,16 +56,20 @@ public class CompetitionsListActivity extends AppCompatActivity implements Compe
             CompetitionsAdapter competitionsAdapter = new CompetitionsAdapter();
             competitionsAdapter.setCompetitions(competitions);
             competitionsAdapter.setListener((position) -> {
-                startDetailActivity(competitions.get(position).getId());
+                startDetailActivity(competitions.get(position).getId(),competitions.get(position).getCaption());
             });
             competitionsList.setAdapter(competitionsAdapter);
         }
     }
 
     @Override
-    public void startDetailActivity(int id) {
+    public void startDetailActivity(int id, String title) {
+        Log.v("mytag",title);
         Intent startDetail = new Intent(this, CompetitionDetailActivity.class);
-        startDetail.putExtra(CompetitionDetailActivity.EXTRA_ID, id);
+        Bundle bundle = new Bundle();
+        bundle.putString(CompetitionDetailActivity.EXTRA_TITLE, title);
+        bundle.putInt(CompetitionDetailActivity.EXTRA_ID, id);
+        startDetail.putExtras(bundle);
         startActivity(startDetail);
     }
 

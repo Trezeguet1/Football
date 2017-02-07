@@ -14,7 +14,7 @@
         <TextView
             style="@style/table_item_title"
             android:text="@string/title"
-            android:textColor="@color/White"/>
+            android:textColor="@color/white"/>
 
         <TextView
             style="@style/table_header_attr"

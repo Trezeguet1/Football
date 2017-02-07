@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/item"
     android:layout_marginTop="5dp"
-    app:cardBackgroundColor="@color/ListBigItem"
+    app:cardBackgroundColor="@color/listBigItem"
     app:cardCornerRadius="5dp"
     >
 

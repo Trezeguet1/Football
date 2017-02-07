@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface CompetitionsListView {
     void setCompetitionsListData(List<CompetitonsData> competitions);
-    void startDetailActivity(int id);
+    void startDetailActivity(int id, String title);
     void showNoConnectionMessage();
     void setRefreshing();
     void showRefreshMessage();

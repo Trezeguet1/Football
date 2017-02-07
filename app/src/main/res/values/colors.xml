@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#00796b</color>
-    <color name="colorPrimaryDark">#004d40</color>
-    <color name="colorAccent">#e0f2f1</color>
-    <color name="ListBigItem">#80cbc4</color>
-    <color name="tableItem">#4db6ac</color>
-    <color name="White">#ffffff</color>
+    <color name="colorPrimaryDark">#607d8b</color>
+    <color name="colorPrimary">#78909c</color>
+    <color name="tabItem">#90a4ae</color>
+    <color name="tableItem">#b0bec5</color>
+    <color name="listBigItem">#cfd8dc</color>
+    <color name="colorAccent">#eceff1</color>
+    <color name="white">#ffffff</color>
 </resources>

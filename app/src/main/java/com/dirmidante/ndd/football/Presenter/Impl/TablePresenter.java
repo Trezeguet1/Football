@@ -11,8 +11,8 @@ import com.dirmidante.ndd.football.Model.Entity.LeagueTableData.LeagueTableData;
 import com.dirmidante.ndd.football.Model.IRealmHelper;
 import com.dirmidante.ndd.football.Model.Impl.FootballDataAPI;
 import com.dirmidante.ndd.football.Model.Impl.RealmHelper;
-import com.dirmidante.ndd.football.Presenter.ICompetitionDetailPresenter;
-import com.dirmidante.ndd.football.View.CompetitionDetailView;
+import com.dirmidante.ndd.football.Presenter.ITablePresenter;
+import com.dirmidante.ndd.football.View.TableView;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -22,13 +22,13 @@ import rx.schedulers.Schedulers;
  * Created by Dima on 2016-12-18.
  */
 
-public class CompetitionDetailPresenter implements ICompetitionDetailPresenter {
+public class TablePresenter implements ITablePresenter {
 
-    private CompetitionDetailView mView;
+    private TableView mView;
     private FootballDataAPI mFootballDataAPI;
     private IRealmHelper mRealmHelper;
 
-    public CompetitionDetailPresenter(CompetitionDetailView view, FootballDataAPI footballDataAPI) {
+    public TablePresenter(TableView view, FootballDataAPI footballDataAPI) {
         this.mView = view;
         this.mFootballDataAPI = footballDataAPI;
         mRealmHelper = new RealmHelper(getCurrentApplicationContext());
