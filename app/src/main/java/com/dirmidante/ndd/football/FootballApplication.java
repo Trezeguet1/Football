@@ -3,6 +3,7 @@ package com.dirmidante.ndd.football;
 import android.app.Application;
 import android.content.Context;
 
+
 public class FootballApplication extends Application {
 
     private static FootballApplication sInstance;

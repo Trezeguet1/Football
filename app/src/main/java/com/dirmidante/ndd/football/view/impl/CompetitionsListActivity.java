@@ -33,12 +33,12 @@ public class CompetitionsListActivity extends AppCompatActivity implements Compe
 
     @ViewById(R.id.swipeRefreshLayout)
     protected SwipeRefreshLayout mSwipeRefreshLayout;
-
     @ViewById(R.id.toolbar)
     protected Toolbar mToolbar;
 
+
     @AfterViews
-    void after() {
+    void start() {
         setSupportActionBar(mToolbar);
         mPresenter = new CompetitionsListPresenter(this, new FootballDataAPI());
         mPresenter.getCompetitionsFromRealm();

@@ -23,6 +23,7 @@ public class SplashActivity extends AppCompatActivity {
 
         new Handler().postDelayed((() -> {
             CompetitionsListActivity_.intent(this).start();
+            SplashActivity.this.finish();
         }), DELAY_MILLIS);
     }
 }

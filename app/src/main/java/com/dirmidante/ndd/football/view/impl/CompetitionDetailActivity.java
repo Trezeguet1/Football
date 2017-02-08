@@ -25,7 +25,6 @@ public class CompetitionDetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_ID = "id";
     public static final String EXTRA_TITLE = "title";
-    public static final String EXTRA_BUNDLE = "bundle";
 
 
     @ViewById(R.id.viewPager)
@@ -45,7 +44,7 @@ public class CompetitionDetailActivity extends AppCompatActivity {
 
 
     @AfterViews
-    void after() {
+    void start() {
         Integer.toString(mId);
 
         mTabLayout.setupWithViewPager(mViewPager);
