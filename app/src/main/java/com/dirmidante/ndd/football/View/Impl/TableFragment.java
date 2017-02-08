@@ -67,7 +67,6 @@ public class TableFragment extends Fragment implements TableView {
 
     @Override
     public void setTableData(@NonNull LeagueTableData tableData) {
-        Log.v("mytag", "a");
         setHeader();
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);

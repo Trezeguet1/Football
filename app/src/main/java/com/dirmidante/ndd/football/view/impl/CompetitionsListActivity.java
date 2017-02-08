@@ -38,7 +38,7 @@ public class CompetitionsListActivity extends AppCompatActivity implements Compe
     protected Toolbar mToolbar;
 
     @AfterViews
-    void after(){
+    void after() {
         setSupportActionBar(mToolbar);
         mPresenter = new CompetitionsListPresenter(this, new FootballDataAPI());
         mPresenter.getCompetitionsFromRealm();
@@ -64,10 +64,11 @@ public class CompetitionsListActivity extends AppCompatActivity implements Compe
 
     @Override
     public void startDetailActivity(int id, String title) {
-        Bundle bundle = new Bundle();
-        bundle.putString(CompetitionDetailActivity.EXTRA_TITLE, title);
-        bundle.putInt(CompetitionDetailActivity.EXTRA_ID, id);
-        CompetitionDetailActivity_.intent(this).extra(CompetitionDetailActivity_.EXTRA_BUNDLE,bundle).start();    }
+        CompetitionDetailActivity_.intent(this)
+                .extra(CompetitionDetailActivity.EXTRA_ID,id)
+                .extra(CompetitionDetailActivity.EXTRA_TITLE,title)
+                .start();
+    }
 
     @Override
     public void showNoConnectionMessage() {
