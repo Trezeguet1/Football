@@ -44,7 +44,7 @@ public class CompetitionDetailActivity extends AppCompatActivity {
 
 
     @AfterViews
-    void start() {
+    void afterViews() {
         Integer.toString(mId);
 
         mTabLayout.setupWithViewPager(mViewPager);

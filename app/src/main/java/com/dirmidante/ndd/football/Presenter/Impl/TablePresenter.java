@@ -14,6 +14,9 @@ import com.dirmidante.ndd.football.Model.Impl.RealmHelper;
 import com.dirmidante.ndd.football.Presenter.ITablePresenter;
 import com.dirmidante.ndd.football.View.TableView;
 
+import org.androidannotations.annotations.Bean;
+import org.androidannotations.annotations.EBean;
+
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -22,16 +25,18 @@ import rx.schedulers.Schedulers;
  * Created by Dima on 2016-12-18.
  */
 
+@EBean(scope = EBean.Scope.Singleton)
 public class TablePresenter implements ITablePresenter {
 
     private TableView mView;
-    private FootballDataAPI mFootballDataAPI;
-    private IRealmHelper mRealmHelper;
 
-    public TablePresenter(TableView view, FootballDataAPI footballDataAPI) {
+    @Bean
+    protected FootballDataAPI mFootballDataAPI;
+    @Bean
+    protected RealmHelper mRealmHelper;
+
+    public void setView(TableView view) {
         this.mView = view;
-        this.mFootballDataAPI = footballDataAPI;
-        mRealmHelper = new RealmHelper(getCurrentApplicationContext());
     }
 
     @Override

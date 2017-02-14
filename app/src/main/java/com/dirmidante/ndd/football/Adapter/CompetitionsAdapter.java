@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.dirmidante.ndd.football.Model.Entity.CompetitonsData.CompetitonsData;
 import com.dirmidante.ndd.football.R;
 
+import org.androidannotations.annotations.EBean;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +21,7 @@ import java.util.List;
  * Created by Dima on 2016-12-18.
  */
 
+@EBean
 public class CompetitionsAdapter extends RecyclerView.Adapter<CompetitionsAdapter.ViewHolder> {
 
     private List<CompetitonsData> mCompetitions = new ArrayList<CompetitonsData>();

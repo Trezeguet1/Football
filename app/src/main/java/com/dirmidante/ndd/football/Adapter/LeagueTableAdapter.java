@@ -10,10 +10,14 @@ import android.widget.TextView;
 import com.dirmidante.ndd.football.Model.Entity.LeagueTableData.LeagueTableData;
 import com.dirmidante.ndd.football.R;
 
+import org.androidannotations.annotations.EBean;
+
 /**
  * Created by Dima on 2016-12-19.
  */
 
+
+@EBean
 public class LeagueTableAdapter extends RecyclerView.Adapter<LeagueTableAdapter.ViewHolder> {
 
     private LeagueTableData mLeagueTableData = new LeagueTableData();

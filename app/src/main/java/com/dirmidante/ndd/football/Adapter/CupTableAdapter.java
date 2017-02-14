@@ -2,6 +2,8 @@ package com.dirmidante.ndd.football.Adapter;
 
 
 import static com.dirmidante.ndd.football.utils.StringUtils.getStringArray;
+
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +17,9 @@ import com.dirmidante.ndd.football.Model.Entity.CupTableData.CupTableData;
 import com.dirmidante.ndd.football.Model.Entity.CupTableData.Group;
 import com.dirmidante.ndd.football.R;
 
+import org.androidannotations.annotations.Bean;
+import org.androidannotations.annotations.EBean;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +29,7 @@ import java.util.List;
  * Created by Dima on 2016-12-20.
  */
 
+@EBean
 public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHolder> {
 
     private static final int GROUP_A = 0;
@@ -34,6 +40,9 @@ public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHo
     private static final int GROUP_F = 5;
     private static final int GROUP_G = 6;
     private static final int GROUP_H = 7;
+
+    @Bean
+    protected GroupAdapter mGroupAdapter;
 
     private CupTableData mCupTableData = new CupTableData();
 
@@ -59,13 +68,12 @@ public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHo
         group = getGroup(position);
         groupTitle.setText(getGroupTitle(position));
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(FootballApplication.getCurrentApplicationContext());
+        LinearLayoutManager layoutManager = new UnscrollableLayoutManager(FootballApplication.getCurrentApplicationContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         groupList.setLayoutManager(layoutManager);
         if (group!=null){
-            GroupAdapter groupAdapter = new GroupAdapter();
-            groupAdapter.setTeams(group);
-            groupList.setAdapter(groupAdapter);
+            mGroupAdapter.setTeams(group);
+            groupList.setAdapter(mGroupAdapter);
         }
 
 
@@ -147,5 +155,15 @@ public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHo
         String[] groups = getStringArray(R.array.groups);
         String group = (i<groups.length)?groups[i]:"";
         return group;
+    }
+    public class UnscrollableLayoutManager extends LinearLayoutManager{
+        public UnscrollableLayoutManager(Context context) {
+            super(context);
+        }
+
+        @Override
+        public boolean canScrollVertically() {
+            return false;
+        }
     }
 }

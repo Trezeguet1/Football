@@ -6,6 +6,8 @@ import com.dirmidante.ndd.football.Model.Entity.LeagueTableData.LeagueTableData;
 import com.dirmidante.ndd.football.Model.IFootballDataAPI;
 import com.dirmidante.ndd.football.Model.IFootballDataService;
 
+import org.androidannotations.annotations.EBean;
+
 import java.util.List;
 
 import retrofit2.Retrofit;
@@ -17,6 +19,7 @@ import rx.Observable;
  * Created by Dima on 2016-12-17.
  */
 
+@EBean
 public class FootballDataAPI implements IFootballDataAPI {
 
     @Override

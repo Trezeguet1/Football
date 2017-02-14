@@ -6,7 +6,7 @@
     android:layout_marginTop="5dp"
     app:cardBackgroundColor="@color/listBigItem"
     app:cardCornerRadius="5dp"
-    >
+>
 
     <LinearLayout
         style="@style/item"

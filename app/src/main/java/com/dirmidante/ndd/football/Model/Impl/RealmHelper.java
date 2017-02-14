@@ -7,6 +7,8 @@ import com.dirmidante.ndd.football.Model.Entity.CupTableData.CupTableData;
 import com.dirmidante.ndd.football.Model.Entity.LeagueTableData.LeagueTableData;
 import com.dirmidante.ndd.football.Model.IRealmHelper;
 
+import org.androidannotations.annotations.EBean;
+
 import java.util.List;
 
 import io.realm.Realm;
@@ -16,6 +18,7 @@ import io.realm.RealmResults;
  * Created by Dima on 18.01.2017.
  */
 
+@EBean
 public class RealmHelper implements IRealmHelper {
 
     public static final String ID = "id";

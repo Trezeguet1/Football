@@ -1,11 +1,9 @@
 package com.dirmidante.ndd.football.View.Impl;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-
 import org.androidannotations.annotations.EActivity;
 
 /**
@@ -26,4 +24,5 @@ public class SplashActivity extends AppCompatActivity {
             SplashActivity.this.finish();
         }), DELAY_MILLIS);
     }
+
 }

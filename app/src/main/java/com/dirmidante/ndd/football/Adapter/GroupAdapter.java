@@ -10,6 +10,8 @@ import android.widget.TextView;
 import com.dirmidante.ndd.football.Model.Entity.CupTableData.Group;
 import com.dirmidante.ndd.football.R;
 
+import org.androidannotations.annotations.EBean;
+
 import java.util.List;
 
 import io.realm.RealmList;
@@ -18,6 +20,7 @@ import io.realm.RealmList;
  * Created by Dima on 2016-12-20.
  */
 
+@EBean
 public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder>{
 
     private List<Group> mTeams = new RealmList<Group>();
