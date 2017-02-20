@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".views.imp.SplashActivity"
+            android:name=".view.imp.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,9 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.imp.CompetitionsListActivity" />
-        <activity android:name=".views.imp.CompetitionDetailActivity"
-            android:parentActivityName=".views.imp.CompetitionsListActivity"></activity>
+        <activity android:name=".view.imp.CompetitionsListActivity" />
+        <activity android:name=".view.imp.CompetitionDetailActivity"
+            android:parentActivityName=".view.imp.CompetitionsListActivity"></activity>
     </application>
 
 </manifest>

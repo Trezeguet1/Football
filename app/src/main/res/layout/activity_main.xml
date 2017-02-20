@@ -8,7 +8,7 @@
     android:paddingLeft="5dp"
     android:paddingRight="5dp"
     android:paddingTop="5dp"
-    tools:context="com.dirmidante.ndd.football.views.imp.CompetitionsListActivity">
+    tools:context="com.dirmidante.ndd.football.view.imp.CompetitionsListActivity">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/competitionsList"
             style="@style/match">
