@@ -1,4 +1,4 @@
-package com.dirmidante.ndd.football.m.e.competition;
+package com.dirmidante.ndd.football.model.entity.competition;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

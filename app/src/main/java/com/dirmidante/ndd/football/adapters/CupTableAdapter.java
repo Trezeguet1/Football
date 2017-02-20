@@ -1,4 +1,4 @@
-package com.dirmidante.ndd.football.a;
+package com.dirmidante.ndd.football.adapters;
 
 
 import android.support.annotation.NonNull;
@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import com.dirmidante.ndd.football.FootballApplication;
 import com.dirmidante.ndd.football.R;
-import com.dirmidante.ndd.football.m.e.cuptable.CupTableData;
-import com.dirmidante.ndd.football.m.e.cuptable.Group;
+import com.dirmidante.ndd.football.model.entity.cuptable.CupTableData;
+import com.dirmidante.ndd.football.model.entity.cuptable.Group;
 
 import java.util.ArrayList;
 import java.util.List;

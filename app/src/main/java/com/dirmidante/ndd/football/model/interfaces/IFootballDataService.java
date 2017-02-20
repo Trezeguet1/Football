@@ -1,11 +1,11 @@
-package com.dirmidante.ndd.football.m;
+package com.dirmidante.ndd.football.model.interfaces;
 
 
 
-import com.dirmidante.ndd.football.m.e.competition.CompetitonsData;
-import com.dirmidante.ndd.football.m.e.cuptable.CupTableData;
-import com.dirmidante.ndd.football.m.e.leaguetable.LeagueTableData;
-import com.dirmidante.ndd.football.m.imp.FootballDataAPI;
+import com.dirmidante.ndd.football.model.FootballDataAPI;
+import com.dirmidante.ndd.football.model.entity.competition.CompetitonsData;
+import com.dirmidante.ndd.football.model.entity.cuptable.CupTableData;
+import com.dirmidante.ndd.football.model.entity.leaguetable.LeagueTableData;
 
 import java.util.List;
 

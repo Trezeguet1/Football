@@ -1,6 +1,6 @@
-package com.dirmidante.ndd.football.v;
+package com.dirmidante.ndd.football.view.interfaces;
 
-import com.dirmidante.ndd.football.m.e.competition.CompetitonsData;
+import com.dirmidante.ndd.football.model.entity.competition.CompetitonsData;
 
 import java.util.List;
 

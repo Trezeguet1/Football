@@ -1,5 +1,5 @@
 
-package com.dirmidante.ndd.football.m.e.cuptable;
+package com.dirmidante.ndd.football.model.entity.cuptable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

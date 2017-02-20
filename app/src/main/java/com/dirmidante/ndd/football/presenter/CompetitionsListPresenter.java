@@ -1,15 +1,15 @@
-package com.dirmidante.ndd.football.p.imp;
+package com.dirmidante.ndd.football.presenter;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.dirmidante.ndd.football.m.IRealmHelper;
-import com.dirmidante.ndd.football.m.e.competition.CompetitonsData;
-import com.dirmidante.ndd.football.m.imp.FootballDataAPI;
-import com.dirmidante.ndd.football.m.imp.RealmHelper;
-import com.dirmidante.ndd.football.p.ICompetitionsListPresenter;
-import com.dirmidante.ndd.football.v.CompetitionsListView;
+import com.dirmidante.ndd.football.model.FootballDataAPI;
+import com.dirmidante.ndd.football.model.RealmHelper;
+import com.dirmidante.ndd.football.model.entity.competition.CompetitonsData;
+import com.dirmidante.ndd.football.model.interfaces.IRealmHelper;
+import com.dirmidante.ndd.football.presenter.interfaces.ICompetitionsListPresenter;
+import com.dirmidante.ndd.football.view.interfaces.CompetitionsListView;
 
 import java.util.List;
 

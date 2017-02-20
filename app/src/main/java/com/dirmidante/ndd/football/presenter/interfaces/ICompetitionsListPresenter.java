@@ -1,4 +1,4 @@
-package com.dirmidante.ndd.football.p;
+package com.dirmidante.ndd.football.presenter.interfaces;
 
 /**
  * Created by Dima on 2016-12-17.
