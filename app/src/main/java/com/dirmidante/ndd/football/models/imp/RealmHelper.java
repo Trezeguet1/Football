@@ -1,11 +1,11 @@
-package com.dirmidante.ndd.football.Model.Impl;
+package com.dirmidante.ndd.football.models.imp;
 
 import android.content.Context;
 
-import com.dirmidante.ndd.football.Model.Entity.CompetitonsData.CompetitonsData;
-import com.dirmidante.ndd.football.Model.Entity.CupTableData.CupTableData;
-import com.dirmidante.ndd.football.Model.Entity.LeagueTableData.LeagueTableData;
-import com.dirmidante.ndd.football.Model.IRealmHelper;
+import com.dirmidante.ndd.football.models.entity.CompetitonsData.CompetitonsData;
+import com.dirmidante.ndd.football.models.entity.CupTableData.CupTableData;
+import com.dirmidante.ndd.football.models.entity.LeagueTableData.LeagueTableData;
+import com.dirmidante.ndd.football.models.IRealmHelper;
 
 import java.util.List;
 

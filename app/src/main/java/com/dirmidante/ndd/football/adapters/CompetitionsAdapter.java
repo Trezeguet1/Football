@@ -1,4 +1,4 @@
-package com.dirmidante.ndd.football.Adapter;
+package com.dirmidante.ndd.football.adapters;
 
 import static com.dirmidante.ndd.football.utils.StringUtils.getString;
 
@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.dirmidante.ndd.football.Model.Entity.CompetitonsData.CompetitonsData;
+import com.dirmidante.ndd.football.models.entity.CompetitonsData.CompetitonsData;
 import com.dirmidante.ndd.football.R;
 
 import java.util.ArrayList;

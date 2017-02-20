@@ -1,4 +1,4 @@
-package com.dirmidante.ndd.football.View.Impl;
+package com.dirmidante.ndd.football.views.imp;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,15 +11,15 @@ import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.dirmidante.ndd.football.Adapter.CupTableAdapter;
-import com.dirmidante.ndd.football.Adapter.LeagueTableAdapter;
-import com.dirmidante.ndd.football.Model.Entity.CupTableData.CupTableData;
-import com.dirmidante.ndd.football.Model.Entity.LeagueTableData.LeagueTableData;
-import com.dirmidante.ndd.football.Model.Impl.FootballDataAPI;
-import com.dirmidante.ndd.football.Presenter.ICompetitionDetailPresenter;
-import com.dirmidante.ndd.football.Presenter.Impl.CompetitionDetailPresenter;
+import com.dirmidante.ndd.football.adapters.CupTableAdapter;
+import com.dirmidante.ndd.football.adapters.LeagueTableAdapter;
+import com.dirmidante.ndd.football.models.entity.CupTableData.CupTableData;
+import com.dirmidante.ndd.football.models.entity.LeagueTableData.LeagueTableData;
+import com.dirmidante.ndd.football.models.imp.FootballDataAPI;
+import com.dirmidante.ndd.football.presenters.ICompetitionDetailPresenter;
+import com.dirmidante.ndd.football.presenters.Impl.CompetitionDetailPresenter;
 import com.dirmidante.ndd.football.R;
-import com.dirmidante.ndd.football.View.CompetitionDetailView;
+import com.dirmidante.ndd.football.views.CompetitionDetailView;
 
 public class CompetitionDetailActivity extends AppCompatActivity implements CompetitionDetailView {
 

@@ -1,4 +1,4 @@
-package com.dirmidante.ndd.football.View.Impl;
+package com.dirmidante.ndd.football.views.imp;
 
 import android.content.Intent;
 import android.os.Bundle;

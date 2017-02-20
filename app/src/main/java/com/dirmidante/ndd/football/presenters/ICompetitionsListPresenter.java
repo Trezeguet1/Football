@@ -1,4 +1,4 @@
-package com.dirmidante.ndd.football.Presenter;
+package com.dirmidante.ndd.football.presenters;
 
 /**
  * Created by Dima on 2016-12-17.

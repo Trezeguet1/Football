@@ -1,8 +1,8 @@
-package com.dirmidante.ndd.football.View;
+package com.dirmidante.ndd.football.views;
 
 
-import com.dirmidante.ndd.football.Model.Entity.CupTableData.CupTableData;
-import com.dirmidante.ndd.football.Model.Entity.LeagueTableData.LeagueTableData;
+import com.dirmidante.ndd.football.models.entity.CupTableData.CupTableData;
+import com.dirmidante.ndd.football.models.entity.LeagueTableData.LeagueTableData;
 
 /**
  * Created by Dima on 2016-12-18.

@@ -1,4 +1,4 @@
-package com.dirmidante.ndd.football.View.Impl;
+package com.dirmidante.ndd.football.views.imp;
 
 
 import android.content.Intent;
@@ -10,13 +10,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
-import com.dirmidante.ndd.football.Adapter.CompetitionsAdapter;
-import com.dirmidante.ndd.football.Model.Entity.CompetitonsData.CompetitonsData;
-import com.dirmidante.ndd.football.Model.Impl.FootballDataAPI;
-import com.dirmidante.ndd.football.Presenter.ICompetitionsListPresenter;
-import com.dirmidante.ndd.football.Presenter.Impl.CompetitionsListPresenter;
+import com.dirmidante.ndd.football.adapters.CompetitionsAdapter;
+import com.dirmidante.ndd.football.models.entity.CompetitonsData.CompetitonsData;
+import com.dirmidante.ndd.football.models.imp.FootballDataAPI;
+import com.dirmidante.ndd.football.presenters.ICompetitionsListPresenter;
+import com.dirmidante.ndd.football.presenters.Impl.CompetitionsListPresenter;
 import com.dirmidante.ndd.football.R;
-import com.dirmidante.ndd.football.View.CompetitionsListView;
+import com.dirmidante.ndd.football.views.CompetitionsListView;
 
 import java.util.List;
 

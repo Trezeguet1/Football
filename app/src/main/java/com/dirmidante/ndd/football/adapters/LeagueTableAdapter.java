@@ -1,4 +1,4 @@
-package com.dirmidante.ndd.football.Adapter;
+package com.dirmidante.ndd.football.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.dirmidante.ndd.football.Model.Entity.LeagueTableData.LeagueTableData;
+import com.dirmidante.ndd.football.models.entity.LeagueTableData.LeagueTableData;
 import com.dirmidante.ndd.football.R;
 
 /**

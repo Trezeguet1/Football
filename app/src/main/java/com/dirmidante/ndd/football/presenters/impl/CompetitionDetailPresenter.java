@@ -1,4 +1,4 @@
-package com.dirmidante.ndd.football.Presenter.Impl;
+package com.dirmidante.ndd.football.presenters.Impl;
 
 import static com.dirmidante.ndd.football.FootballApplication.getCurrentApplicationContext;
 
@@ -6,13 +6,13 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.dirmidante.ndd.football.Model.Entity.CupTableData.CupTableData;
-import com.dirmidante.ndd.football.Model.Entity.LeagueTableData.LeagueTableData;
-import com.dirmidante.ndd.football.Model.IRealmHelper;
-import com.dirmidante.ndd.football.Model.Impl.FootballDataAPI;
-import com.dirmidante.ndd.football.Model.Impl.RealmHelper;
-import com.dirmidante.ndd.football.Presenter.ICompetitionDetailPresenter;
-import com.dirmidante.ndd.football.View.CompetitionDetailView;
+import com.dirmidante.ndd.football.models.entity.CupTableData.CupTableData;
+import com.dirmidante.ndd.football.models.entity.LeagueTableData.LeagueTableData;
+import com.dirmidante.ndd.football.models.IRealmHelper;
+import com.dirmidante.ndd.football.models.imp.FootballDataAPI;
+import com.dirmidante.ndd.football.models.imp.RealmHelper;
+import com.dirmidante.ndd.football.presenters.ICompetitionDetailPresenter;
+import com.dirmidante.ndd.football.views.CompetitionDetailView;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
