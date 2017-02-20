@@ -8,6 +8,21 @@ import io.realm.RealmObject;
 
 public class Group extends RealmObject{
 
+    @Override
+    public String toString() {
+        return "Group{" +
+                "group='" + group + '\'' +
+                ", rank=" + rank +
+                ", team='" + team + '\'' +
+                ", teamId=" + teamId +
+                ", playedGames=" + playedGames +
+                ", points=" + points +
+                ", goals=" + goals +
+                ", goalsAgainst=" + goalsAgainst +
+                ", goalDifference=" + goalDifference +
+                '}';
+    }
+
     private static final String GROUP = "group";
     private static final String RANK = "rank";
     private static final String TEAM = "team";

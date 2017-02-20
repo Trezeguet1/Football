@@ -3,6 +3,7 @@ package com.dirmidante.ndd.football.presenter;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 
 import com.dirmidante.ndd.football.model.FootballDataAPI;
 import com.dirmidante.ndd.football.model.RealmHelper;
@@ -11,6 +12,9 @@ import com.dirmidante.ndd.football.model.entity.leaguetable.LeagueTableData;
 import com.dirmidante.ndd.football.model.interfaces.IRealmHelper;
 import com.dirmidante.ndd.football.presenter.interfaces.ICompetitionDetailPresenter;
 import com.dirmidante.ndd.football.view.interfaces.CompetitionDetailView;
+
+import org.androidannotations.annotations.Bean;
+import org.androidannotations.annotations.EBean;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -22,16 +26,18 @@ import static com.dirmidante.ndd.football.FootballApplication.getCurrentApplicat
  * Created by Dima on 2016-12-18.
  */
 
+@EBean(scope = EBean.Scope.Singleton)
 public class CompetitionDetailPresenter implements ICompetitionDetailPresenter {
 
     private CompetitionDetailView mView;
-    private FootballDataAPI mFootballDataAPI;
-    private IRealmHelper mRealmHelper;
 
-    public CompetitionDetailPresenter(CompetitionDetailView view, FootballDataAPI footballDataAPI) {
+    @Bean
+    protected FootballDataAPI mFootballDataAPI;
+    @Bean
+    protected RealmHelper mRealmHelper;
+
+    public void setView(CompetitionDetailView view) {
         this.mView = view;
-        this.mFootballDataAPI = footballDataAPI;
-        mRealmHelper = new RealmHelper(getCurrentApplicationContext());
     }
 
     @Override

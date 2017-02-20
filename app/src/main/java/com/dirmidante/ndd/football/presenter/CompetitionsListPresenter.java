@@ -11,6 +11,9 @@ import com.dirmidante.ndd.football.model.interfaces.IRealmHelper;
 import com.dirmidante.ndd.football.presenter.interfaces.ICompetitionsListPresenter;
 import com.dirmidante.ndd.football.view.interfaces.CompetitionsListView;
 
+import org.androidannotations.annotations.Bean;
+import org.androidannotations.annotations.EBean;
+
 import java.util.List;
 
 import rx.Observable;
@@ -23,17 +26,20 @@ import static com.dirmidante.ndd.football.FootballApplication.getCurrentApplicat
  * Created by Dima on 2016-12-17.
  */
 
+
+@EBean(scope = EBean.Scope.Singleton)
 public class CompetitionsListPresenter implements ICompetitionsListPresenter {
 
     private CompetitionsListView mView;
-    private FootballDataAPI mFootballDataAPI;
-    private IRealmHelper mRealmHelper;
+    @Bean
+    protected FootballDataAPI mFootballDataAPI;
+    @Bean
+    protected RealmHelper mRealmHelper;
 
 
-    public CompetitionsListPresenter(CompetitionsListView view, FootballDataAPI footballDataAPI) {
+    @Override
+    public void setView(CompetitionsListView view) {
         this.mView = view;
-        this.mFootballDataAPI = footballDataAPI;
-        this.mRealmHelper = new RealmHelper(getCurrentApplicationContext());
     }
 
     @Override
@@ -52,8 +58,8 @@ public class CompetitionsListPresenter implements ICompetitionsListPresenter {
                     })
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(competitonsData -> {
-                            mView.setCompetitionsListData(competitonsData);
-                            mView.showRefreshMessage();
+                        mView.setCompetitionsListData(competitonsData);
+                        mView.showRefreshMessage();
                     },error -> mView.showErrorMessage());
         } else {
             mView.showNoConnectionMessage();

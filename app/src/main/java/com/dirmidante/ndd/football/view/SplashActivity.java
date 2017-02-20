@@ -6,10 +6,13 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import org.androidannotations.annotations.EActivity;
+
 /**
  * Created by Dima on 2016-12-17.
  */
 
+@EActivity
 public class SplashActivity extends AppCompatActivity {
 
 
@@ -20,8 +23,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         new Handler().postDelayed((() -> {
-            Intent mainIntent = new Intent(SplashActivity.this, CompetitionsListActivity.class);
-            SplashActivity.this.startActivity(mainIntent);
+            CompetitionsListActivity_.intent(this).start();
             SplashActivity.this.finish();
         }), DELAY_MILLIS);
     }

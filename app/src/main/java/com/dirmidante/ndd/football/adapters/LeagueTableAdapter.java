@@ -10,16 +10,20 @@ import android.widget.TextView;
 import com.dirmidante.ndd.football.R;
 import com.dirmidante.ndd.football.model.entity.leaguetable.LeagueTableData;
 
+import org.androidannotations.annotations.EBean;
+
 /**
  * Created by Dima on 2016-12-19.
  */
 
+@EBean
 public class LeagueTableAdapter extends RecyclerView.Adapter<LeagueTableAdapter.ViewHolder> {
 
     private LeagueTableData mLeagueTableData = new LeagueTableData();
 
-    public void setLeagueTableData(@NonNull LeagueTableData leagueTableData) {
-        this.mLeagueTableData = leagueTableData;
+    public void setLeagueTableData(LeagueTableData leagueTableData) {
+        if (leagueTableData!=null)
+            this.mLeagueTableData = leagueTableData;
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -30,6 +34,7 @@ public class LeagueTableAdapter extends RecyclerView.Adapter<LeagueTableAdapter.
             this.mLeagueTableItem = leagueTableItem;
         }
     }
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -67,7 +72,7 @@ public class LeagueTableAdapter extends RecyclerView.Adapter<LeagueTableAdapter.
 
     @Override
     public int getItemCount() {
-        int count=(mLeagueTableData!=null)?mLeagueTableData.getStanding().size():0;
+        int count=(mLeagueTableData.getStanding()!=null)?mLeagueTableData.getStanding().size():0;
         return count;
     }
 }

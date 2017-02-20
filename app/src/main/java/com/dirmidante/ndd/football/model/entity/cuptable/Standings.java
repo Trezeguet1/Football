@@ -10,6 +10,20 @@ import io.realm.RealmObject;
 
 public class Standings extends RealmObject{
 
+    @Override
+    public String toString() {
+        return "Standings{" +
+                "a=" + a +
+                ", b=" + b +
+                ", c=" + c +
+                ", d=" + d +
+                ", e=" + e +
+                ", f=" + f +
+                ", g=" + g +
+                ", h=" + h +
+                '}';
+    }
+
     private static final String GROUP_A = "A";
     private static final String GROUP_B = "B";
     private static final String GROUP_C = "C";

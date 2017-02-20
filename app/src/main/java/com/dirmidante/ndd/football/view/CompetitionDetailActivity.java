@@ -1,6 +1,5 @@
 package com.dirmidante.ndd.football.view;
 
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -18,58 +17,82 @@ import com.dirmidante.ndd.football.model.FootballDataAPI;
 import com.dirmidante.ndd.football.model.entity.cuptable.CupTableData;
 import com.dirmidante.ndd.football.model.entity.leaguetable.LeagueTableData;
 import com.dirmidante.ndd.football.presenter.CompetitionDetailPresenter;
-import com.dirmidante.ndd.football.presenter.interfaces.ICompetitionDetailPresenter;
 import com.dirmidante.ndd.football.view.interfaces.CompetitionDetailView;
 
+import org.androidannotations.annotations.AfterInject;
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Bean;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Extra;
+import org.androidannotations.annotations.ViewById;
+
+@EActivity(R.layout.activity_detail)
 public class CompetitionDetailActivity extends AppCompatActivity implements CompetitionDetailView {
 
     public static final String EXTRA_ID = "id";
 
-    private ICompetitionDetailPresenter mPresenter;
-    private SwipeRefreshLayout mSwipeRefreshLayout;
-    private RecyclerView mRecyclerView;
-    private String mLeagueId;
+    @Bean
+    protected CompetitionDetailPresenter mPresenter;
+
+    @Bean
+    protected LeagueTableAdapter mLeagueTableAdapter;
+
+    @Bean
+    protected CupTableAdapter mCupTableAdapter;
+
+    @ViewById(R.id.swipeRefreshLayout)
+    protected SwipeRefreshLayout mSwipeRefreshLayout;
+
+    @ViewById(R.id.leagueTableList)
+    protected RecyclerView mRecyclerView;
+
+    @Extra(EXTRA_ID)
+    String mLeagueId;
+
     private boolean mHasHeader = false;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    @ViewById(R.id.head)
+    protected ViewGroup mLayout;
 
-        mLeagueId = Integer.toString(getIntent().getIntExtra(EXTRA_ID, 0));
+    @AfterInject
+    void afterInject() {
+        mPresenter.setView(this);
+    }
 
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
-        mSwipeRefreshLayout.setOnRefreshListener(() -> mPresenter.getTableFromNetwork(mLeagueId));
+    @AfterViews
+    void afterView() {
 
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.leagueTableList);
-        mPresenter = new CompetitionDetailPresenter(this, new FootballDataAPI());
+        mSwipeRefreshLayout.setOnRefreshListener(() ->
+                mPresenter.getTableFromNetwork(mLeagueId));
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(layoutManager);
+        setAdapter();
+
         mPresenter.getTableFromRealm(mLeagueId);
     }
 
 
+    private void setAdapter() {
+        if (mLeagueId.equals(FootballDataAPI.CHAMPIONS_LEAGUE_ID)
+                || mLeagueId.equals(FootballDataAPI.EUROPEAN_CHAMPIONSHIP_ID))
+            mRecyclerView.setAdapter(mCupTableAdapter);
+        else mRecyclerView.setAdapter(mLeagueTableAdapter);
+    }
+
     @Override
     public void setTableData(@NonNull LeagueTableData tableData) {
-        Log.v("mytag", "a");
         setHeader();
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(layoutManager);
-        LeagueTableAdapter leagueTableAdapter = new LeagueTableAdapter();
-        leagueTableAdapter.setLeagueTableData(tableData);
-        mRecyclerView.setAdapter(leagueTableAdapter);
+        mLeagueTableAdapter.setLeagueTableData(tableData);
+        mLeagueTableAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void setTableData(@NonNull CupTableData tableData) {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(layoutManager);
-        CupTableAdapter cupTableadapter = new CupTableAdapter();
-        cupTableadapter.setCupTableData(tableData);
-        mRecyclerView.setAdapter(cupTableadapter);
-
+        mCupTableAdapter.setCupTableData(tableData);
+        mCupTableAdapter.notifyDataSetChanged();
     }
 
     @Override
