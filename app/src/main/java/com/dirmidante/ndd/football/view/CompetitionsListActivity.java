@@ -1,22 +1,21 @@
 package com.dirmidante.ndd.football.view;
 
 
-import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
+import com.dirmidante.ndd.football.FootballApplication;
 import com.dirmidante.ndd.football.R;
 import com.dirmidante.ndd.football.adapters.CompetitionsAdapter;
 import com.dirmidante.ndd.football.model.entity.competition.CompetitonsData;
-import com.dirmidante.ndd.football.presenter.CompetitionsListPresenter;
+import com.dirmidante.ndd.football.presenter.interfaces.ICompetitionsListPresenter;
 import com.dirmidante.ndd.football.view.interfaces.CompetitionsListView;
 
-import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
@@ -24,12 +23,14 @@ import org.androidannotations.annotations.ViewById;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 
 @EActivity((R.layout.activity_main))
 public class CompetitionsListActivity extends AppCompatActivity implements CompetitionsListView {
 
-    @Bean
-    protected CompetitionsListPresenter mPresenter;
+    @Inject
+    protected ICompetitionsListPresenter mPresenter;
 
     @Bean
     protected CompetitionsAdapter mAdapter;
@@ -37,16 +38,22 @@ public class CompetitionsListActivity extends AppCompatActivity implements Compe
     @ViewById(R.id.swipeRefreshLayout)
     protected SwipeRefreshLayout mSwipeRefreshLayout;
 
-
     @ViewById(R.id.competitionsList)
     protected RecyclerView competitionsList;
 
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ((FootballApplication)getApplication()).getCompetitonsListComponent().inject(this);
+        mPresenter.setView(this);
+    }
 
     @AfterViews
     void afterViews() {
 
         mSwipeRefreshLayout.setOnRefreshListener(() -> mPresenter.getCompetitionsFromNetwork());
-        mPresenter.getCompetitionsFromRealm();
+        mPresenter.getCompetitions();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -56,10 +63,6 @@ public class CompetitionsListActivity extends AppCompatActivity implements Compe
 
     }
 
-    @AfterInject
-    void afterInject() {
-        mPresenter.setView(this);
-    }
 
     @Override
     public void setCompetitionsListData(@NonNull List<CompetitonsData> competitions) {
@@ -72,6 +75,7 @@ public class CompetitionsListActivity extends AppCompatActivity implements Compe
 
             mAdapter.notifyDataSetChanged();
         }
+        setRefreshing();
     }
 
     @Override

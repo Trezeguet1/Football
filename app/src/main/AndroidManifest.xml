@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dirmidante.ndd.football">
+          package="com.dirmidante.ndd.football">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
@@ -16,14 +16,17 @@
             android:name=".view.SplashActivity_"
             android:theme="@style/SplashTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".view.CompetitionsListActivity_" />
-        <activity android:name=".view.CompetitionDetailActivity_"
-            android:parentActivityName=".view.CompetitionsListActivity_"></activity>
+        <activity android:name=".view.CompetitionsListActivity_"/>
+        <activity
+            android:name=".view.CompetitionDetailActivity_"
+            android:parentActivityName=".view.CompetitionsListActivity_"/>
+        <activity android:name=".view.Main2Activity">
+        </activity>
     </application>
 
 </manifest>

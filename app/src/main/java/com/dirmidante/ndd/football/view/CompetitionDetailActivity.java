@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
@@ -71,9 +70,8 @@ public class CompetitionDetailActivity extends AppCompatActivity implements Comp
         mRecyclerView.setLayoutManager(layoutManager);
         setAdapter();
 
-        mPresenter.getTableFromRealm(mLeagueId);
+        mPresenter.getTable(mLeagueId);
     }
-
 
     private void setAdapter() {
         if (mLeagueId.equals(FootballDataAPI.CHAMPIONS_LEAGUE_ID)
@@ -87,6 +85,7 @@ public class CompetitionDetailActivity extends AppCompatActivity implements Comp
         setHeader();
         mLeagueTableAdapter.setLeagueTableData(tableData);
         mLeagueTableAdapter.notifyDataSetChanged();
+        setRefreshing();
     }
 
     @Override

@@ -6,5 +6,5 @@ package com.dirmidante.ndd.football.presenter.interfaces;
 
 public interface ICompetitionDetailPresenter {
     void getTableFromNetwork(String leagueID);
-    void getTableFromRealm(String leagueCaption);
+    void getTable(String leagueCaption);
 }

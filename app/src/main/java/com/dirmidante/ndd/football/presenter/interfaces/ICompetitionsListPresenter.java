@@ -8,6 +8,6 @@ import com.dirmidante.ndd.football.view.interfaces.CompetitionsListView;
 
 public interface ICompetitionsListPresenter {
     void getCompetitionsFromNetwork();
-    void getCompetitionsFromRealm();
+    void getCompetitions();
     void setView(CompetitionsListView view);
 }

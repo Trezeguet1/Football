@@ -24,9 +24,6 @@ public class RealmHelper implements IRealmHelper {
 
     public static final String ID = "id";
 
-    public RealmHelper(Context context) {
-        Realm.init(context);
-    }
 
     @Override
     public void addCompetitions(List<CompetitonsData> competitons) {

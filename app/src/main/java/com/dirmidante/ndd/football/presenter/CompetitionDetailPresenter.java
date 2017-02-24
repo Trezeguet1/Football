@@ -3,13 +3,11 @@ package com.dirmidante.ndd.football.presenter;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.Log;
 
 import com.dirmidante.ndd.football.model.FootballDataAPI;
 import com.dirmidante.ndd.football.model.RealmHelper;
 import com.dirmidante.ndd.football.model.entity.cuptable.CupTableData;
 import com.dirmidante.ndd.football.model.entity.leaguetable.LeagueTableData;
-import com.dirmidante.ndd.football.model.interfaces.IRealmHelper;
 import com.dirmidante.ndd.football.presenter.interfaces.ICompetitionDetailPresenter;
 import com.dirmidante.ndd.football.view.interfaces.CompetitionDetailView;
 
@@ -33,6 +31,7 @@ public class CompetitionDetailPresenter implements ICompetitionDetailPresenter {
 
     @Bean
     protected FootballDataAPI mFootballDataAPI;
+
     @Bean
     protected RealmHelper mRealmHelper;
 
@@ -41,12 +40,19 @@ public class CompetitionDetailPresenter implements ICompetitionDetailPresenter {
     }
 
     @Override
+    public void getTable(String leagueId) {
+        if (isCup(leagueId)) {
+            getCupTableFromDB(leagueId);
+        } else {
+            getLeagueTableFromDB(leagueId);
+        }
+    }
+
+    @Override
     public void getTableFromNetwork(String leagueId) {
 
-        ConnectivityManager connMgr = (ConnectivityManager)
-                getCurrentApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected()) {
+
+        if (networkAvailable()) {
             if (isCup(leagueId)) {
                 getCupTableFromNetwork(leagueId);
             } else {
@@ -54,17 +60,6 @@ public class CompetitionDetailPresenter implements ICompetitionDetailPresenter {
             }
 
         } else mView.showNoConnectionMessage();
-
-        mView.setRefreshing();
-    }
-
-    @Override
-    public void getTableFromRealm(String leagueId) {
-        if (isCup(leagueId)) {
-            getCupTableFromRealm(leagueId);
-        } else {
-            getLeagueTableFromRealm(leagueId);
-        }
     }
 
     private void getLeagueTableFromNetwork(String leagueId) {
@@ -93,14 +88,14 @@ public class CompetitionDetailPresenter implements ICompetitionDetailPresenter {
                 }, error -> mView.showErrorMessage());
     }
 
-    private void getLeagueTableFromRealm(String leagueId) {
+    private void getLeagueTableFromDB(String leagueId) {
         if (mRealmHelper.hasLeague(leagueId)) {
             mView.setTableData(mRealmHelper.getLeagueTable(leagueId));
             mView.setHeader();
         } else getTableFromNetwork(leagueId);
     }
 
-    private void getCupTableFromRealm(String leagueId) {
+    private void getCupTableFromDB(String leagueId) {
         if (mRealmHelper.hasCup(leagueId))
             mView.setTableData(mRealmHelper.getCupTable(leagueId));
         else getTableFromNetwork(leagueId);
@@ -111,4 +106,13 @@ public class CompetitionDetailPresenter implements ICompetitionDetailPresenter {
             return true;
         else return false;
     }
+
+    public boolean networkAvailable(){
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getCurrentApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.isConnected();
+    }
+
+
 }
