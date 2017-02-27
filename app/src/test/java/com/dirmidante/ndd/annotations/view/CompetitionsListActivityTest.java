@@ -24,7 +24,7 @@ import static org.mockito.Mockito.verify;
  */
 
 @RunWith(RobolectricTestRunner.class)
-@Config(sdk = 18, manifest = "AndroidManifest.xml", constants = BuildConfig.class, application = TestApp.class)
+@Config(manifest = "AndroidManifest.xml", constants = BuildConfig.class, application = TestApp.class)
 public class CompetitionsListActivityTest {
 
     CompetitionsListActivity mCompetitionsListActivity;

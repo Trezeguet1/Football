@@ -12,6 +12,7 @@ import org.androidannotations.annotations.EBean;
 import java.util.List;
 
 import io.realm.Realm;
+import io.realm.RealmObject;
 import io.realm.RealmResults;
 
 /**
@@ -26,26 +27,11 @@ public class RealmHelper implements IRealmHelper {
 
 
     @Override
-    public void addCompetitions(List<CompetitonsData> competitons) {
+    public <T extends RealmObject> void writeToRealm(T data) {
         Realm realm = Realm.getDefaultInstance();
-        for (CompetitonsData competiton : competitons) {
-            realm.executeTransaction(transaction -> realm.copyToRealmOrUpdate(competiton));
-        }
+            realm.executeTransaction(transaction -> realm.copyToRealmOrUpdate(data));
     }
 
-    @Override
-    public void addCupTable(CupTableData cupTableData, String cupId) {
-        cupTableData.setId(cupId);
-        Realm realm = Realm.getDefaultInstance();
-        realm.executeTransaction(transaction -> realm.copyToRealmOrUpdate(cupTableData));
-    }
-
-    @Override
-    public void addLeagueTable(LeagueTableData leagueTableData, String leagueId) {
-        leagueTableData.setId(leagueId);
-        Realm realm = Realm.getDefaultInstance();
-        realm.executeTransaction(transaction -> realm.copyToRealmOrUpdate(leagueTableData));
-    }
 
     @Override
     public List<CompetitonsData> getCompetitions() {

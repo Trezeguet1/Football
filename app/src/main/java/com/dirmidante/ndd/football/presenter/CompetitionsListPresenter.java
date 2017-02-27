@@ -61,8 +61,9 @@ public class CompetitionsListPresenter implements ICompetitionsListPresenter {
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
                 .doOnNext(competitonsData -> {
-                    mRealmHelper.addCompetitions(competitonsData);
-                    System.out.println("add");
+                    for (CompetitonsData competition : competitonsData) {
+                        mRealmHelper.writeToRealm(competition);
+                    }
                 })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(competitonsData -> {

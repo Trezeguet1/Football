@@ -67,7 +67,10 @@ public class CompetitionDetailPresenter implements ICompetitionDetailPresenter {
         leagueTableObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
-                .doOnNext(table -> mRealmHelper.addLeagueTable(table, leagueId))
+                .doOnNext(table -> {
+                    table.setId(leagueId);
+                    mRealmHelper.writeToRealm(table);
+                })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(table -> {
                     mView.setTableData(table);
@@ -80,7 +83,10 @@ public class CompetitionDetailPresenter implements ICompetitionDetailPresenter {
         cupTableDataObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
-                .doOnNext(table -> mRealmHelper.addCupTable(table, leagueId))
+                .doOnNext(table -> {
+                    table.setId(leagueId);
+                    mRealmHelper.writeToRealm(table);
+                })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(table -> {
                     mView.setTableData(table);
@@ -107,7 +113,7 @@ public class CompetitionDetailPresenter implements ICompetitionDetailPresenter {
         else return false;
     }
 
-    public boolean networkAvailable(){
+    public boolean networkAvailable() {
         ConnectivityManager connMgr = (ConnectivityManager)
                 getCurrentApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();

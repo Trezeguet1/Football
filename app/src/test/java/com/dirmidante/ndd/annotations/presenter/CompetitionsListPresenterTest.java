@@ -36,7 +36,6 @@ import static org.mockito.Mockito.verify;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(NetworkUtils.class)
-@Config(sdk = 18, manifest = "AndroidManifest.xml", constants = BuildConfig.class, application = TestApp.class)
 public class CompetitionsListPresenterTest {
 
     @Mock
