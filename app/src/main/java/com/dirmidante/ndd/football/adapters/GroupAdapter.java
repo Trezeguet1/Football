@@ -21,7 +21,7 @@ import io.realm.RealmList;
  */
 
 @EBean
-public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder>{
+public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> {
 
     private List<Group> mTeams = new RealmList<Group>();
 
@@ -29,12 +29,38 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder>{
         this.mTeams = teams;
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
-        CardView mTableItem;
+    class ViewHolder extends RecyclerView.ViewHolder {
+        private CardView mTableItem;
+
+        private TextView rank;
+        private TextView title;
+        private TextView games;
+        private TextView scored;
+        private TextView conseded;
+        private TextView points;
+        private TextView difference;
 
         public ViewHolder(CardView tableItem) {
             super(tableItem);
             this.mTableItem = tableItem;
+            rank = (TextView) tableItem.findViewById(R.id.position);
+            title = (TextView) tableItem.findViewById(R.id.title);
+            games = (TextView) tableItem.findViewById(R.id.gamesplayed);
+            scored = (TextView) tableItem.findViewById(R.id.scored);
+            conseded = (TextView) tableItem.findViewById(R.id.conseded);
+            points = (TextView) tableItem.findViewById(R.id.points);
+            difference = (TextView) tableItem.findViewById(R.id.difference);
+
+        }
+
+        public void setData(Group team) {
+            rank.setText(String.format("%d", team.getRank()));
+            title.setText(String.format("%s", team.getTeam()));
+            games.setText(String.format("%d", team.getPlayedGames()));
+            scored.setText(String.format("%d", team.getGoals()));
+            conseded.setText(String.format("%d", team.getGoalsAgainst()));
+            points.setText(String.format("%d", team.getPoints()));
+            difference.setText(String.format("%d", team.getGoalDifference()));
         }
     }
 
@@ -48,28 +74,12 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         CardView tableItem = holder.mTableItem;
-
-        TextView rank = (TextView) tableItem.findViewById(R.id.position);
-        TextView title = (TextView) tableItem.findViewById(R.id.title);
-        TextView games = (TextView) tableItem.findViewById(R.id.gamesplayed);
-        TextView scored = (TextView) tableItem.findViewById(R.id.scored);
-        TextView conseded = (TextView) tableItem.findViewById(R.id.conseded);
-        TextView points = (TextView) tableItem.findViewById(R.id.points);
-        TextView difference = (TextView) tableItem.findViewById(R.id.difference);
-
-        rank.setText(String.format("%d",mTeams.get(position).getRank()));
-        title.setText(String.format("%s",mTeams.get(position).getTeam()));
-        games.setText(String.format("%d",mTeams.get(position).getPlayedGames()));
-        scored.setText(String.format("%d",mTeams.get(position).getGoals()));
-        conseded.setText(String.format("%d",mTeams.get(position).getGoalsAgainst()));
-        points.setText(String.format("%d",mTeams.get(position).getPoints()));
-        difference.setText(String.format("%d",mTeams.get(position).getGoalDifference()));
+        holder.setData(mTeams.get(position));
     }
 
     @Override
-    public int getItemCount()
-    {
-        int count=(mTeams!=null)?mTeams.size():0;
+    public int getItemCount() {
+        int count = (mTeams != null) ? mTeams.size() : 0;
         return count;
     }
 }

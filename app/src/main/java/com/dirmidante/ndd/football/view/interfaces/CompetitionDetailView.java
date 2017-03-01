@@ -12,8 +12,6 @@ public interface CompetitionDetailView {
     void setTableData(LeagueTableData tableData);
     void setTableData(CupTableData tableData);
     void showNoConnectionMessage();
-    void setRefreshing();
     void showErrorMessage();
-    void setHeader();
     void showRefreshMessage();
 }

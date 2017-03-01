@@ -19,6 +19,7 @@ public interface IFootballDataAPI {
     String BASE_URL = "http://api.football-data.org/v1/";
     String EUROPEAN_CHAMPIONSHIP_ID = "424";
     String CHAMPIONS_LEAGUE_ID = "440";
+    String PREMIER_LEAGUE_ID = "428";
     String API_TOKEN = "X-Auth-Token: 776e07b83bfd4b57bd53c126558f9937";
 
 

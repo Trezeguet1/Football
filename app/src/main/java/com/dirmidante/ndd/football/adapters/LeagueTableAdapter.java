@@ -1,6 +1,5 @@
 package com.dirmidante.ndd.football.adapters;
 
-import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +8,7 @@ import android.widget.TextView;
 
 import com.dirmidante.ndd.football.R;
 import com.dirmidante.ndd.football.model.entity.leaguetable.LeagueTableData;
+import com.dirmidante.ndd.football.model.entity.leaguetable.Standing;
 
 import org.androidannotations.annotations.EBean;
 
@@ -22,19 +22,53 @@ public class LeagueTableAdapter extends RecyclerView.Adapter<LeagueTableAdapter.
     private LeagueTableData mLeagueTableData = new LeagueTableData();
 
     public void setLeagueTableData(LeagueTableData leagueTableData) {
-        if (leagueTableData!=null)
+        if (leagueTableData != null)
             this.mLeagueTableData = leagueTableData;
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         private CardView mLeagueTableItem;
+
+        private TextView mRank;
+        private TextView mTitle;
+        private TextView mGames;
+        private TextView mScored;
+        private TextView mConseded;
+        private TextView mWin;
+        private TextView mDraw;
+        private TextView mLose;
+        private TextView mPoints;
+        private TextView mDifference;
+
+
+        public void setData(Standing standing) {
+            mRank.setText(String.format("%d", standing.getPosition()));
+            mTitle.setText(String.format("%s", standing.getTeamName()));
+            mGames.setText(String.format("%d", standing.getPlayedGames()));
+            mScored.setText(String.format("%d", standing.getGoals()));
+            mConseded.setText(String.format("%d", standing.getGoalsAgainst()));
+            mWin.setText(String.format("%d", standing.getWins()));
+            mDraw.setText(String.format("%d", standing.getDraws()));
+            mLose.setText(String.format("%d", standing.getLosses()));
+            mPoints.setText(String.format("%d", standing.getPoints()));
+            mDifference.setText(String.format("%d", standing.getGoalDifference()));
+        }
 
         public ViewHolder(CardView leagueTableItem) {
             super(leagueTableItem);
             this.mLeagueTableItem = leagueTableItem;
+            mRank = (TextView) leagueTableItem.findViewById(R.id.position);
+            mTitle = (TextView) leagueTableItem.findViewById(R.id.title);
+            mGames = (TextView) leagueTableItem.findViewById(R.id.gamesplayed);
+            mScored = (TextView) leagueTableItem.findViewById(R.id.scored);
+            mConseded = (TextView) leagueTableItem.findViewById(R.id.conseded);
+            mWin = (TextView) leagueTableItem.findViewById(R.id.win);
+            mDraw = (TextView) leagueTableItem.findViewById(R.id.draw);
+            mLose = (TextView) leagueTableItem.findViewById(R.id.lose);
+            mPoints = (TextView) leagueTableItem.findViewById(R.id.points);
+            mDifference = (TextView) leagueTableItem.findViewById(R.id.difference);
         }
     }
-
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -46,33 +80,14 @@ public class LeagueTableAdapter extends RecyclerView.Adapter<LeagueTableAdapter.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         CardView leagueTableItem = holder.mLeagueTableItem;
+        holder.setData(mLeagueTableData.getStanding().get(position));
 
-        TextView rank = (TextView) leagueTableItem.findViewById(R.id.position);
-        TextView title = (TextView) leagueTableItem.findViewById(R.id.title);
-        TextView games = (TextView) leagueTableItem.findViewById(R.id.gamesplayed);
-        TextView scored = (TextView) leagueTableItem.findViewById(R.id.scored);
-        TextView conseded = (TextView) leagueTableItem.findViewById(R.id.conseded);
-        TextView win = (TextView) leagueTableItem.findViewById(R.id.win);
-        TextView draw = (TextView) leagueTableItem.findViewById(R.id.draw);
-        TextView lose = (TextView) leagueTableItem.findViewById(R.id.lose);
-        TextView points = (TextView) leagueTableItem.findViewById(R.id.points);
-        TextView difference = (TextView) leagueTableItem.findViewById(R.id.difference);
 
-        rank.setText(String.format("%d",mLeagueTableData.getStanding().get(position).getPosition()));
-        title.setText(String.format("%s",mLeagueTableData.getStanding().get(position).getTeamName()));
-        games.setText(String.format("%d",mLeagueTableData.getStanding().get(position).getPlayedGames()));
-        scored.setText(String.format("%d",mLeagueTableData.getStanding().get(position).getGoals()));
-        conseded.setText(String.format("%d",mLeagueTableData.getStanding().get(position).getGoalsAgainst()));
-        win.setText(String.format("%d",mLeagueTableData.getStanding().get(position).getWins()));
-        draw.setText(String.format("%d",mLeagueTableData.getStanding().get(position).getDraws()));
-        lose.setText(String.format("%d",mLeagueTableData.getStanding().get(position).getLosses()));
-        points.setText(String.format("%d",mLeagueTableData.getStanding().get(position).getPoints()));
-        difference.setText(String.format("%d",mLeagueTableData.getStanding().get(position).getGoalDifference()));
     }
 
     @Override
     public int getItemCount() {
-        int count=(mLeagueTableData.getStanding()!=null)?mLeagueTableData.getStanding().size():0;
+        int count = (mLeagueTableData.getStanding() != null) ? mLeagueTableData.getStanding().size() : 0;
         return count;
     }
 }

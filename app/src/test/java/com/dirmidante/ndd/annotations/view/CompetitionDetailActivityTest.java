@@ -2,8 +2,9 @@ package com.dirmidante.ndd.annotations.view;
 
 import com.dirmidante.ndd.annotations.TestApp;
 import com.dirmidante.ndd.football.BuildConfig;
-import com.dirmidante.ndd.football.presenter.CompetitionsListPresenter;
-import com.dirmidante.ndd.football.view.CompetitionsListActivity;
+import com.dirmidante.ndd.football.presenter.interfaces.ICompetitionDetailPresenter;
+import com.dirmidante.ndd.football.view.CompetitionDetailActivity;
+import com.dirmidante.ndd.football.view.CompetitionDetailActivity_;
 import com.dirmidante.ndd.football.view.CompetitionsListActivity_;
 
 import org.junit.Before;
@@ -16,39 +17,42 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.verify;
 
 /**
- * Created by Dima on 21.02.2017.
+ * Created by Dima on 28.02.2017.
  */
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = "AndroidManifest.xml", constants = BuildConfig.class, application = TestApp.class)
-public class CompetitionsListActivityTest {
+public class CompetitionDetailActivityTest {
 
-    CompetitionsListActivity mCompetitionsListActivity;
+    private CompetitionDetailActivity mDetailActivity;
 
     @Mock
-    public static CompetitionsListPresenter sPresenter;
+    public static ICompetitionDetailPresenter sPresenter;
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        mCompetitionsListActivity = Robolectric.setupActivity(CompetitionsListActivity_.class);
+        mDetailActivity = Robolectric.setupActivity(CompetitionDetailActivity_.class);
     }
 
     @Test
     public void should_not_be_null() {
-        assertNotNull(mCompetitionsListActivity);
+        assertNotNull(mDetailActivity);
     }
 
     @Test
     public void should_setView_onCreate() {
-        verify(sPresenter).setView(mCompetitionsListActivity);
+        verify(sPresenter).setView(mDetailActivity);
     }
 
     @Test
-    public void should_getCompetitions_onCreate() {
-        verify(sPresenter).getCompetitions();
+    public void should_getTable_onCreate() {
+        verify(sPresenter).getTable(anyString());
     }
+
 }

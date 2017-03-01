@@ -26,8 +26,6 @@ android {
     }
     compileOptions {
         dependencies {
-            compile fileTree(include: ['*.jar'], dir: 'libs')
-
             compile 'org.androidannotations:androidannotations:4.0-SNAPSHOT'
             compile 'com.android.support:appcompat-v7:25.0.1'
             compile 'com.squareup.retrofit2:retrofit:2.1.0'
@@ -61,9 +59,6 @@ android {
         sourceCompatibility 1.8
     }
 }
-
-
-
 
 dependencies {
     compile 'junit:junit:4.12'

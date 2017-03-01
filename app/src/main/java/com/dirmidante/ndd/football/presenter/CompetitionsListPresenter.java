@@ -22,9 +22,7 @@ import static com.dirmidante.ndd.football.utils.NetworkUtils.networkAvailable;
 public class CompetitionsListPresenter implements ICompetitionsListPresenter {
 
     private CompetitionsListView mView;
-
     private IFootballDataAPI mFootballDataAPI;
-
     private IRealmHelper mRealmHelper;
 
     public CompetitionsListPresenter(IFootballDataAPI footballDataAPI, IRealmHelper realmHelper) {

@@ -1,8 +1,7 @@
-package com.dirmidante.ndd.football.injections;
+package com.dirmidante.ndd.football.injections.components;
 
+import com.dirmidante.ndd.football.injections.modules.CompetitionsListModule;
 import com.dirmidante.ndd.football.view.CompetitionsListActivity;
-
-import javax.inject.Singleton;
 
 import dagger.Component;
 

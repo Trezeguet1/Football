@@ -1,14 +1,11 @@
 package com.dirmidante.ndd.annotations.model;
 
-import com.dirmidante.ndd.annotations.TestApp;
-import com.dirmidante.ndd.football.BuildConfig;
 import com.dirmidante.ndd.football.model.FootballDataAPI;
 import com.dirmidante.ndd.football.model.entity.competition.CompetitonsData;
+import com.dirmidante.ndd.football.model.entity.cuptable.CupTableData;
+import com.dirmidante.ndd.football.model.entity.leaguetable.LeagueTableData;
 import com.dirmidante.ndd.football.model.interfaces.IFootballDataAPI;
 
-import junit.framework.Assert;
-
-import org.apache.tools.ant.types.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
@@ -18,6 +15,8 @@ import java.util.List;
 
 import rx.Observable;
 
+import static com.dirmidante.ndd.football.model.interfaces.IFootballDataAPI.CHAMPIONS_LEAGUE_ID;
+import static com.dirmidante.ndd.football.model.interfaces.IFootballDataAPI.PREMIER_LEAGUE_ID;
 import static org.junit.Assert.assertNotNull;
 
 /**
@@ -31,9 +30,21 @@ public class FootballDataAPITest {
     IFootballDataAPI mFootballDataAPI = new FootballDataAPI();
 
     @Test
-    public void testGetCompetitions(){
+    public void competitions_should_not_be_null() {
         Observable<List<CompetitonsData>> competitonsData = mFootballDataAPI.getCompetitons();
         assertNotNull(competitonsData);
+    }
+
+    @Test
+    public void leagueTable_should_not_be_null() {
+        Observable<LeagueTableData> leagueTableData = mFootballDataAPI.getLeagueTable(PREMIER_LEAGUE_ID);
+        assertNotNull(leagueTableData);
+    }
+
+    @Test
+    public void cupTable_should_not_be_null() {
+        Observable<CupTableData> cupTableData = mFootballDataAPI.getCupTable(CHAMPIONS_LEAGUE_ID);
+        assertNotNull(cupTableData);
     }
 
 }

@@ -45,7 +45,7 @@ public class CompetitionsListActivity extends AppCompatActivity implements Compe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((FootballApplication)getApplication()).getCompetitonsListComponent().inject(this);
+        FootballApplication.getCompetitonsListComponent().inject(this);
         mPresenter.setView(this);
     }
 
@@ -75,7 +75,6 @@ public class CompetitionsListActivity extends AppCompatActivity implements Compe
 
             mAdapter.notifyDataSetChanged();
         }
-        setRefreshing();
     }
 
     @Override
@@ -88,20 +87,22 @@ public class CompetitionsListActivity extends AppCompatActivity implements Compe
     @Override
     public void showNoConnectionMessage() {
         Toast.makeText(this, R.string.noInternetConnection, Toast.LENGTH_SHORT).show();
+        setRefreshing();
     }
 
-    @Override
-    public void setRefreshing() {
+    private void setRefreshing() {
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
     public void showRefreshMessage() {
         Toast.makeText(this, R.string.infoRefreshed, Toast.LENGTH_SHORT).show();
+        setRefreshing();
     }
 
     @Override
     public void showErrorMessage() {
         Toast.makeText(this, R.string.noData, Toast.LENGTH_SHORT).show();
+        setRefreshing();
     }
 }

@@ -25,7 +25,6 @@ import java.util.List;
 import static com.dirmidante.ndd.football.utils.StringUtils.getStringArray;
 
 
-
 /**
  * Created by Dima on 2016-12-20.
  */
@@ -48,7 +47,7 @@ public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHo
     private CupTableData mCupTableData = new CupTableData();
 
     public void setCupTableData(@NonNull CupTableData cupTableData) {
-        if (cupTableData!=null)
+        if (cupTableData != null)
             mCupTableData = cupTableData;
 
     }
@@ -73,7 +72,7 @@ public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHo
         LinearLayoutManager layoutManager = new UnscrollableLayoutManager(FootballApplication.getCurrentApplicationContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         groupList.setLayoutManager(layoutManager);
-        if (group!=null){
+        if (group != null) {
             mGroupAdapter.setTeams(group);
             groupList.setAdapter(mGroupAdapter);
         }
@@ -118,7 +117,6 @@ public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHo
     }
 
     public int getCount(CupTableData cupTableData) {
-        Log.v("mytag", String.valueOf(getGroupCount(cupTableData)));
         return getGroupCount(cupTableData);
     }
 
@@ -145,7 +143,7 @@ public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHo
         return count;
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         private CardView mGroupItem;
 
         public ViewHolder(CardView groupItem) {
@@ -156,10 +154,11 @@ public class CupTableAdapter extends RecyclerView.Adapter<CupTableAdapter.ViewHo
 
     private String getGroupTitle(int i) {
         String[] groups = getStringArray(R.array.groups);
-        String group = (i<groups.length)?groups[i]:"";
+        String group = (i < groups.length) ? groups[i] : "";
         return group;
     }
-    public class UnscrollableLayoutManager extends LinearLayoutManager{
+
+    public class UnscrollableLayoutManager extends LinearLayoutManager {
         public UnscrollableLayoutManager(Context context) {
             super(context);
         }

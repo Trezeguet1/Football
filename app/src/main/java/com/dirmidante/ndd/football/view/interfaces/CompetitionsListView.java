@@ -13,7 +13,6 @@ public interface CompetitionsListView {
     void setCompetitionsListData(List<CompetitonsData> competitions);
     void startDetailActivity(CompetitonsData competiton);
     void showNoConnectionMessage();
-    void setRefreshing();
     void showRefreshMessage();
     void showErrorMessage();
 }
